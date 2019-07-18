@@ -11,9 +11,12 @@ filename = 'alignedTypes.data'
 with open(filename, 'rb') as f:
 	 for line in f: 
 #		 print int(line, 16)/16
-		 x.append(int(line,16)/16)  
+		 x.append(int(line,16)/4096)  
+
 
 print x[1]
+print max(x)
+print min(x)
 num_bins = 16
 n, bins, patches = plt.hist(x, num_bins, facecolor='blue', alpha=0.5)
 plt.savefig("/home/paperspace/gpgpu-sim_simulations/benchmarks/src/4.2/C/bin/linux/release/alignedTypesfol/a.png")
