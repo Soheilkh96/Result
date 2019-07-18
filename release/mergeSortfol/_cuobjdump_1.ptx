@@ -1,0 +1,902 @@
+
+	.version 1.4
+.target sm_10, map_f64_to_f32
+
+	
+
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+
+.file	1	"<command-line>"
+.file	2	"/tmp/tmpxft_00006570_00000000-15_bitonic.compute_10.cudafe2.gpu"
+.file	3	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h"
+.file	4	"/home/paperspace/cudax/cuda/include/crt/device_runtime.h"
+.file	5	"/home/paperspace/cudax/cuda/include/host_defines.h"
+.file	6	"/home/paperspace/cudax/cuda/include/builtin_types.h"
+.file	7	"/home/paperspace/cudax/cuda/include/device_types.h"
+.file	8	"/home/paperspace/cudax/cuda/include/driver_types.h"
+.file	9	"/home/paperspace/cudax/cuda/include/surface_types.h"
+.file	10	"/home/paperspace/cudax/cuda/include/texture_types.h"
+.file	11	"/home/paperspace/cudax/cuda/include/vector_types.h"
+.file	12	"/home/paperspace/cudax/cuda/include/device_launch_parameters.h"
+.file	13	"/home/paperspace/cudax/cuda/include/crt/storage_class.h"
+.file	14	"/usr/include/x86_64-linux-gnu/sys/types.h"
+.file	15	"bitonic.cu"
+.file	16	"/home/paperspace/cudax/cuda/include/common_functions.h"
+.file	17	"/home/paperspace/cudax/cuda/include/math_functions.h"
+.file	18	"/home/paperspace/cudax/cuda/include/math_constants.h"
+.file	19	"/home/paperspace/cudax/cuda/include/device_functions.h"
+.file	20	"/home/paperspace/cudax/cuda/include/sm_11_atomic_functions.h"
+.file	21	"/home/paperspace/cudax/cuda/include/sm_12_atomic_functions.h"
+.file	22	"/home/paperspace/cudax/cuda/include/sm_13_double_functions.h"
+.file	23	"/home/paperspace/cudax/cuda/include/sm_20_atomic_functions.h"
+.file	24	"/home/paperspace/cudax/cuda/include/sm_32_atomic_functions.h"
+.file	25	"/home/paperspace/cudax/cuda/include/sm_35_atomic_functions.h"
+.file	26	"/home/paperspace/cudax/cuda/include/sm_20_intrinsics.h"
+.file	27	"/home/paperspace/cudax/cuda/include/sm_30_intrinsics.h"
+.file	28	"/home/paperspace/cudax/cuda/include/sm_32_intrinsics.h"
+.file	29	"/home/paperspace/cudax/cuda/include/sm_35_intrinsics.h"
+.file	30	"/home/paperspace/cudax/cuda/include/surface_functions.h"
+.file	31	"/home/paperspace/cudax/cuda/include/texture_fetch_functions.h"
+.file	32	"/home/paperspace/cudax/cuda/include/texture_indirect_functions.h"
+.file	33	"/home/paperspace/cudax/cuda/include/surface_indirect_functions.h"
+.file	34	"/home/paperspace/cudax/cuda/include/math_functions_dbl_ptx1.h"
+
+
+.entry _Z23bitonicSortSharedKernelPjS_S_S_jj (
+.param .u64 __cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj___val_paramd_DstKey,
+.param .u64 __cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj___val_paramd_DstVal,
+.param .u64 __cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj___val_paramd_SrcKey,
+.param .u64 __cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj___val_paramd_SrcVal,
+.param .u32 __cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj_arrayLength,
+.param .u32 __cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj_sortDir)
+{
+.reg .u16 %rh<3>;
+.reg .u32 %r<46>;
+.reg .u64 %rd<34>;
+.reg .pred %p<12>;
+.shared .align 4 .b8 __cuda___cuda_local_var_41064_34_non_const_s_key40[4096];
+.shared .align 4 .b8 __cuda___cuda_local_var_41065_34_non_const_s_val4136[4096];
+.loc	15	38	0
+$LDWbegin__Z23bitonicSortSharedKernelPjS_S_S_jj:
+mov.u64 %rd1, __cuda___cuda_local_var_41064_34_non_const_s_key40;
+mov.u64 %rd2, __cuda___cuda_local_var_41065_34_non_const_s_val4136;
+.loc	15	49	0
+mov.u16 %rh1, %ctaid.x;
+mul.wide.u16 %r1, %rh1, 1024;
+cvt.u32.u16 %r2, %tid.x;
+cvt.u64.u32 %rd3, %r2;
+mul.wide.u32 %rd4, %r2, 4;
+add.u64 %rd5, %rd4, %rd1;
+add.u32 %r3, %r1, %r2;
+cvt.u64.u32 %rd6, %r3;
+mul.wide.u32 %rd7, %r3, 4;
+ld.param.u64 %rd8, [__cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj___val_paramd_SrcKey];
+add.u64 %rd9, %rd8, %rd7;
+ld.global.u32 %r4, [%rd9+0];
+st.shared.u32 [%rd5+0], %r4;
+.loc	15	50	0
+add.u64 %rd10, %rd4, %rd2;
+ld.param.u64 %rd11, [__cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj___val_paramd_SrcVal];
+add.u64 %rd12, %rd11, %rd7;
+ld.global.u32 %r5, [%rd12+0];
+st.shared.u32 [%rd10+0], %r5;
+.loc	15	51	0
+ld.global.u32 %r6, [%rd9+2048];
+st.shared.u32 [%rd5+2048], %r6;
+.loc	15	52	0
+ld.global.u32 %r7, [%rd12+2048];
+st.shared.u32 [%rd10+2048], %r7;
+ld.param.u32 %r8, [__cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj_arrayLength];
+mov.u32 %r9, 2;
+setp.le.u32 %p1, %r8, %r9;
+@%p1 bra $Lt_0_4866;
+mov.u32 %r10, 2;
+$Lt_0_5378:
+
+	.loc	15	57	0
+shr.u32 %r11, %r10, 1;
+mov.s32 %r12, %r11;
+mov.u32 %r13, 0;
+setp.eq.u32 %p2, %r11, %r13;
+@%p2 bra $Lt_0_5634;
+mul24.lo.u32 %r14, %r2, 2;
+and.b32 %r15, %r11, %r2;
+mov.u32 %r16, 0;
+setp.ne.u32 %p3, %r15, %r16;
+$Lt_0_6146:
+.loc	15	58	0
+bar.sync 0;
+sub.u32 %r17, %r12, 1;
+and.b32 %r18, %r17, %r2;
+sub.u32 %r19, %r14, %r18;
+cvt.u64.u32 %rd13, %r19;
+mul.wide.u32 %rd14, %r19, 4;
+add.u64 %rd15, %rd14, %rd1;
+add.u32 %r20, %r19, %r12;
+cvt.u64.u32 %rd16, %r20;
+mul.wide.u32 %rd17, %r20, 4;
+ld.shared.u32 %r21, [%rd15+0];
+add.u64 %rd18, %rd17, %rd1;
+ld.shared.u32 %r22, [%rd18+0];
+setp.lt.u32 %p4, %r22, %r21;
+xor.pred %p5, %p3, %p4;
+@%p5 bra $Lt_0_6402;
+.loc	15	27	0
+st.shared.u32 [%rd15+0], %r22;
+st.shared.u32 [%rd18+0], %r21;
+.loc	15	28	0
+add.u64 %rd19, %rd14, %rd2;
+ld.shared.u32 %r23, [%rd19+0];
+add.u64 %rd20, %rd17, %rd2;
+ld.shared.u32 %r24, [%rd20+0];
+st.shared.u32 [%rd19+0], %r24;
+st.shared.u32 [%rd20+0], %r23;
+$Lt_0_6402:
+.loc	15	57	0
+shr.u32 %r12, %r12, 1;
+mov.u32 %r25, 0;
+setp.ne.u32 %p6, %r12, %r25;
+@%p6 bra $Lt_0_6146;
+$Lt_0_5634:
+.loc	15	54	0
+shl.b32 %r10, %r10, 1;
+setp.gt.u32 %p7, %r8, %r10;
+@%p7 bra $Lt_0_5378;
+$Lt_0_4866:
+.loc	15	70	0
+shr.u32 %r26, %r8, 1;
+mov.s32 %r27, %r26;
+mov.u32 %r28, 0;
+setp.eq.u32 %p8, %r26, %r28;
+@%p8 bra $Lt_0_7426;
+mul24.lo.u32 %r14, %r2, 2;
+ld.param.u32 %r29, [__cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj_sortDir];
+$Lt_0_7938:
+.loc	15	71	0
+bar.sync 0;
+sub.u32 %r30, %r27, 1;
+and.b32 %r31, %r30, %r2;
+sub.u32 %r32, %r14, %r31;
+cvt.u64.u32 %rd21, %r32;
+mul.wide.u32 %rd22, %r32, 4;
+add.u64 %rd23, %rd22, %rd1;
+add.u32 %r33, %r32, %r27;
+cvt.u64.u32 %rd24, %r33;
+mul.wide.u32 %rd25, %r33, 4;
+ld.shared.u32 %r34, [%rd23+0];
+add.u64 %rd26, %rd25, %rd1;
+ld.shared.u32 %r35, [%rd26+0];
+set.lt.u32.u32 %r36, %r35, %r34;
+neg.s32 %r37, %r36;
+setp.ne.u32 %p9, %r29, %r37;
+@%p9 bra $Lt_0_8194;
+.loc	15	27	0
+st.shared.u32 [%rd23+0], %r35;
+st.shared.u32 [%rd26+0], %r34;
+.loc	15	28	0
+add.u64 %rd27, %rd22, %rd2;
+ld.shared.u32 %r38, [%rd27+0];
+add.u64 %rd28, %rd25, %rd2;
+ld.shared.u32 %r39, [%rd28+0];
+st.shared.u32 [%rd27+0], %r39;
+st.shared.u32 [%rd28+0], %r38;
+$Lt_0_8194:
+.loc	15	70	0
+shr.u32 %r27, %r27, 1;
+mov.u32 %r40, 0;
+setp.ne.u32 %p10, %r27, %r40;
+@%p10 bra $Lt_0_7938;
+$Lt_0_7426:
+.loc	15	81	0
+bar.sync 0;
+.loc	15	82	0
+ld.param.u64 %rd29, [__cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj___val_paramd_DstKey];
+add.u64 %rd30, %rd29, %rd7;
+ld.shared.u32 %r41, [%rd5+0];
+st.global.u32 [%rd30+0], %r41;
+.loc	15	83	0
+ld.param.u64 %rd31, [__cudaparm__Z23bitonicSortSharedKernelPjS_S_S_jj___val_paramd_DstVal];
+add.u64 %rd32, %rd31, %rd7;
+ld.shared.u32 %r42, [%rd10+0];
+st.global.u32 [%rd32+0], %r42;
+.loc	15	84	0
+ld.shared.u32 %r43, [%rd5+2048];
+st.global.u32 [%rd30+2048], %r43;
+.loc	15	85	0
+ld.shared.u32 %r44, [%rd10+2048];
+st.global.u32 [%rd32+2048], %r44;
+.loc	15	86	0
+exit;
+$LDWend__Z23bitonicSortSharedKernelPjS_S_S_jj:
+} 
+
+.entry _Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj (
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstKey,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstVal,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcKey,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcVal,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_d_LimitsA,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_d_LimitsB,
+.param .u32 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_stride,
+.param .u32 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_N)
+{
+.reg .u32 %r<85>;
+.reg .u64 %rd<82>;
+.reg .pred %p<15>;
+.shared .align 4 .b8 __cuda___cuda_local_var_41196_34_non_const_s_inf8288[1024];
+.shared .align 4 .b8 __cuda___cuda_local_var_41194_34_non_const_s_key9312[1024];
+.shared .align 4 .b8 __cuda___cuda_local_var_41195_34_non_const_s_val10336[1024];
+.shared .u32 __cuda_local_var_41206_34_non_const_startSrcA;
+.shared .u32 __cuda_local_var_41206_54_non_const_startSrcB;
+.shared .u32 __cuda_local_var_41206_74_non_const_startDst;
+.shared .u32 __cuda_local_var_41206_45_non_const_lenSrcA;
+.shared .u32 __cuda_local_var_41206_65_non_const_lenSrcB;
+.loc	15	169	0
+$LDWbegin__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj:
+cvt.u32.u16 %r1, %tid.x;
+mov.u32 %r2, 0;
+setp.ne.u32 %p1, %r1, %r2;
+@%p1 bra $Lt_1_11010;
+ld.param.u32 %r3, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r3, 2;
+shr.u32 %r5, %r4, 7;
+sub.u32 %r6, %r5, 1;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r10, %r9, 128;
+ld.param.u32 %r11, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_N];
+sub.u32 %r12, %r11, %r10;
+sub.u32 %r13, %r12, %r3;
+min.u32 %r14, %r13, %r3;
+shr.u32 %r15, %r14, 7;
+and.b32 %r16, %r14, 127;
+mov.u32 %r17, 0;
+setp.ne.u32 %p2, %r16, %r17;
+@%p2 bra $Lt_1_11778;
+.loc	15	188	0
+mov.s32 %r18, %r15;
+bra.uni $Lt_1_11522;
+$Lt_1_11778:
+add.u32 %r18, %r15, 1;
+$Lt_1_11522:
+.loc	15	191	0
+cvt.u64.u32 %rd1, %r7;
+mul.wide.u32 %rd2, %r7, 4;
+ld.param.u64 %rd3, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_d_LimitsA];
+add.u64 %rd4, %rd3, %rd2;
+ld.global.u32 %r19, [%rd4+0];
+st.shared.u32 [__cuda_local_var_41206_34_non_const_startSrcA], %r19;
+.loc	15	192	0
+ld.param.u64 %rd5, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_d_LimitsB];
+add.u64 %rd6, %rd5, %rd2;
+ld.global.u32 %r20, [%rd6+0];
+st.shared.u32 [__cuda_local_var_41206_54_non_const_startSrcB], %r20;
+.loc	15	193	0
+add.u32 %r21, %r19, %r20;
+st.shared.u32 [__cuda_local_var_41206_74_non_const_startDst], %r21;
+.loc	15	169	0
+ld.param.u32 %r3, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_stride];
+.loc	15	193	0
+shr.u32 %r22, %r3, 7;
+add.u32 %r23, %r18, %r22;
+add.u32 %r24, %r8, 1;
+setp.gt.u32 %p3, %r23, %r24;
+@!%p3 bra $Lt_1_12290;
+.loc	15	195	0
+ld.global.u32 %r25, [%rd4+4];
+bra.uni $Lt_1_12034;
+$Lt_1_12290:
+.loc	15	169	0
+ld.param.u32 %r3, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_stride];
+.loc	15	195	0
+mov.s32 %r25, %r3;
+$Lt_1_12034:
+@!%p3 bra $Lt_1_12802;
+.loc	15	196	0
+ld.global.u32 %r26, [%rd6+4];
+bra.uni $Lt_1_12546;
+$Lt_1_12802:
+mov.s32 %r26, %r14;
+$Lt_1_12546:
+.loc	15	197	0
+sub.u32 %r27, %r25, %r19;
+st.shared.u32 [__cuda_local_var_41206_45_non_const_lenSrcA], %r27;
+.loc	15	198	0
+sub.u32 %r28, %r26, %r20;
+st.shared.u32 [__cuda_local_var_41206_65_non_const_lenSrcB], %r28;
+$Lt_1_11010:
+mov.u64 %rd7, __cuda___cuda_local_var_41196_34_non_const_s_inf8288;
+.loc	15	201	0
+cvt.u64.u32 %rd8, %r1;
+mul.wide.u32 %rd9, %r1, 4;
+add.u64 %rd10, %rd9, %rd7;
+mov.u32 %r29, 1;
+st.shared.u32 [%rd10+0], %r29;
+.loc	15	202	0
+mov.u32 %r30, 1;
+st.shared.u32 [%rd10+512], %r30;
+.loc	15	205	0
+bar.sync 0;
+ld.shared.u32 %r31, [__cuda_local_var_41206_45_non_const_lenSrcA];
+setp.le.u32 %p4, %r31, %r1;
+@%p4 bra $Lt_1_13058;
+.loc	15	207	0
+mov.u64 %rd11, __cuda___cuda_local_var_41194_34_non_const_s_key9312;
+mov.u64 %rd12, __cuda___cuda_local_var_41195_34_non_const_s_val10336;
+ld.param.u32 %r32, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r32, 2;
+shr.u32 %r5, %r4, 7;
+sub.u32 %r6, %r5, 1;
+ld.shared.u32 %r33, [__cuda_local_var_41206_34_non_const_startSrcA];
+add.u32 %r34, %r33, %r1;
+cvt.u64.u32 %rd13, %r34;
+mul.wide.u32 %rd14, %r34, 4;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r35, %r9, 128;
+cvt.u64.u32 %rd15, %r35;
+mul.wide.u32 %rd16, %r35, 4;
+ld.param.u64 %rd17, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcKey];
+add.u64 %rd18, %rd17, %rd16;
+add.u64 %rd19, %rd14, %rd18;
+ld.global.u32 %r36, [%rd19+0];
+add.u64 %rd20, %rd9, %rd11;
+st.shared.u32 [%rd20+0], %r36;
+.loc	15	208	0
+ld.param.u64 %rd21, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcVal];
+add.u64 %rd22, %rd21, %rd16;
+add.u64 %rd23, %rd14, %rd22;
+ld.global.u32 %r37, [%rd23+0];
+add.u64 %rd24, %rd9, %rd12;
+st.shared.u32 [%rd24+0], %r37;
+.loc	15	209	0
+mov.u32 %r38, 0;
+st.shared.u32 [%rd10+0], %r38;
+$Lt_1_13058:
+mov.u64 %rd11, __cuda___cuda_local_var_41194_34_non_const_s_key9312;
+mov.u64 %rd12, __cuda___cuda_local_var_41195_34_non_const_s_val10336;
+ld.shared.u32 %r39, [__cuda_local_var_41206_65_non_const_lenSrcB];
+setp.le.u32 %p5, %r39, %r1;
+@%p5 bra $Lt_1_13570;
+.loc	15	213	0
+ld.param.u32 %r40, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r40, 2;
+ld.shared.u32 %r41, [__cuda_local_var_41206_54_non_const_startSrcB];
+add.u32 %r42, %r41, %r40;
+shr.u32 %r5, %r4, 7;
+sub.u32 %r6, %r5, 1;
+neg.s32 %r43, %r1;
+cvt.s64.s32 %rd25, %r43;
+mul.wide.s32 %rd26, %r43, 4;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+add.u32 %r44, %r42, %r1;
+cvt.u64.u32 %rd27, %r44;
+mul.wide.u32 %rd28, %r44, 4;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r45, %r9, 128;
+cvt.u64.u32 %rd29, %r45;
+mul.wide.u32 %rd16, %r45, 4;
+ld.param.u64 %rd30, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcKey];
+add.u64 %rd31, %rd30, %rd16;
+add.u64 %rd32, %rd28, %rd31;
+ld.global.u32 %r46, [%rd32+0];
+add.u64 %rd33, %rd26, %rd11;
+st.shared.u32 [%rd33+1020], %r46;
+.loc	15	214	0
+ld.param.u64 %rd34, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcVal];
+add.u64 %rd35, %rd34, %rd16;
+add.u64 %rd36, %rd28, %rd35;
+ld.global.u32 %r47, [%rd36+0];
+add.u64 %rd37, %rd26, %rd12;
+st.shared.u32 [%rd37+1020], %r47;
+.loc	15	215	0
+mov.u32 %r48, 0;
+add.u64 %rd38, %rd26, %rd7;
+st.shared.u32 [%rd38+1020], %r48;
+$Lt_1_13570:
+mul24.lo.u32 %r49, %r1, 2;
+mov.u32 %r50, 128;
+$Lt_1_14594:
+
+	.loc	15	220	0
+bar.sync 0;
+sub.u32 %r51, %r50, 1;
+and.b32 %r52, %r51, %r1;
+sub.u32 %r53, %r49, %r52;
+cvt.u64.u32 %rd39, %r53;
+mul.wide.u32 %rd40, %r53, 4;
+add.u64 %rd41, %rd40, %rd7;
+ld.shared.u32 %r54, [%rd41+0];
+mov.u32 %r55, 0;
+setp.ne.u32 %p6, %r54, %r55;
+@%p6 bra $Lt_1_16130;
+add.u32 %r56, %r53, %r50;
+cvt.u64.u32 %rd42, %r56;
+mul.wide.u32 %rd43, %r56, 4;
+add.u64 %rd44, %rd43, %rd7;
+ld.shared.u32 %r57, [%rd44+0];
+mov.u32 %r58, 0;
+setp.ne.u32 %p7, %r57, %r58;
+@%p7 bra $Lt_1_16130;
+add.u64 %rd45, %rd40, %rd11;
+ld.shared.u32 %r59, [%rd45+0];
+add.u64 %rd46, %rd43, %rd11;
+ld.shared.u32 %r60, [%rd46+0];
+setp.gt.u32 %p8, %r59, %r60;
+@%p8 bra $L_1_10242;
+$Lt_1_16130:
+$L_1_10498:
+mov.u32 %r61, 1;
+ld.shared.u32 %r54, [%rd41+0];
+setp.ne.u32 %p9, %r54, %r61;
+@%p9 bra $L_1_9986;
+$L_1_10242:
+mov.s32 %r62, 1;
+bra.uni $L_1_9730;
+$L_1_9986:
+mov.s32 %r62, 0;
+$L_1_9730:
+mov.u32 %r63, 0;
+setp.eq.s32 %p10, %r62, %r63;
+@%p10 bra $L_1_9474;
+.loc	15	155	0
+add.u64 %rd47, %rd40, %rd11;
+ld.shared.u32 %r64, [%rd47+0];
+add.u32 %r65, %r53, %r50;
+cvt.u64.u32 %rd48, %r65;
+mul.wide.u32 %rd43, %r65, 4;
+add.u64 %rd49, %rd43, %rd11;
+ld.shared.u32 %r66, [%rd49+0];
+st.shared.u32 [%rd47+0], %r66;
+st.shared.u32 [%rd49+0], %r64;
+.loc	15	156	0
+add.u64 %rd50, %rd40, %rd12;
+ld.shared.u32 %r67, [%rd50+0];
+add.u64 %rd51, %rd43, %rd12;
+ld.shared.u32 %r68, [%rd51+0];
+st.shared.u32 [%rd50+0], %r68;
+st.shared.u32 [%rd51+0], %r67;
+.loc	15	157	0
+add.u64 %rd52, %rd43, %rd7;
+ld.shared.u32 %r69, [%rd52+0];
+st.shared.u32 [%rd41+0], %r69;
+st.shared.u32 [%rd52+0], %r54;
+$L_1_9474:
+.loc	15	219	0
+shr.u32 %r50, %r50, 1;
+mov.u32 %r70, 0;
+setp.ne.u32 %p11, %r50, %r70;
+@%p11 bra $Lt_1_14594;
+.loc	15	230	0
+bar.sync 0;
+ld.shared.u32 %r71, [__cuda_local_var_41206_45_non_const_lenSrcA];
+setp.le.u32 %p12, %r71, %r1;
+@%p12 bra $Lt_1_15106;
+.loc	15	234	0
+ld.param.u32 %r72, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r72, 2;
+ld.shared.u32 %r73, [__cuda_local_var_41206_74_non_const_startDst];
+cvt.u64.u32 %rd53, %r73;
+mul.wide.u32 %rd54, %r73, 4;
+shr.u32 %r5, %r4, 7;
+sub.u32 %r6, %r5, 1;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r74, %r9, 128;
+cvt.u64.u32 %rd55, %r74;
+mul.wide.u32 %rd16, %r74, 4;
+add.u64 %rd56, %rd9, %rd11;
+ld.shared.u32 %r75, [%rd56+0];
+ld.param.u64 %rd57, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstKey];
+add.u64 %rd58, %rd57, %rd16;
+add.u64 %rd59, %rd9, %rd54;
+add.u64 %rd60, %rd58, %rd59;
+st.global.u32 [%rd60+0], %r75;
+.loc	15	235	0
+add.u64 %rd61, %rd9, %rd12;
+ld.shared.u32 %r76, [%rd61+0];
+ld.param.u64 %rd62, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstVal];
+add.u64 %rd63, %rd62, %rd16;
+add.u64 %rd64, %rd9, %rd54;
+add.u64 %rd65, %rd63, %rd64;
+st.global.u32 [%rd65+0], %r76;
+$Lt_1_15106:
+ld.shared.u32 %r77, [__cuda_local_var_41206_65_non_const_lenSrcB];
+setp.le.u32 %p13, %r77, %r1;
+@%p13 bra $Lt_1_15618;
+.loc	15	238	0
+ld.param.u32 %r78, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r78, 2;
+ld.shared.u32 %r79, [__cuda_local_var_41206_74_non_const_startDst];
+cvt.u64.u32 %rd66, %r79;
+mul.wide.u32 %rd67, %r79, 4;
+shr.u32 %r5, %r4, 7;
+.loc	15	230	0
+ld.shared.u32 %r71, [__cuda_local_var_41206_45_non_const_lenSrcA];
+.loc	15	238	0
+add.u32 %r80, %r71, %r1;
+cvt.u64.u32 %rd68, %r80;
+mul.wide.u32 %rd69, %r80, 4;
+sub.u32 %r6, %r5, 1;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r81, %r9, 128;
+cvt.u64.u32 %rd70, %r81;
+mul.wide.u32 %rd16, %r81, 4;
+add.u64 %rd71, %rd69, %rd11;
+ld.shared.u32 %r82, [%rd71+0];
+ld.param.u64 %rd72, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstKey];
+add.u64 %rd73, %rd72, %rd16;
+add.u64 %rd74, %rd69, %rd67;
+add.u64 %rd75, %rd73, %rd74;
+st.global.u32 [%rd75+0], %r82;
+.loc	15	239	0
+add.u64 %rd76, %rd69, %rd12;
+ld.shared.u32 %r83, [%rd76+0];
+ld.param.u64 %rd77, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstVal];
+add.u64 %rd78, %rd77, %rd16;
+add.u64 %rd79, %rd69, %rd67;
+add.u64 %rd80, %rd78, %rd79;
+st.global.u32 [%rd80+0], %r83;
+$Lt_1_15618:
+.loc	15	241	0
+exit;
+$LDWend__Z37bitonicMergeElementaryIntervalsKernelILj1EEvPjS0_S0_S0_S0_S0_jj:
+} 
+
+.entry _Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj (
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstKey,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstVal,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcKey,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcVal,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_d_LimitsA,
+.param .u64 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_d_LimitsB,
+.param .u32 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_stride,
+.param .u32 __cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_N)
+{
+.reg .u32 %r<85>;
+.reg .u64 %rd<82>;
+.reg .pred %p<15>;
+.shared .align 4 .b8 __cuda___cuda_local_var_41196_34_non_const_s_inf11416[1024];
+.shared .align 4 .b8 __cuda___cuda_local_var_41194_34_non_const_s_key12440[1024];
+.shared .align 4 .b8 __cuda___cuda_local_var_41195_34_non_const_s_val13464[1024];
+.shared .u32 __cuda_local_var_41206_34_non_const_startSrcA;
+.shared .u32 __cuda_local_var_41206_54_non_const_startSrcB;
+.shared .u32 __cuda_local_var_41206_74_non_const_startDst;
+.shared .u32 __cuda_local_var_41206_45_non_const_lenSrcA;
+.shared .u32 __cuda_local_var_41206_65_non_const_lenSrcB;
+.loc	15	169	0
+$LDWbegin__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj:
+cvt.u32.u16 %r1, %tid.x;
+mov.u32 %r2, 0;
+setp.ne.u32 %p1, %r1, %r2;
+@%p1 bra $Lt_2_11010;
+ld.param.u32 %r3, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r3, 2;
+shr.u32 %r5, %r4, 7;
+sub.u32 %r6, %r5, 1;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r10, %r9, 128;
+ld.param.u32 %r11, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_N];
+sub.u32 %r12, %r11, %r10;
+sub.u32 %r13, %r12, %r3;
+min.u32 %r14, %r13, %r3;
+shr.u32 %r15, %r14, 7;
+and.b32 %r16, %r14, 127;
+mov.u32 %r17, 0;
+setp.ne.u32 %p2, %r16, %r17;
+@%p2 bra $Lt_2_11778;
+.loc	15	188	0
+mov.s32 %r18, %r15;
+bra.uni $Lt_2_11522;
+$Lt_2_11778:
+add.u32 %r18, %r15, 1;
+$Lt_2_11522:
+.loc	15	191	0
+cvt.u64.u32 %rd1, %r7;
+mul.wide.u32 %rd2, %r7, 4;
+ld.param.u64 %rd3, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_d_LimitsA];
+add.u64 %rd4, %rd3, %rd2;
+ld.global.u32 %r19, [%rd4+0];
+st.shared.u32 [__cuda_local_var_41206_34_non_const_startSrcA], %r19;
+.loc	15	192	0
+ld.param.u64 %rd5, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_d_LimitsB];
+add.u64 %rd6, %rd5, %rd2;
+ld.global.u32 %r20, [%rd6+0];
+st.shared.u32 [__cuda_local_var_41206_54_non_const_startSrcB], %r20;
+.loc	15	193	0
+add.u32 %r21, %r19, %r20;
+st.shared.u32 [__cuda_local_var_41206_74_non_const_startDst], %r21;
+.loc	15	169	0
+ld.param.u32 %r3, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_stride];
+.loc	15	193	0
+shr.u32 %r22, %r3, 7;
+add.u32 %r23, %r18, %r22;
+add.u32 %r24, %r8, 1;
+setp.gt.u32 %p3, %r23, %r24;
+@!%p3 bra $Lt_2_12290;
+.loc	15	195	0
+ld.global.u32 %r25, [%rd4+4];
+bra.uni $Lt_2_12034;
+$Lt_2_12290:
+.loc	15	169	0
+ld.param.u32 %r3, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_stride];
+.loc	15	195	0
+mov.s32 %r25, %r3;
+$Lt_2_12034:
+@!%p3 bra $Lt_2_12802;
+.loc	15	196	0
+ld.global.u32 %r26, [%rd6+4];
+bra.uni $Lt_2_12546;
+$Lt_2_12802:
+mov.s32 %r26, %r14;
+$Lt_2_12546:
+.loc	15	197	0
+sub.u32 %r27, %r25, %r19;
+st.shared.u32 [__cuda_local_var_41206_45_non_const_lenSrcA], %r27;
+.loc	15	198	0
+sub.u32 %r28, %r26, %r20;
+st.shared.u32 [__cuda_local_var_41206_65_non_const_lenSrcB], %r28;
+$Lt_2_11010:
+mov.u64 %rd7, __cuda___cuda_local_var_41196_34_non_const_s_inf11416;
+.loc	15	201	0
+cvt.u64.u32 %rd8, %r1;
+mul.wide.u32 %rd9, %r1, 4;
+add.u64 %rd10, %rd9, %rd7;
+mov.u32 %r29, 1;
+st.shared.u32 [%rd10+0], %r29;
+.loc	15	202	0
+mov.u32 %r30, 1;
+st.shared.u32 [%rd10+512], %r30;
+.loc	15	205	0
+bar.sync 0;
+ld.shared.u32 %r31, [__cuda_local_var_41206_45_non_const_lenSrcA];
+setp.le.u32 %p4, %r31, %r1;
+@%p4 bra $Lt_2_13058;
+.loc	15	207	0
+mov.u64 %rd11, __cuda___cuda_local_var_41194_34_non_const_s_key12440;
+mov.u64 %rd12, __cuda___cuda_local_var_41195_34_non_const_s_val13464;
+ld.param.u32 %r32, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r32, 2;
+shr.u32 %r5, %r4, 7;
+sub.u32 %r6, %r5, 1;
+ld.shared.u32 %r33, [__cuda_local_var_41206_34_non_const_startSrcA];
+add.u32 %r34, %r33, %r1;
+cvt.u64.u32 %rd13, %r34;
+mul.wide.u32 %rd14, %r34, 4;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r35, %r9, 128;
+cvt.u64.u32 %rd15, %r35;
+mul.wide.u32 %rd16, %r35, 4;
+ld.param.u64 %rd17, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcKey];
+add.u64 %rd18, %rd17, %rd16;
+add.u64 %rd19, %rd14, %rd18;
+ld.global.u32 %r36, [%rd19+0];
+add.u64 %rd20, %rd9, %rd11;
+st.shared.u32 [%rd20+0], %r36;
+.loc	15	208	0
+ld.param.u64 %rd21, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcVal];
+add.u64 %rd22, %rd21, %rd16;
+add.u64 %rd23, %rd14, %rd22;
+ld.global.u32 %r37, [%rd23+0];
+add.u64 %rd24, %rd9, %rd12;
+st.shared.u32 [%rd24+0], %r37;
+.loc	15	209	0
+mov.u32 %r38, 0;
+st.shared.u32 [%rd10+0], %r38;
+$Lt_2_13058:
+mov.u64 %rd11, __cuda___cuda_local_var_41194_34_non_const_s_key12440;
+mov.u64 %rd12, __cuda___cuda_local_var_41195_34_non_const_s_val13464;
+ld.shared.u32 %r39, [__cuda_local_var_41206_65_non_const_lenSrcB];
+setp.le.u32 %p5, %r39, %r1;
+@%p5 bra $Lt_2_13570;
+.loc	15	213	0
+ld.param.u32 %r40, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r40, 2;
+ld.shared.u32 %r41, [__cuda_local_var_41206_54_non_const_startSrcB];
+add.u32 %r42, %r41, %r40;
+shr.u32 %r5, %r4, 7;
+sub.u32 %r6, %r5, 1;
+neg.s32 %r43, %r1;
+cvt.s64.s32 %rd25, %r43;
+mul.wide.s32 %rd26, %r43, 4;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+add.u32 %r44, %r42, %r1;
+cvt.u64.u32 %rd27, %r44;
+mul.wide.u32 %rd28, %r44, 4;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r45, %r9, 128;
+cvt.u64.u32 %rd29, %r45;
+mul.wide.u32 %rd16, %r45, 4;
+ld.param.u64 %rd30, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcKey];
+add.u64 %rd31, %rd30, %rd16;
+add.u64 %rd32, %rd28, %rd31;
+ld.global.u32 %r46, [%rd32+0];
+add.u64 %rd33, %rd26, %rd11;
+st.shared.u32 [%rd33+1020], %r46;
+.loc	15	214	0
+ld.param.u64 %rd34, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_SrcVal];
+add.u64 %rd35, %rd34, %rd16;
+add.u64 %rd36, %rd28, %rd35;
+ld.global.u32 %r47, [%rd36+0];
+add.u64 %rd37, %rd26, %rd12;
+st.shared.u32 [%rd37+1020], %r47;
+.loc	15	215	0
+mov.u32 %r48, 0;
+add.u64 %rd38, %rd26, %rd7;
+st.shared.u32 [%rd38+1020], %r48;
+$Lt_2_13570:
+mul24.lo.u32 %r49, %r1, 2;
+mov.u32 %r50, 128;
+$Lt_2_14594:
+
+	.loc	15	220	0
+bar.sync 0;
+sub.u32 %r51, %r50, 1;
+and.b32 %r52, %r51, %r1;
+sub.u32 %r53, %r49, %r52;
+cvt.u64.u32 %rd39, %r53;
+mul.wide.u32 %rd40, %r53, 4;
+add.u64 %rd41, %rd40, %rd7;
+ld.shared.u32 %r54, [%rd41+0];
+mov.u32 %r55, 0;
+setp.ne.u32 %p6, %r54, %r55;
+@%p6 bra $Lt_2_16130;
+add.u32 %r56, %r53, %r50;
+cvt.u64.u32 %rd42, %r56;
+mul.wide.u32 %rd43, %r56, 4;
+add.u64 %rd44, %rd43, %rd7;
+ld.shared.u32 %r57, [%rd44+0];
+mov.u32 %r58, 0;
+setp.ne.u32 %p7, %r57, %r58;
+@%p7 bra $Lt_2_16130;
+add.u64 %rd45, %rd40, %rd11;
+ld.shared.u32 %r59, [%rd45+0];
+add.u64 %rd46, %rd43, %rd11;
+ld.shared.u32 %r60, [%rd46+0];
+setp.le.u32 %p8, %r59, %r60;
+@%p8 bra $L_2_10242;
+$Lt_2_16130:
+$L_2_10498:
+mov.u32 %r61, 1;
+ld.shared.u32 %r54, [%rd41+0];
+setp.ne.u32 %p9, %r54, %r61;
+@%p9 bra $L_2_9986;
+$L_2_10242:
+mov.s32 %r62, 1;
+bra.uni $L_2_9730;
+$L_2_9986:
+mov.s32 %r62, 0;
+$L_2_9730:
+mov.u32 %r63, 0;
+setp.eq.s32 %p10, %r62, %r63;
+@%p10 bra $L_2_9474;
+.loc	15	155	0
+add.u64 %rd47, %rd40, %rd11;
+ld.shared.u32 %r64, [%rd47+0];
+add.u32 %r65, %r53, %r50;
+cvt.u64.u32 %rd48, %r65;
+mul.wide.u32 %rd43, %r65, 4;
+add.u64 %rd49, %rd43, %rd11;
+ld.shared.u32 %r66, [%rd49+0];
+st.shared.u32 [%rd47+0], %r66;
+st.shared.u32 [%rd49+0], %r64;
+.loc	15	156	0
+add.u64 %rd50, %rd40, %rd12;
+ld.shared.u32 %r67, [%rd50+0];
+add.u64 %rd51, %rd43, %rd12;
+ld.shared.u32 %r68, [%rd51+0];
+st.shared.u32 [%rd50+0], %r68;
+st.shared.u32 [%rd51+0], %r67;
+.loc	15	157	0
+add.u64 %rd52, %rd43, %rd7;
+ld.shared.u32 %r69, [%rd52+0];
+st.shared.u32 [%rd41+0], %r69;
+st.shared.u32 [%rd52+0], %r54;
+$L_2_9474:
+.loc	15	219	0
+shr.u32 %r50, %r50, 1;
+mov.u32 %r70, 0;
+setp.ne.u32 %p11, %r50, %r70;
+@%p11 bra $Lt_2_14594;
+.loc	15	230	0
+bar.sync 0;
+ld.shared.u32 %r71, [__cuda_local_var_41206_45_non_const_lenSrcA];
+setp.le.u32 %p12, %r71, %r1;
+@%p12 bra $Lt_2_15106;
+.loc	15	234	0
+ld.param.u32 %r72, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r72, 2;
+ld.shared.u32 %r73, [__cuda_local_var_41206_74_non_const_startDst];
+cvt.u64.u32 %rd53, %r73;
+mul.wide.u32 %rd54, %r73, 4;
+shr.u32 %r5, %r4, 7;
+sub.u32 %r6, %r5, 1;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r74, %r9, 128;
+cvt.u64.u32 %rd55, %r74;
+mul.wide.u32 %rd16, %r74, 4;
+add.u64 %rd56, %rd9, %rd11;
+ld.shared.u32 %r75, [%rd56+0];
+ld.param.u64 %rd57, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstKey];
+add.u64 %rd58, %rd57, %rd16;
+add.u64 %rd59, %rd9, %rd54;
+add.u64 %rd60, %rd58, %rd59;
+st.global.u32 [%rd60+0], %r75;
+.loc	15	235	0
+add.u64 %rd61, %rd9, %rd12;
+ld.shared.u32 %r76, [%rd61+0];
+ld.param.u64 %rd62, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstVal];
+add.u64 %rd63, %rd62, %rd16;
+add.u64 %rd64, %rd9, %rd54;
+add.u64 %rd65, %rd63, %rd64;
+st.global.u32 [%rd65+0], %r76;
+$Lt_2_15106:
+ld.shared.u32 %r77, [__cuda_local_var_41206_65_non_const_lenSrcB];
+setp.le.u32 %p13, %r77, %r1;
+@%p13 bra $Lt_2_15618;
+.loc	15	238	0
+ld.param.u32 %r78, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj_stride];
+mul.lo.u32 %r4, %r78, 2;
+ld.shared.u32 %r79, [__cuda_local_var_41206_74_non_const_startDst];
+cvt.u64.u32 %rd66, %r79;
+mul.wide.u32 %rd67, %r79, 4;
+shr.u32 %r5, %r4, 7;
+.loc	15	230	0
+ld.shared.u32 %r71, [__cuda_local_var_41206_45_non_const_lenSrcA];
+.loc	15	238	0
+add.u32 %r80, %r71, %r1;
+cvt.u64.u32 %rd68, %r80;
+mul.wide.u32 %rd69, %r80, 4;
+sub.u32 %r6, %r5, 1;
+cvt.u32.u16 %r7, %ctaid.x;
+and.b32 %r8, %r6, %r7;
+sub.u32 %r9, %r7, %r8;
+mul.lo.u32 %r81, %r9, 128;
+cvt.u64.u32 %rd70, %r81;
+mul.wide.u32 %rd16, %r81, 4;
+add.u64 %rd71, %rd69, %rd11;
+ld.shared.u32 %r82, [%rd71+0];
+ld.param.u64 %rd72, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstKey];
+add.u64 %rd73, %rd72, %rd16;
+add.u64 %rd74, %rd69, %rd67;
+add.u64 %rd75, %rd73, %rd74;
+st.global.u32 [%rd75+0], %r82;
+.loc	15	239	0
+add.u64 %rd76, %rd69, %rd12;
+ld.shared.u32 %r83, [%rd76+0];
+ld.param.u64 %rd77, [__cudaparm__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj___val_paramd_DstVal];
+add.u64 %rd78, %rd77, %rd16;
+add.u64 %rd79, %rd69, %rd67;
+add.u64 %rd80, %rd78, %rd79;
+st.global.u32 [%rd80+0], %r83;
+$Lt_2_15618:
+.loc	15	241	0
+exit;
+$LDWend__Z37bitonicMergeElementaryIntervalsKernelILj0EEvPjS0_S0_S0_S0_S0_jj:
+} 
+
+

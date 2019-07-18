@@ -1,0 +1,8 @@
+Using Device 0: GPGPU-Sim_vGPGPU-Sim Simulator Version 3.2.2 
+
+Reducing array of type int
+
+16777216 elements
+256 threads (max)
+64 blocks
+

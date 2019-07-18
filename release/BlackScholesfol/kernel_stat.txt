@@ -1,0 +1,1 @@
+ kernel 1: _Z15BlackScholesGPUPfS_S_S_S_ffi, start 1, end 678924, retire 678925

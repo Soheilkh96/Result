@@ -1,0 +1,449 @@
+
+Fatbin elf code:
+================
+arch = sm_10
+code version = [1,2]
+producer = cuda
+host = linux
+compile_size = 64bit
+identifier = clock.cu
+
+Fatbin ptx code:
+================
+arch = sm_10
+code version = [1,4]
+producer = cuda
+host = linux
+compile_size = 64bit
+compressed
+identifier = clock.cu
+	.version 1.4
+.target sm_10, map_f64_to_f32
+
+	
+
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+
+.file	1	"<command-line>"
+.file	2	"/tmp/tmpxft_000064a3_00000000-15_clock.compute_10.cudafe2.gpu"
+.file	3	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h"
+.file	4	"/home/paperspace/cudax/cuda/include/crt/device_runtime.h"
+.file	5	"/home/paperspace/cudax/cuda/include/host_defines.h"
+.file	6	"/home/paperspace/cudax/cuda/include/builtin_types.h"
+.file	7	"/home/paperspace/cudax/cuda/include/device_types.h"
+.file	8	"/home/paperspace/cudax/cuda/include/driver_types.h"
+.file	9	"/home/paperspace/cudax/cuda/include/surface_types.h"
+.file	10	"/home/paperspace/cudax/cuda/include/texture_types.h"
+.file	11	"/home/paperspace/cudax/cuda/include/vector_types.h"
+.file	12	"/home/paperspace/cudax/cuda/include/device_launch_parameters.h"
+.file	13	"/home/paperspace/cudax/cuda/include/crt/storage_class.h"
+.file	14	"/usr/include/x86_64-linux-gnu/bits/types.h"
+.file	15	"/usr/include/time.h"
+.file	16	"clock_kernel.cu"
+.file	17	"/home/paperspace/cudax/cuda/include/common_functions.h"
+.file	18	"/home/paperspace/cudax/cuda/include/math_functions.h"
+.file	19	"/home/paperspace/cudax/cuda/include/math_constants.h"
+.file	20	"/home/paperspace/cudax/cuda/include/device_functions.h"
+.file	21	"/home/paperspace/cudax/cuda/include/sm_11_atomic_functions.h"
+.file	22	"/home/paperspace/cudax/cuda/include/sm_12_atomic_functions.h"
+.file	23	"/home/paperspace/cudax/cuda/include/sm_13_double_functions.h"
+.file	24	"/home/paperspace/cudax/cuda/include/sm_20_atomic_functions.h"
+.file	25	"/home/paperspace/cudax/cuda/include/sm_32_atomic_functions.h"
+.file	26	"/home/paperspace/cudax/cuda/include/sm_35_atomic_functions.h"
+.file	27	"/home/paperspace/cudax/cuda/include/sm_20_intrinsics.h"
+.file	28	"/home/paperspace/cudax/cuda/include/sm_30_intrinsics.h"
+.file	29	"/home/paperspace/cudax/cuda/include/sm_32_intrinsics.h"
+.file	30	"/home/paperspace/cudax/cuda/include/sm_35_intrinsics.h"
+.file	31	"/home/paperspace/cudax/cuda/include/surface_functions.h"
+.file	32	"/home/paperspace/cudax/cuda/include/texture_fetch_functions.h"
+.file	33	"/home/paperspace/cudax/cuda/include/texture_indirect_functions.h"
+.file	34	"/home/paperspace/cudax/cuda/include/surface_indirect_functions.h"
+.file	35	"/home/paperspace/cudax/cuda/include/math_functions_dbl_ptx1.h"
+
+.extern	.shared .align 4 .b8 shared[];
+
+.entry _Z14timedReductionPKfPfPl (
+.param .u64 __cudaparm__Z14timedReductionPKfPfPl_input,
+.param .u64 __cudaparm__Z14timedReductionPKfPfPl_output,
+.param .u64 __cudaparm__Z14timedReductionPKfPfPl_timer)
+{
+.reg .u32 %rv1;
+.reg .u32 %r<24>;
+.reg .u64 %rd<29>;
+.reg .f32 %f<7>;
+.reg .pred %p<7>;
+.loc	16	18	0
+$LDWbegin__Z14timedReductionPKfPfPl:
+cvt.s32.u16 %r1, %tid.x;
+mov.s32 %r2, 0;
+setp.eq.s32 %p1, %r1, %r2;
+@!%p1 bra $Lt_0_5122;
+.loc	16	26	0
+mov.u32 %r3, %clock;
+mov.s32 %r4, %r3;
+cvt.s64.s32 %rd1, %r4;
+ld.param.u64 %rd2, [__cudaparm__Z14timedReductionPKfPfPl_timer];
+cvt.s32.u16 %r5, %ctaid.x;
+cvt.s64.s32 %rd3, %r5;
+mul.wide.s32 %rd4, %r5, 8;
+add.u64 %rd5, %rd2, %rd4;
+st.global.s64 [%rd5+0], %rd1;
+$Lt_0_5122:
+mov.u64 %rd6, shared;
+.loc	16	29	0
+cvt.s64.s32 %rd7, %r1;
+mul.wide.s32 %rd8, %r1, 4;
+add.u64 %rd9, %rd8, %rd6;
+ld.param.u64 %rd10, [__cudaparm__Z14timedReductionPKfPfPl_input];
+add.u64 %rd11, %rd8, %rd10;
+ld.global.f32 %f1, [%rd11+0];
+st.shared.f32 [%rd9+0], %f1;
+.loc	16	30	0
+cvt.u32.u16 %r6, %ntid.x;
+add.u32 %r7, %r1, %r6;
+cvt.u64.u32 %rd12, %r7;
+mul.wide.u32 %rd13, %r7, 4;
+add.u64 %rd14, %rd13, %rd10;
+ld.global.f32 %f2, [%rd14+0];
+add.u64 %rd15, %rd13, %rd6;
+st.shared.f32 [%rd15+0], %f2;
+.loc	16	33	0
+cvt.s32.u16 %r8, %ntid.x;
+mov.s32 %r9, %r8;
+mov.u32 %r10, 0;
+setp.le.s32 %p2, %r8, %r10;
+@%p2 bra $Lt_0_5634;
+$Lt_0_6146:
+.loc	16	35	0
+bar.sync 0;
+setp.le.s32 %p3, %r9, %r1;
+@%p3 bra $Lt_0_6402;
+.loc	16	40	0
+add.s32 %r11, %r9, %r1;
+cvt.s64.s32 %rd16, %r11;
+mul.wide.s32 %rd17, %r11, 4;
+add.u64 %rd18, %rd6, %rd17;
+ld.shared.f32 %f3, [%rd18+0];
+ld.shared.f32 %f4, [%rd9+0];
+setp.gt.f32 %p4, %f4, %f3;
+@!%p4 bra $Lt_0_6914;
+.loc	16	43	0
+st.shared.f32 [%rd9+0], %f3;
+$Lt_0_6914:
+$Lt_0_6402:
+.loc	16	33	0
+shr.s32 %r12, %r9, 31;
+mov.s32 %r13, 1;
+and.b32 %r14, %r12, %r13;
+add.s32 %r15, %r14, %r9;
+shr.s32 %r9, %r15, 1;
+mov.u32 %r16, 0;
+setp.gt.s32 %p5, %r9, %r16;
+@%p5 bra $Lt_0_6146;
+$Lt_0_5634:
+@!%p1 bra $Lt_0_7682;
+.loc	16	49	0
+ld.shared.f32 %f5, [shared+0];
+ld.param.u64 %rd19, [__cudaparm__Z14timedReductionPKfPfPl_output];
+cvt.s32.u16 %r17, %ctaid.x;
+cvt.s64.s32 %rd20, %r17;
+mul.wide.s32 %rd21, %r17, 4;
+add.u64 %rd22, %rd19, %rd21;
+st.global.f32 [%rd22+0], %f5;
+$Lt_0_7682:
+.loc	16	51	0
+bar.sync 0;
+@!%p1 bra $Lt_0_8194;
+.loc	16	53	0
+mov.u32 %r18, %clock;
+mov.s32 %r19, %r18;
+cvt.s64.s32 %rd23, %r19;
+ld.param.u64 %rd24, [__cudaparm__Z14timedReductionPKfPfPl_timer];
+cvt.s32.u16 %r20, %ctaid.x;
+cvt.u32.u16 %r21, %nctaid.x;
+add.u32 %r22, %r20, %r21;
+cvt.u64.u32 %rd25, %r22;
+mul.wide.u32 %rd26, %r22, 8;
+add.u64 %rd27, %rd24, %rd26;
+st.global.s64 [%rd27+0], %rd23;
+$Lt_0_8194:
+.loc	16	54	0
+exit;
+$LDWend__Z14timedReductionPKfPfPl:
+} 
+
+
+Fatbin elf code:
+================
+arch = sm_20
+code version = [1,7]
+producer = cuda
+host = linux
+compile_size = 64bit
+identifier = clock.cu
+
+Fatbin ptx code:
+================
+arch = sm_20
+code version = [4,0]
+producer = cuda
+host = linux
+compile_size = 64bit
+compressed
+identifier = clock.cu
+
+
+
+
+
+
+.version 4.0
+.target sm_20
+.address_size 64
+
+.extern .shared .align 4 .b8 shared[];
+
+.entry _Z14timedReductionPKfPfPl(
+.param .u64 _Z14timedReductionPKfPfPl_param_0,
+.param .u64 _Z14timedReductionPKfPfPl_param_1,
+.param .u64 _Z14timedReductionPKfPfPl_param_2
+)
+{
+.reg .pred %p<8>;
+.reg .s32 %r<15>;
+.reg .f32 %f<6>;
+.reg .s64 %rd<25>;
+
+
+ld.param.u64 %rd3, [_Z14timedReductionPKfPfPl_param_0];
+ld.param.u64 %rd4, [_Z14timedReductionPKfPfPl_param_1];
+ld.param.u64 %rd5, [_Z14timedReductionPKfPfPl_param_2];
+cvta.to.global.u64 %rd1, %rd5;
+mov.u32 %r1, %ctaid.x;
+mov.u32 %r2, %tid.x;
+setp.ne.s32	%p2, %r2, 0;
+@%p2 bra BB0_2;
+
+
+	mov.u32 %r6, %clock;
+
+	cvt.s64.s32	%rd6, %r6;
+mul.wide.s32 %rd7, %r1, 8;
+add.s64 %rd8, %rd1, %rd7;
+st.global.u64 [%rd8], %rd6;
+
+BB0_2:
+cvta.to.global.u64 %rd9, %rd3;
+mul.wide.s32 %rd10, %r2, 4;
+add.s64 %rd11, %rd9, %rd10;
+mov.u64 %rd12, shared;
+add.s64 %rd2, %rd12, %rd10;
+ld.global.f32 %f2, [%rd11];
+st.shared.f32 [%rd2], %f2;
+mov.u32 %r14, %ntid.x;
+add.s32 %r7, %r14, %r2;
+mul.wide.u32 %rd13, %r7, 4;
+add.s64 %rd14, %rd9, %rd13;
+add.s64 %rd15, %rd12, %rd13;
+ld.global.f32 %f3, [%rd14];
+st.shared.f32 [%rd15], %f3;
+setp.lt.s32	%p3, %r14, 1;
+@%p3 bra BB0_7;
+
+BB0_3:
+mov.u32 %r4, %r14;
+bar.sync 0;
+setp.ge.s32	%p4, %r2, %r4;
+@%p4 bra BB0_6;
+
+ld.shared.f32 %f4, [%rd2];
+add.s32 %r8, %r4, %r2;
+mul.wide.s32 %rd16, %r8, 4;
+add.s64 %rd18, %rd12, %rd16;
+ld.shared.f32 %f1, [%rd18];
+setp.geu.f32	%p5, %f1, %f4;
+@%p5 bra BB0_6;
+
+st.shared.f32 [%rd2], %f1;
+
+BB0_6:
+shr.u32 %r9, %r4, 31;
+add.s32 %r10, %r4, %r9;
+shr.s32 %r14, %r10, 1;
+setp.gt.s32	%p6, %r4, 1;
+@%p6 bra BB0_3;
+
+BB0_7:
+@%p2 bra BB0_9;
+
+cvta.to.global.u64 %rd19, %rd4;
+ld.shared.f32 %f5, [shared];
+mul.wide.s32 %rd20, %r1, 4;
+add.s64 %rd21, %rd19, %rd20;
+st.global.f32 [%rd21], %f5;
+
+BB0_9:
+setp.eq.s32	%p1, %r2, 0;
+bar.sync 0;
+@!%p1 bra BB0_11;
+bra.uni BB0_10;
+
+BB0_10:
+
+	mov.u32 %r11, %clock;
+
+	cvt.s64.s32	%rd22, %r11;
+mov.u32 %r12, %nctaid.x;
+add.s32 %r13, %r12, %r1;
+mul.wide.u32 %rd23, %r13, 8;
+add.s64 %rd24, %rd1, %rd23;
+st.global.u64 [%rd24], %rd22;
+
+BB0_11:
+ret;
+}
+
+
+
+Fatbin elf code:
+================
+arch = sm_30
+code version = [1,7]
+producer = cuda
+host = linux
+compile_size = 64bit
+identifier = clock.cu
+
+Fatbin ptx code:
+================
+arch = sm_30
+code version = [4,0]
+producer = cuda
+host = linux
+compile_size = 64bit
+compressed
+identifier = clock.cu
+
+
+
+
+
+
+.version 4.0
+.target sm_30
+.address_size 64
+
+.extern .shared .align 4 .b8 shared[];
+
+.entry _Z14timedReductionPKfPfPl(
+.param .u64 _Z14timedReductionPKfPfPl_param_0,
+.param .u64 _Z14timedReductionPKfPfPl_param_1,
+.param .u64 _Z14timedReductionPKfPfPl_param_2
+)
+{
+.reg .pred %p<8>;
+.reg .s32 %r<15>;
+.reg .f32 %f<6>;
+.reg .s64 %rd<25>;
+
+
+ld.param.u64 %rd3, [_Z14timedReductionPKfPfPl_param_0];
+ld.param.u64 %rd4, [_Z14timedReductionPKfPfPl_param_1];
+ld.param.u64 %rd5, [_Z14timedReductionPKfPfPl_param_2];
+cvta.to.global.u64 %rd1, %rd5;
+mov.u32 %r1, %ctaid.x;
+mov.u32 %r2, %tid.x;
+setp.ne.s32	%p2, %r2, 0;
+@%p2 bra BB0_2;
+
+
+	mov.u32 %r6, %clock;
+
+	cvt.s64.s32	%rd6, %r6;
+mul.wide.s32 %rd7, %r1, 8;
+add.s64 %rd8, %rd1, %rd7;
+st.global.u64 [%rd8], %rd6;
+
+BB0_2:
+cvta.to.global.u64 %rd9, %rd3;
+mul.wide.s32 %rd10, %r2, 4;
+add.s64 %rd11, %rd9, %rd10;
+mov.u64 %rd12, shared;
+add.s64 %rd2, %rd12, %rd10;
+ld.global.f32 %f2, [%rd11];
+st.shared.f32 [%rd2], %f2;
+mov.u32 %r14, %ntid.x;
+add.s32 %r7, %r14, %r2;
+mul.wide.u32 %rd13, %r7, 4;
+add.s64 %rd14, %rd9, %rd13;
+add.s64 %rd15, %rd12, %rd13;
+ld.global.f32 %f3, [%rd14];
+st.shared.f32 [%rd15], %f3;
+setp.lt.s32	%p3, %r14, 1;
+@%p3 bra BB0_7;
+
+BB0_3:
+mov.u32 %r4, %r14;
+bar.sync 0;
+setp.ge.s32	%p4, %r2, %r4;
+@%p4 bra BB0_6;
+
+ld.shared.f32 %f4, [%rd2];
+add.s32 %r8, %r4, %r2;
+mul.wide.s32 %rd16, %r8, 4;
+add.s64 %rd18, %rd12, %rd16;
+ld.shared.f32 %f1, [%rd18];
+setp.geu.f32	%p5, %f1, %f4;
+@%p5 bra BB0_6;
+
+st.shared.f32 [%rd2], %f1;
+
+BB0_6:
+shr.u32 %r9, %r4, 31;
+add.s32 %r10, %r4, %r9;
+shr.s32 %r14, %r10, 1;
+setp.gt.s32	%p6, %r4, 1;
+@%p6 bra BB0_3;
+
+BB0_7:
+@%p2 bra BB0_9;
+
+cvta.to.global.u64 %rd19, %rd4;
+ld.shared.f32 %f5, [shared];
+mul.wide.s32 %rd20, %r1, 4;
+add.s64 %rd21, %rd19, %rd20;
+st.global.f32 [%rd21], %f5;
+
+BB0_9:
+setp.eq.s32	%p1, %r2, 0;
+bar.sync 0;
+@!%p1 bra BB0_11;
+bra.uni BB0_10;
+
+BB0_10:
+
+	mov.u32 %r11, %clock;
+
+	cvt.s64.s32	%rd22, %r11;
+mov.u32 %r12, %nctaid.x;
+add.s32 %r13, %r12, %r1;
+mul.wide.u32 %rd23, %r13, 8;
+add.s64 %rd24, %rd1, %rd23;
+st.global.u64 [%rd24], %rd22;
+
+BB0_11:
+ret;
+}
+
+

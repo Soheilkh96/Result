@@ -1,0 +1,7 @@
+ kernel 1: _Z7reduce6IiLj256ELb1EEvPT_S1_j, start 1, end 446202, retire 446203
+ kernel 2: _Z7reduce6IiLj256ELb1EEvPT_S1_j, start 446204, end 893386, retire 893387
+ kernel 3: _Z7reduce6IiLj32ELb1EEvPT_S1_j, start 893388, end 895190, retire 895191
+ kernel 4: _Z7reduce6IiLj256ELb1EEvPT_S1_j, start 895192, end 1340196, retire 1340197
+ kernel 5: _Z7reduce6IiLj32ELb1EEvPT_S1_j, start 1340198, end 1342000, retire 1342001
+ kernel 6: _Z7reduce6IiLj256ELb1EEvPT_S1_j, start 1342002, end 1786907, retire 1786908
+ kernel 7: _Z7reduce6IiLj32ELb1EEvPT_S1_j, start 1786909, end 1788711, retire 1788712

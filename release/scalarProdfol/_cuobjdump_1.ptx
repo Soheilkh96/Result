@@ -1,0 +1,195 @@
+
+	.version 1.4
+.target sm_10, map_f64_to_f32
+
+	
+
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+
+.file	1	"<command-line>"
+.file	2	"/tmp/tmpxft_00006304_00000000-15_scalarProd.compute_10.cudafe2.gpu"
+.file	3	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h"
+.file	4	"/home/paperspace/cudax/cuda/include/crt/device_runtime.h"
+.file	5	"/home/paperspace/cudax/cuda/include/host_defines.h"
+.file	6	"/home/paperspace/cudax/cuda/include/builtin_types.h"
+.file	7	"/home/paperspace/cudax/cuda/include/device_types.h"
+.file	8	"/home/paperspace/cudax/cuda/include/driver_types.h"
+.file	9	"/home/paperspace/cudax/cuda/include/surface_types.h"
+.file	10	"/home/paperspace/cudax/cuda/include/texture_types.h"
+.file	11	"/home/paperspace/cudax/cuda/include/vector_types.h"
+.file	12	"/home/paperspace/cudax/cuda/include/device_launch_parameters.h"
+.file	13	"/home/paperspace/cudax/cuda/include/crt/storage_class.h"
+.file	14	"scalarProd_kernel.cu"
+.file	15	"/home/paperspace/cudax/cuda/include/common_functions.h"
+.file	16	"/home/paperspace/cudax/cuda/include/math_functions.h"
+.file	17	"/home/paperspace/cudax/cuda/include/math_constants.h"
+.file	18	"/home/paperspace/cudax/cuda/include/device_functions.h"
+.file	19	"/home/paperspace/cudax/cuda/include/sm_11_atomic_functions.h"
+.file	20	"/home/paperspace/cudax/cuda/include/sm_12_atomic_functions.h"
+.file	21	"/home/paperspace/cudax/cuda/include/sm_13_double_functions.h"
+.file	22	"/home/paperspace/cudax/cuda/include/sm_20_atomic_functions.h"
+.file	23	"/home/paperspace/cudax/cuda/include/sm_32_atomic_functions.h"
+.file	24	"/home/paperspace/cudax/cuda/include/sm_35_atomic_functions.h"
+.file	25	"/home/paperspace/cudax/cuda/include/sm_20_intrinsics.h"
+.file	26	"/home/paperspace/cudax/cuda/include/sm_30_intrinsics.h"
+.file	27	"/home/paperspace/cudax/cuda/include/sm_32_intrinsics.h"
+.file	28	"/home/paperspace/cudax/cuda/include/sm_35_intrinsics.h"
+.file	29	"/home/paperspace/cudax/cuda/include/surface_functions.h"
+.file	30	"/home/paperspace/cudax/cuda/include/texture_fetch_functions.h"
+.file	31	"/home/paperspace/cudax/cuda/include/texture_indirect_functions.h"
+.file	32	"/home/paperspace/cudax/cuda/include/surface_indirect_functions.h"
+.file	33	"/home/paperspace/cudax/cuda/include/math_functions_dbl_ptx1.h"
+
+
+.entry _Z13scalarProdGPUPfS_S_ii (
+.param .u64 __cudaparm__Z13scalarProdGPUPfS_S_ii_d_C,
+.param .u64 __cudaparm__Z13scalarProdGPUPfS_S_ii_d_A,
+.param .u64 __cudaparm__Z13scalarProdGPUPfS_S_ii_d_B,
+.param .s32 __cudaparm__Z13scalarProdGPUPfS_S_ii_vectorN,
+.param .s32 __cudaparm__Z13scalarProdGPUPfS_S_ii_elementN)
+{
+.reg .u32 %r<30>;
+.reg .u64 %rd<25>;
+.reg .f32 %f<9>;
+.reg .pred %p<12>;
+.shared .align 4 .b8 __cuda___cuda_local_var_41611_35_non_const_accumResult32[4096];
+.loc	14	39	0
+$LDWbegin__Z13scalarProdGPUPfS_S_ii:
+.loc	14	49	0
+cvt.s32.u16 %r1, %ctaid.x;
+mov.s32 %r2, %r1;
+ld.param.s32 %r3, [__cudaparm__Z13scalarProdGPUPfS_S_ii_vectorN];
+setp.le.s32 %p1, %r3, %r1;
+@%p1 bra $Lt_0_6146;
+cvt.s32.u16 %r4, %tid.x;
+mov.s32 %r5, 1023;
+setp.le.s32 %p2, %r4, %r5;
+cvt.u32.u16 %r6, %tid.x;
+mov.u32 %r7, 0;
+setp.eq.u32 %p3, %r6, %r7;
+cvt.u32.u16 %r8, %nctaid.x;
+mov.u64 %rd1, __cuda___cuda_local_var_41611_35_non_const_accumResult32;
+$Lt_0_6658:
+
+	@!%p2 bra $Lt_0_6914;
+ld.param.s32 %r9, [__cudaparm__Z13scalarProdGPUPfS_S_ii_elementN];
+mul24.lo.s32 %r10, %r9, %r2;
+add.s32 %r11, %r10, %r9;
+cvt.s64.s32 %rd2, %r4;
+cvt.u32.u16 %r12, %ntid.x;
+cvt.s64.u32 %rd3, %r12;
+add.s32 %r13, %r10, %r4;
+add.s32 %r14, %r10, 1023;
+mul.wide.s32 %rd4, %r4, 4;
+mul.wide.u32 %rd5, %r12, 4;
+add.u64 %rd6, %rd4, %rd1;
+$Lt_0_7426:
+
+	.loc	14	62	0
+mov.s32 %r15, %r13;
+mov.s32 %r16, %r15;
+setp.le.s32 %p4, %r11, %r15;
+@%p4 bra $Lt_0_12290;
+sub.s32 %r17, %r11, %r15;
+add.s32 %r18, %r17, 1023;
+shr.s32 %r19, %r18, 31;
+mov.s32 %r20, 1023;
+and.b32 %r21, %r19, %r20;
+add.s32 %r22, %r21, %r18;
+shr.s32 %r23, %r22, 10;
+cvt.s64.s32 %rd7, %r15;
+mul.wide.s32 %rd8, %r15, 4;
+ld.param.u64 %rd9, [__cudaparm__Z13scalarProdGPUPfS_S_ii_d_A];
+add.u64 %rd10, %rd9, %rd8;
+ld.param.u64 %rd11, [__cudaparm__Z13scalarProdGPUPfS_S_ii_d_B];
+add.u64 %rd12, %rd11, %rd8;
+mov.f32 %f1, 0f00000000; 
+	mov.s32 %r24, %r23;
+$Lt_0_8194:
+
+	.loc	14	63	0
+ld.global.f32 %f2, [%rd10+0];
+ld.global.f32 %f3, [%rd12+0];
+mad.f32 %f1, %f2, %f3, %f1;
+add.s32 %r16, %r16, 1024;
+add.u64 %rd12, %rd12, 4096;
+add.u64 %rd10, %rd10, 4096;
+setp.gt.s32 %p5, %r11, %r16;
+@%p5 bra $Lt_0_8194;
+bra.uni $Lt_0_7682;
+$Lt_0_12290:
+mov.f32 %f1, 0f00000000; 
+$Lt_0_7682:
+.loc	14	65	0
+st.shared.f32 [%rd6+0], %f1;
+add.s32 %r13, %r15, %r12;
+add.u64 %rd6, %rd6, %rd5;
+setp.le.s32 %p6, %r13, %r14;
+@%p6 bra $Lt_0_7426;
+$Lt_0_6914:
+mov.s32 %r25, 512;
+$Lt_0_9474:
+
+	.loc	14	73	0
+bar.sync 0;
+setp.ge.s32 %p7, %r4, %r25;
+@%p7 bra $Lt_0_9730;
+cvt.s64.s32 %rd13, %r4;
+cvt.u32.u16 %r12, %ntid.x;
+cvt.s64.u32 %rd14, %r12;
+add.s32 %r26, %r4, %r25;
+add.s32 %r27, %r25, %r25;
+mul.wide.s32 %rd15, %r4, 4;
+mul.wide.u32 %rd5, %r12, 4;
+add.u64 %rd16, %rd15, %rd1;
+cvt.s64.s32 %rd17, %r26;
+mul.wide.s32 %rd18, %r26, 4;
+add.u64 %rd19, %rd1, %rd18;
+$Lt_0_10242:
+
+	.loc	14	75	0
+ld.shared.f32 %f4, [%rd16+0];
+ld.shared.f32 %f5, [%rd19+0];
+add.f32 %f6, %f4, %f5;
+st.shared.f32 [%rd16+0], %f6;
+add.s32 %r26, %r26, %r12;
+add.u64 %rd19, %rd19, %rd5;
+add.u64 %rd16, %rd16, %rd5;
+setp.lt.s32 %p8, %r26, %r27;
+@%p8 bra $Lt_0_10242;
+$Lt_0_9730:
+.loc	14	72	0
+shr.s32 %r25, %r25, 1;
+mov.u32 %r28, 0;
+setp.gt.s32 %p9, %r25, %r28;
+@%p9 bra $Lt_0_9474;
+@!%p3 bra $Lt_0_11010;
+.loc	14	78	0
+ld.shared.f32 %f7, [__cuda___cuda_local_var_41611_35_non_const_accumResult32+0];
+ld.param.u64 %rd20, [__cudaparm__Z13scalarProdGPUPfS_S_ii_d_C];
+cvt.s64.s32 %rd21, %r2;
+mul.wide.s32 %rd22, %r2, 4;
+add.u64 %rd23, %rd20, %rd22;
+st.global.f32 [%rd23+0], %f7;
+$Lt_0_11010:
+add.u32 %r2, %r2, %r8;
+setp.lt.s32 %p10, %r2, %r3;
+@%p10 bra $Lt_0_6658;
+$Lt_0_6146:
+.loc	14	80	0
+exit;
+$LDWend__Z13scalarProdGPUPfS_S_ii:
+} 
+
+

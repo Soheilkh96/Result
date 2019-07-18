@@ -1,0 +1,136 @@
+
+
+
+
+
+
+
+.version 4.0
+.target sm_30
+.address_size 64
+
+
+
+.visible .entry _Z13scalarProdGPUPfS_S_ii(
+.param .u64 _Z13scalarProdGPUPfS_S_ii_param_0,
+.param .u64 _Z13scalarProdGPUPfS_S_ii_param_1,
+.param .u64 _Z13scalarProdGPUPfS_S_ii_param_2,
+.param .u32 _Z13scalarProdGPUPfS_S_ii_param_3,
+.param .u32 _Z13scalarProdGPUPfS_S_ii_param_4
+)
+{
+.reg .pred %p<11>;
+.reg .s32 %r<35>;
+.reg .f32 %f<13>;
+.reg .s64 %rd<26>;
+
+	.shared .align 4 .b8 _Z13scalarProdGPUPfS_S_ii$__cuda_local_var_59792_35_non_const_accumResult[4096];
+
+ld.param.u64 %rd9, [_Z13scalarProdGPUPfS_S_ii_param_0];
+ld.param.u64 %rd10, [_Z13scalarProdGPUPfS_S_ii_param_1];
+ld.param.u64 %rd11, [_Z13scalarProdGPUPfS_S_ii_param_2];
+ld.param.u32 %r21, [_Z13scalarProdGPUPfS_S_ii_param_3];
+ld.param.u32 %r22, [_Z13scalarProdGPUPfS_S_ii_param_4];
+mov.u32 %r28, %ctaid.x;
+setp.ge.s32	%p1, %r28, %r21;
+@%p1 bra BB0_14;
+
+cvta.to.global.u64 %rd1, %rd11;
+cvta.to.global.u64 %rd2, %rd10;
+mov.u32 %r2, %tid.x;
+mov.u32 %r3, %ntid.x;
+cvta.to.global.u64 %rd21, %rd9;
+
+BB0_2:
+mul24.lo.s32 %r5, %r22, %r28;
+add.s32 %r6, %r5, %r22;
+setp.lt.s32	%p2, %r2, 1024;
+@%p2 bra BB0_3;
+bra.uni BB0_7;
+
+BB0_3:
+add.s32 %r7, %r2, %r5;
+mov.u32 %r29, 0;
+mov.u32 %r34, %r2;
+
+BB0_4:
+mad.lo.s32 %r25, %r3, %r29, %r7;
+mul.wide.s32 %rd12, %r25, 4;
+add.s64 %rd25, %rd1, %rd12;
+add.s64 %rd24, %rd2, %rd12;
+add.s32 %r30, %r34, %r5;
+mov.f32 %f12, 0f00000000;
+setp.lt.s32	%p3, %r30, %r6;
+@%p3 bra BB0_5;
+bra.uni BB0_6;
+
+BB0_5:
+ld.global.f32 %f6, [%rd25];
+ld.global.f32 %f7, [%rd24];
+fma.rn.f32 %f12, %f7, %f6, %f12;
+add.s64 %rd25, %rd25, 4096;
+add.s64 %rd24, %rd24, 4096;
+add.s32 %r30, %r30, 1024;
+setp.lt.s32	%p4, %r30, %r6;
+@%p4 bra BB0_5;
+
+BB0_6:
+mul.wide.s32 %rd13, %r34, 4;
+mov.u64 %rd14, _Z13scalarProdGPUPfS_S_ii$__cuda_local_var_59792_35_non_const_accumResult;
+add.s64 %rd15, %rd14, %rd13;
+st.shared.f32 [%rd15], %f12;
+add.s32 %r34, %r3, %r34;
+setp.lt.s32	%p5, %r34, 1024;
+add.s32 %r29, %r29, 1;
+@%p5 bra BB0_4;
+
+BB0_7:
+mov.u32 %r31, 512;
+
+BB0_8:
+bar.sync 0;
+setp.ge.s32	%p6, %r2, %r31;
+mov.u32 %r33, %r2;
+@%p6 bra BB0_10;
+
+BB0_9:
+mov.u32 %r16, %r33;
+add.s32 %r27, %r16, %r31;
+mul.wide.s32 %rd16, %r27, 4;
+mov.u64 %rd17, _Z13scalarProdGPUPfS_S_ii$__cuda_local_var_59792_35_non_const_accumResult;
+add.s64 %rd18, %rd17, %rd16;
+mul.wide.s32 %rd19, %r16, 4;
+add.s64 %rd20, %rd17, %rd19;
+ld.shared.f32 %f8, [%rd20];
+ld.shared.f32 %f9, [%rd18];
+add.f32 %f10, %f8, %f9;
+st.shared.f32 [%rd20], %f10;
+add.s32 %r17, %r3, %r16;
+setp.lt.s32	%p7, %r17, %r31;
+mov.u32 %r33, %r17;
+@%p7 bra BB0_9;
+
+BB0_10:
+shr.s32 %r31, %r31, 1;
+setp.gt.s32	%p8, %r31, 0;
+mov.u32 %r19, %nctaid.x;
+@%p8 bra BB0_8;
+
+setp.ne.s32	%p9, %r2, 0;
+@%p9 bra BB0_13;
+
+ld.shared.f32 %f11, [_Z13scalarProdGPUPfS_S_ii$__cuda_local_var_59792_35_non_const_accumResult];
+mul.wide.s32 %rd22, %r28, 4;
+add.s64 %rd23, %rd21, %rd22;
+st.global.f32 [%rd23], %f11;
+
+BB0_13:
+add.s32 %r28, %r19, %r28;
+setp.lt.s32	%p10, %r28, %r21;
+@%p10 bra BB0_2;
+
+BB0_14:
+ret;
+}
+
+

@@ -1,0 +1,2831 @@
+
+Fatbin elf code:
+================
+arch = sm_10
+code version = [1,2]
+producer = cuda
+host = linux
+compile_size = 64bit
+identifier = histogram64.cu
+
+Fatbin ptx code:
+================
+arch = sm_10
+code version = [1,4]
+producer = cuda
+host = linux
+compile_size = 64bit
+compressed
+identifier = histogram64.cu
+	.version 1.4
+.target sm_10, map_f64_to_f32
+
+	
+
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+
+.file	1	"<command-line>"
+.file	2	"/tmp/tmpxft_0000631c_00000000-15_histogram64.compute_10.cudafe2.gpu"
+.file	3	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h"
+.file	4	"/home/paperspace/cudax/cuda/include/crt/device_runtime.h"
+.file	5	"/home/paperspace/cudax/cuda/include/host_defines.h"
+.file	6	"/home/paperspace/cudax/cuda/include/builtin_types.h"
+.file	7	"/home/paperspace/cudax/cuda/include/device_types.h"
+.file	8	"/home/paperspace/cudax/cuda/include/driver_types.h"
+.file	9	"/home/paperspace/cudax/cuda/include/surface_types.h"
+.file	10	"/home/paperspace/cudax/cuda/include/texture_types.h"
+.file	11	"/home/paperspace/cudax/cuda/include/vector_types.h"
+.file	12	"/home/paperspace/cudax/cuda/include/device_launch_parameters.h"
+.file	13	"/home/paperspace/cudax/cuda/include/crt/storage_class.h"
+.file	14	"/usr/include/x86_64-linux-gnu/sys/types.h"
+.file	15	"histogram_common.h"
+.file	16	"histogram64.cu"
+.file	17	"/home/paperspace/cudax/cuda/include/common_functions.h"
+.file	18	"/home/paperspace/cudax/cuda/include/math_functions.h"
+.file	19	"/home/paperspace/cudax/cuda/include/math_constants.h"
+.file	20	"/home/paperspace/cudax/cuda/include/device_functions.h"
+.file	21	"/home/paperspace/cudax/cuda/include/sm_11_atomic_functions.h"
+.file	22	"/home/paperspace/cudax/cuda/include/sm_12_atomic_functions.h"
+.file	23	"/home/paperspace/cudax/cuda/include/sm_13_double_functions.h"
+.file	24	"/home/paperspace/cudax/cuda/include/sm_20_atomic_functions.h"
+.file	25	"/home/paperspace/cudax/cuda/include/sm_32_atomic_functions.h"
+.file	26	"/home/paperspace/cudax/cuda/include/sm_35_atomic_functions.h"
+.file	27	"/home/paperspace/cudax/cuda/include/sm_20_intrinsics.h"
+.file	28	"/home/paperspace/cudax/cuda/include/sm_30_intrinsics.h"
+.file	29	"/home/paperspace/cudax/cuda/include/sm_32_intrinsics.h"
+.file	30	"/home/paperspace/cudax/cuda/include/sm_35_intrinsics.h"
+.file	31	"/home/paperspace/cudax/cuda/include/surface_functions.h"
+.file	32	"/home/paperspace/cudax/cuda/include/texture_fetch_functions.h"
+.file	33	"/home/paperspace/cudax/cuda/include/texture_indirect_functions.h"
+.file	34	"/home/paperspace/cudax/cuda/include/surface_indirect_functions.h"
+.file	35	"/home/paperspace/cudax/cuda/include/math_functions_dbl_ptx1.h"
+
+
+.entry _Z17histogram64KernelPjP5uint4j (
+.param .u64 __cudaparm__Z17histogram64KernelPjP5uint4j_d_PartialHistograms,
+.param .u64 __cudaparm__Z17histogram64KernelPjP5uint4j_d_Data,
+.param .u32 __cudaparm__Z17histogram64KernelPjP5uint4j_dataCount)
+{
+.reg .u16 %rh<37>;
+.reg .u32 %r<242>;
+.reg .u64 %rd<84>;
+.reg .pred %p<5>;
+.shared .align 1 .b8 __cuda___cuda_local_var_41070_35_non_const_s_Hist20[4096];
+.loc	16	73	0
+$LDWbegin__Z17histogram64KernelPjP5uint4j:
+mov.u64 %rd1, __cuda___cuda_local_var_41070_35_non_const_s_Hist20;
+.loc	16	90	0
+cvt.u32.u16 %r1, %tid.x;
+cvt.u64.u32 %rd2, %r1;
+mul.wide.u32 %rd3, %r1, 4;
+add.u64 %rd4, %rd1, %rd3;
+mov.u32 %r2, 0;
+st.shared.u32 [%rd4+0], %r2;
+mov.u32 %r3, 0;
+st.shared.u32 [%rd4+256], %r3;
+mov.u32 %r4, 0;
+st.shared.u32 [%rd4+512], %r4;
+mov.u32 %r5, 0;
+st.shared.u32 [%rd4+768], %r5;
+mov.u32 %r6, 0;
+st.shared.u32 [%rd4+1024], %r6;
+mov.u32 %r7, 0;
+st.shared.u32 [%rd4+1280], %r7;
+mov.u32 %r8, 0;
+st.shared.u32 [%rd4+1536], %r8;
+mov.u32 %r9, 0;
+st.shared.u32 [%rd4+1792], %r9;
+mov.u32 %r10, 0;
+st.shared.u32 [%rd4+2048], %r10;
+mov.u32 %r11, 0;
+st.shared.u32 [%rd4+2304], %r11;
+mov.u32 %r12, 0;
+st.shared.u32 [%rd4+2560], %r12;
+mov.u32 %r13, 0;
+st.shared.u32 [%rd4+2816], %r13;
+mov.u32 %r14, 0;
+st.shared.u32 [%rd4+3072], %r14;
+mov.u32 %r15, 0;
+st.shared.u32 [%rd4+3328], %r15;
+mov.u32 %r16, 0;
+st.shared.u32 [%rd4+3584], %r16;
+mov.u32 %r17, 0;
+st.shared.u32 [%rd4+3840], %r17;
+.loc	16	94	0
+bar.sync 0;
+.loc	16	95	0
+mov.u16 %rh1, %ntid.x;
+mov.u16 %rh2, %ctaid.x;
+mul.wide.u16 %r18, %rh1, %rh2;
+add.u32 %r19, %r18, %r1;
+mov.s32 %r20, %r19;
+ld.param.u32 %r21, [__cudaparm__Z17histogram64KernelPjP5uint4j_dataCount];
+setp.ge.u32 %p1, %r19, %r21;
+@%p1 bra $Lt_0_4098;
+and.b32 %r22, %r1, 15;
+and.b32 %r23, %r1, -64;
+shl.b32 %r24, %r1, 26;
+shr.u32 %r25, %r24, 30;
+mov.u16 %rh3, %nctaid.x;
+mul.wide.u16 %r26, %rh3, %rh1;
+shl.b32 %r27, %r22, 2;
+cvt.s64.u32 %rd5, %r26;
+or.b32 %r28, %r23, %r27;
+ld.param.u64 %rd6, [__cudaparm__Z17histogram64KernelPjP5uint4j_d_Data];
+cvt.u64.u32 %rd7, %r19;
+mul.wide.u32 %rd8, %r19, 16;
+add.u64 %rd9, %rd6, %rd8;
+mul.wide.u32 %rd10, %r26, 16;
+or.b32 %r29, %r25, %r28;
+cvt.u64.u32 %rd11, %r29;
+add.u64 %rd12, %rd11, %rd1;
+$Lt_0_4610:
+
+	ld.global.v4.u32 {%r30,%r31,%r32,%r33}, [%rd9+0];
+.loc	16	61	0
+shl.b32 %r34, %r30, 24;
+shr.u32 %r35, %r34, 26;
+mul.lo.u32 %r36, %r35, 64;
+cvt.u64.u32 %rd13, %r36;
+add.u64 %rd14, %rd13, %rd12;
+ld.shared.u8 %rh4, [%rd14+0];
+add.u16 %rh5, %rh4, 1;
+st.shared.u8 [%rd14+0], %rh5;
+shl.b32 %r37, %r30, 16;
+shr.u32 %r38, %r37, 26;
+mul.lo.u32 %r39, %r38, 64;
+cvt.u64.u32 %rd15, %r39;
+add.u64 %rd16, %rd15, %rd12;
+ld.shared.u8 %rh6, [%rd16+0];
+add.u16 %rh7, %rh6, 1;
+st.shared.u8 [%rd16+0], %rh7;
+shl.b32 %r40, %r30, 8;
+shr.u32 %r41, %r40, 26;
+mul.lo.u32 %r42, %r41, 64;
+cvt.u64.u32 %rd17, %r42;
+add.u64 %rd18, %rd17, %rd12;
+ld.shared.u8 %rh8, [%rd18+0];
+add.u16 %rh9, %rh8, 1;
+st.shared.u8 [%rd18+0], %rh9;
+shr.u32 %r43, %r30, 26;
+mul.lo.u32 %r44, %r43, 64;
+cvt.u64.u32 %rd19, %r44;
+add.u64 %rd20, %rd19, %rd12;
+ld.shared.u8 %rh10, [%rd20+0];
+add.u16 %rh11, %rh10, 1;
+st.shared.u8 [%rd20+0], %rh11;
+shl.b32 %r45, %r31, 24;
+shr.u32 %r46, %r45, 26;
+mul.lo.u32 %r47, %r46, 64;
+cvt.u64.u32 %rd21, %r47;
+add.u64 %rd22, %rd21, %rd12;
+ld.shared.u8 %rh12, [%rd22+0];
+add.u16 %rh13, %rh12, 1;
+st.shared.u8 [%rd22+0], %rh13;
+shl.b32 %r48, %r31, 16;
+shr.u32 %r49, %r48, 26;
+mul.lo.u32 %r50, %r49, 64;
+cvt.u64.u32 %rd23, %r50;
+add.u64 %rd24, %rd23, %rd12;
+ld.shared.u8 %rh14, [%rd24+0];
+add.u16 %rh15, %rh14, 1;
+st.shared.u8 [%rd24+0], %rh15;
+shl.b32 %r51, %r31, 8;
+shr.u32 %r52, %r51, 26;
+mul.lo.u32 %r53, %r52, 64;
+cvt.u64.u32 %rd25, %r53;
+add.u64 %rd26, %rd25, %rd12;
+ld.shared.u8 %rh16, [%rd26+0];
+add.u16 %rh17, %rh16, 1;
+st.shared.u8 [%rd26+0], %rh17;
+shr.u32 %r54, %r31, 26;
+mul.lo.u32 %r55, %r54, 64;
+cvt.u64.u32 %rd27, %r55;
+add.u64 %rd28, %rd27, %rd12;
+ld.shared.u8 %rh18, [%rd28+0];
+add.u16 %rh19, %rh18, 1;
+st.shared.u8 [%rd28+0], %rh19;
+shl.b32 %r56, %r32, 24;
+shr.u32 %r57, %r56, 26;
+mul.lo.u32 %r58, %r57, 64;
+cvt.u64.u32 %rd29, %r58;
+add.u64 %rd30, %rd29, %rd12;
+ld.shared.u8 %rh20, [%rd30+0];
+add.u16 %rh21, %rh20, 1;
+st.shared.u8 [%rd30+0], %rh21;
+shl.b32 %r59, %r32, 16;
+shr.u32 %r60, %r59, 26;
+mul.lo.u32 %r61, %r60, 64;
+cvt.u64.u32 %rd31, %r61;
+add.u64 %rd32, %rd31, %rd12;
+ld.shared.u8 %rh22, [%rd32+0];
+add.u16 %rh23, %rh22, 1;
+st.shared.u8 [%rd32+0], %rh23;
+shl.b32 %r62, %r32, 8;
+shr.u32 %r63, %r62, 26;
+mul.lo.u32 %r64, %r63, 64;
+cvt.u64.u32 %rd33, %r64;
+add.u64 %rd34, %rd33, %rd12;
+ld.shared.u8 %rh24, [%rd34+0];
+add.u16 %rh25, %rh24, 1;
+st.shared.u8 [%rd34+0], %rh25;
+shr.u32 %r65, %r32, 26;
+mul.lo.u32 %r66, %r65, 64;
+cvt.u64.u32 %rd35, %r66;
+add.u64 %rd36, %rd35, %rd12;
+ld.shared.u8 %rh26, [%rd36+0];
+add.u16 %rh27, %rh26, 1;
+st.shared.u8 [%rd36+0], %rh27;
+shl.b32 %r67, %r33, 24;
+shr.u32 %r68, %r67, 26;
+mul.lo.u32 %r69, %r68, 64;
+cvt.u64.u32 %rd37, %r69;
+add.u64 %rd38, %rd37, %rd12;
+ld.shared.u8 %rh28, [%rd38+0];
+add.u16 %rh29, %rh28, 1;
+st.shared.u8 [%rd38+0], %rh29;
+shl.b32 %r70, %r33, 16;
+shr.u32 %r71, %r70, 26;
+mul.lo.u32 %r72, %r71, 64;
+cvt.u64.u32 %rd39, %r72;
+add.u64 %rd40, %rd39, %rd12;
+ld.shared.u8 %rh30, [%rd40+0];
+add.u16 %rh31, %rh30, 1;
+st.shared.u8 [%rd40+0], %rh31;
+shl.b32 %r73, %r33, 8;
+shr.u32 %r74, %r73, 26;
+mul.lo.u32 %r75, %r74, 64;
+cvt.u64.u32 %rd41, %r75;
+add.u64 %rd42, %rd41, %rd12;
+ld.shared.u8 %rh32, [%rd42+0];
+add.u16 %rh33, %rh32, 1;
+st.shared.u8 [%rd42+0], %rh33;
+shr.u32 %r76, %r33, 26;
+mul.lo.u32 %r77, %r76, 64;
+cvt.u64.u32 %rd43, %r77;
+add.u64 %rd44, %rd43, %rd12;
+ld.shared.u8 %rh34, [%rd44+0];
+add.u16 %rh35, %rh34, 1;
+st.shared.u8 [%rd44+0], %rh35;
+add.u32 %r20, %r26, %r20;
+add.u64 %rd9, %rd9, %rd10;
+.loc	16	95	0
+ld.param.u32 %r21, [__cudaparm__Z17histogram64KernelPjP5uint4j_dataCount];
+.loc	16	61	0
+setp.lt.u32 %p2, %r20, %r21;
+@%p2 bra $Lt_0_4610;
+$Lt_0_4098:
+.loc	16	104	0
+bar.sync 0;
+mov.u32 %r78, 63;
+setp.gt.u32 %p3, %r1, %r78;
+@%p3 bra $Lt_0_5122;
+.loc	16	113	0
+and.b32 %r79, %r1, 15;
+mul24.lo.u32 %r80, %r79, 4;
+add.u32 %r81, %r80, 4;
+mul24.lo.u32 %r82, %r1, 64;
+cvt.u64.u32 %rd45, %r82;
+add.u64 %rd46, %rd45, %rd1;
+and.b32 %r83, %r81, 63;
+cvt.u64.u32 %rd47, %r80;
+add.u64 %rd48, %rd47, %rd46;
+add.u32 %r84, %r83, 4;
+and.b32 %r85, %r84, 63;
+cvt.u64.u32 %rd49, %r83;
+add.u64 %rd50, %rd49, %rd46;
+cvt.u64.u32 %rd51, %r85;
+add.u64 %rd52, %rd51, %rd46;
+ld.shared.u8 %r86, [%rd52+0];
+ld.shared.u8 %r87, [%rd52+1];
+add.s32 %r88, %r86, %r87;
+ld.shared.u8 %r89, [%rd52+2];
+ld.shared.u8 %r90, [%rd52+3];
+add.s32 %r91, %r89, %r90;
+add.s32 %r92, %r88, %r91;
+ld.shared.u8 %r93, [%rd48+0];
+ld.shared.u8 %r94, [%rd48+1];
+add.s32 %r95, %r93, %r94;
+ld.shared.u8 %r96, [%rd48+2];
+ld.shared.u8 %r97, [%rd48+3];
+add.s32 %r98, %r96, %r97;
+add.s32 %r99, %r95, %r98;
+ld.shared.u8 %r100, [%rd50+0];
+ld.shared.u8 %r101, [%rd50+1];
+add.s32 %r102, %r100, %r101;
+ld.shared.u8 %r103, [%rd50+2];
+ld.shared.u8 %r104, [%rd50+3];
+add.s32 %r105, %r103, %r104;
+add.s32 %r106, %r102, %r105;
+add.u32 %r107, %r99, %r106;
+add.u32 %r108, %r92, %r107;
+add.u32 %r109, %r85, 4;
+and.b32 %r110, %r109, 63;
+cvt.u64.u32 %rd53, %r110;
+add.u64 %rd54, %rd53, %rd46;
+ld.shared.u8 %r111, [%rd54+0];
+ld.shared.u8 %r112, [%rd54+1];
+add.s32 %r113, %r111, %r112;
+ld.shared.u8 %r114, [%rd54+2];
+ld.shared.u8 %r115, [%rd54+3];
+add.s32 %r116, %r114, %r115;
+add.s32 %r117, %r113, %r116;
+add.u32 %r118, %r108, %r117;
+add.u32 %r119, %r110, 4;
+and.b32 %r120, %r119, 63;
+cvt.u64.u32 %rd55, %r120;
+add.u64 %rd56, %rd55, %rd46;
+ld.shared.u8 %r121, [%rd56+0];
+ld.shared.u8 %r122, [%rd56+1];
+add.s32 %r123, %r121, %r122;
+ld.shared.u8 %r124, [%rd56+2];
+ld.shared.u8 %r125, [%rd56+3];
+add.s32 %r126, %r124, %r125;
+add.s32 %r127, %r123, %r126;
+add.u32 %r128, %r118, %r127;
+.loc	16	118	0
+add.u32 %r129, %r120, 4;
+and.b32 %r130, %r129, 63;
+.loc	16	113	0
+cvt.u64.u32 %rd57, %r130;
+add.u64 %rd58, %rd57, %rd46;
+ld.shared.u8 %r131, [%rd58+0];
+ld.shared.u8 %r132, [%rd58+1];
+add.s32 %r133, %r131, %r132;
+ld.shared.u8 %r134, [%rd58+2];
+ld.shared.u8 %r135, [%rd58+3];
+add.s32 %r136, %r134, %r135;
+add.s32 %r137, %r133, %r136;
+add.u32 %r138, %r128, %r137;
+add.u32 %r139, %r130, 4;
+and.b32 %r140, %r139, 63;
+cvt.u64.u32 %rd59, %r140;
+add.u64 %rd60, %rd59, %rd46;
+ld.shared.u8 %r141, [%rd60+0];
+ld.shared.u8 %r142, [%rd60+1];
+add.s32 %r143, %r141, %r142;
+ld.shared.u8 %r144, [%rd60+2];
+ld.shared.u8 %r145, [%rd60+3];
+add.s32 %r146, %r144, %r145;
+add.s32 %r147, %r143, %r146;
+add.u32 %r148, %r138, %r147;
+add.u32 %r149, %r140, 4;
+and.b32 %r150, %r149, 63;
+cvt.u64.u32 %rd61, %r150;
+add.u64 %rd62, %rd61, %rd46;
+ld.shared.u8 %r151, [%rd62+0];
+ld.shared.u8 %r152, [%rd62+1];
+add.s32 %r153, %r151, %r152;
+ld.shared.u8 %r154, [%rd62+2];
+ld.shared.u8 %r155, [%rd62+3];
+add.s32 %r156, %r154, %r155;
+add.s32 %r157, %r153, %r156;
+add.u32 %r158, %r148, %r157;
+add.u32 %r159, %r150, 4;
+and.b32 %r160, %r159, 63;
+cvt.u64.u32 %rd63, %r160;
+add.u64 %rd64, %rd63, %rd46;
+ld.shared.u8 %r161, [%rd64+0];
+ld.shared.u8 %r162, [%rd64+1];
+add.s32 %r163, %r161, %r162;
+ld.shared.u8 %r164, [%rd64+2];
+ld.shared.u8 %r165, [%rd64+3];
+add.s32 %r166, %r164, %r165;
+add.s32 %r167, %r163, %r166;
+add.u32 %r168, %r158, %r167;
+add.u32 %r169, %r160, 4;
+and.b32 %r170, %r169, 63;
+cvt.u64.u32 %rd65, %r170;
+add.u64 %rd66, %rd65, %rd46;
+ld.shared.u8 %r171, [%rd66+0];
+ld.shared.u8 %r172, [%rd66+1];
+add.s32 %r173, %r171, %r172;
+ld.shared.u8 %r174, [%rd66+2];
+ld.shared.u8 %r175, [%rd66+3];
+add.s32 %r176, %r174, %r175;
+add.s32 %r177, %r173, %r176;
+add.u32 %r178, %r168, %r177;
+add.u32 %r179, %r170, 4;
+and.b32 %r180, %r179, 63;
+cvt.u64.u32 %rd67, %r180;
+add.u64 %rd68, %rd67, %rd46;
+ld.shared.u8 %r181, [%rd68+0];
+ld.shared.u8 %r182, [%rd68+1];
+add.s32 %r183, %r181, %r182;
+ld.shared.u8 %r184, [%rd68+2];
+ld.shared.u8 %r185, [%rd68+3];
+add.s32 %r186, %r184, %r185;
+add.s32 %r187, %r183, %r186;
+add.u32 %r188, %r178, %r187;
+.loc	16	118	0
+add.u32 %r189, %r180, 4;
+and.b32 %r190, %r189, 63;
+.loc	16	113	0
+cvt.u64.u32 %rd69, %r190;
+add.u64 %rd70, %rd69, %rd46;
+ld.shared.u8 %r191, [%rd70+0];
+ld.shared.u8 %r192, [%rd70+1];
+add.s32 %r193, %r191, %r192;
+ld.shared.u8 %r194, [%rd70+2];
+ld.shared.u8 %r195, [%rd70+3];
+add.s32 %r196, %r194, %r195;
+add.s32 %r197, %r193, %r196;
+add.u32 %r198, %r188, %r197;
+add.u32 %r199, %r190, 4;
+and.b32 %r200, %r199, 63;
+cvt.u64.u32 %rd71, %r200;
+add.u64 %rd72, %rd71, %rd46;
+ld.shared.u8 %r201, [%rd72+0];
+ld.shared.u8 %r202, [%rd72+1];
+add.s32 %r203, %r201, %r202;
+ld.shared.u8 %r204, [%rd72+2];
+ld.shared.u8 %r205, [%rd72+3];
+add.s32 %r206, %r204, %r205;
+add.s32 %r207, %r203, %r206;
+add.u32 %r208, %r198, %r207;
+add.u32 %r209, %r200, 4;
+and.b32 %r210, %r209, 63;
+cvt.u64.u32 %rd73, %r210;
+add.u64 %rd74, %rd73, %rd46;
+ld.shared.u8 %r211, [%rd74+0];
+ld.shared.u8 %r212, [%rd74+1];
+add.s32 %r213, %r211, %r212;
+ld.shared.u8 %r214, [%rd74+2];
+ld.shared.u8 %r215, [%rd74+3];
+add.s32 %r216, %r214, %r215;
+add.s32 %r217, %r213, %r216;
+add.u32 %r218, %r208, %r217;
+add.u32 %r219, %r210, 4;
+and.b32 %r220, %r219, 63;
+cvt.u64.u32 %rd75, %r220;
+add.u64 %rd76, %rd75, %rd46;
+ld.shared.u8 %r221, [%rd76+0];
+ld.shared.u8 %r222, [%rd76+1];
+add.s32 %r223, %r221, %r222;
+ld.shared.u8 %r224, [%rd76+2];
+ld.shared.u8 %r225, [%rd76+3];
+add.s32 %r226, %r224, %r225;
+add.s32 %r227, %r223, %r226;
+add.u32 %r228, %r218, %r227;
+add.u32 %r229, %r220, 4;
+and.b32 %r230, %r229, 63;
+cvt.u64.u32 %rd77, %r230;
+add.u64 %rd78, %rd77, %rd46;
+ld.shared.u8 %r231, [%rd78+0];
+ld.shared.u8 %r232, [%rd78+1];
+add.s32 %r233, %r231, %r232;
+ld.shared.u8 %r234, [%rd78+2];
+ld.shared.u8 %r235, [%rd78+3];
+add.s32 %r236, %r234, %r235;
+add.s32 %r237, %r233, %r236;
+add.u32 %r238, %r228, %r237;
+.loc	16	121	0
+ld.param.u64 %rd79, [__cudaparm__Z17histogram64KernelPjP5uint4j_d_PartialHistograms];
+mul.wide.u16 %r239, %rh2, 64;
+add.u32 %r240, %r1, %r239;
+cvt.u64.u32 %rd80, %r240;
+mul.wide.u32 %rd81, %r240, 4;
+add.u64 %rd82, %rd79, %rd81;
+st.global.u32 [%rd82+0], %r238;
+$Lt_0_5122:
+.loc	16	123	0
+exit;
+$LDWend__Z17histogram64KernelPjP5uint4j:
+} 
+
+.entry _Z22mergeHistogram64KernelPjS_j (
+.param .u64 __cudaparm__Z22mergeHistogram64KernelPjS_j_d_Histogram,
+.param .u64 __cudaparm__Z22mergeHistogram64KernelPjS_j_d_PartialHistograms,
+.param .u32 __cudaparm__Z22mergeHistogram64KernelPjS_j_histogramCount)
+{
+.reg .u32 %r<26>;
+.reg .u64 %rd<18>;
+.reg .pred %p<7>;
+.shared .align 4 .b8 __cuda___cuda_local_var_41116_34_non_const_data4140[1024];
+.loc	16	138	0
+$LDWbegin__Z22mergeHistogram64KernelPjS_j:
+.loc	16	143	0
+cvt.u32.u16 %r1, %tid.x;
+ld.param.u32 %r2, [__cudaparm__Z22mergeHistogram64KernelPjS_j_histogramCount];
+setp.ge.u32 %p1, %r1, %r2;
+@%p1 bra $Lt_1_6914;
+ld.param.u32 %r2, [__cudaparm__Z22mergeHistogram64KernelPjS_j_histogramCount];
+sub.u32 %r3, %r2, %r1;
+add.u32 %r4, %r3, 255;
+shr.s32 %r5, %r4, 31;
+mov.s32 %r6, 255;
+and.b32 %r7, %r5, %r6;
+add.s32 %r8, %r7, %r4;
+shr.s32 %r9, %r8, 8;
+cvt.u64.u16 %rd1, %ctaid.x;
+cvt.u32.u64 %r10, %rd1;
+mul24.lo.u32 %r11, %r1, 64;
+mul.lo.u32 %r12, %r2, 64;
+add.u32 %r13, %r10, %r11;
+ld.param.u64 %rd2, [__cudaparm__Z22mergeHistogram64KernelPjS_j_d_PartialHistograms];
+mov.u32 %r14, 0;
+mov.s32 %r15, %r9;
+$Lt_1_4354:
+
+	.loc	16	144	0
+cvt.u64.u32 %rd3, %r13;
+mul.wide.u32 %rd4, %r13, 4;
+.loc	16	143	0
+ld.param.u64 %rd2, [__cudaparm__Z22mergeHistogram64KernelPjS_j_d_PartialHistograms];
+.loc	16	144	0
+add.u64 %rd5, %rd2, %rd4;
+ld.global.u32 %r16, [%rd5+0];
+add.u32 %r14, %r16, %r14;
+add.u32 %r11, %r11, 16384;
+add.u32 %r13, %r13, 16384;
+setp.lt.u32 %p2, %r11, %r12;
+@%p2 bra $Lt_1_4354;
+bra.uni $Lt_1_3842;
+$Lt_1_6914:
+mov.u32 %r14, 0;
+$Lt_1_3842:
+mov.u64 %rd6, __cuda___cuda_local_var_41116_34_non_const_data4140;
+.loc	16	145	0
+cvt.u64.u32 %rd7, %r1;
+mul.wide.u32 %rd8, %r1, 4;
+add.u64 %rd9, %rd6, %rd8;
+st.shared.u32 [%rd9+0], %r14;
+mov.u32 %r17, 128;
+$Lt_1_5378:
+
+	.loc	16	148	0
+bar.sync 0;
+setp.ge.u32 %p3, %r1, %r17;
+@%p3 bra $Lt_1_5634;
+.loc	16	150	0
+ld.shared.u32 %r18, [%rd9+0];
+add.u32 %r19, %r1, %r17;
+cvt.u64.u32 %rd10, %r19;
+mul.wide.u32 %rd11, %r19, 4;
+add.u64 %rd12, %rd6, %rd11;
+ld.shared.u32 %r20, [%rd12+0];
+add.u32 %r21, %r18, %r20;
+st.shared.u32 [%rd9+0], %r21;
+$Lt_1_5634:
+.loc	16	147	0
+shr.u32 %r17, %r17, 1;
+mov.u32 %r22, 0;
+setp.ne.u32 %p4, %r17, %r22;
+@%p4 bra $Lt_1_5378;
+mov.u32 %r23, 0;
+setp.ne.u32 %p5, %r1, %r23;
+@%p5 bra $Lt_1_6402;
+.loc	16	154	0
+ld.shared.u32 %r24, [__cuda___cuda_local_var_41116_34_non_const_data4140+0];
+ld.param.u64 %rd13, [__cudaparm__Z22mergeHistogram64KernelPjS_j_d_Histogram];
+cvt.u64.u16 %rd14, %ctaid.x;
+mul.lo.u64 %rd15, %rd14, 4;
+add.u64 %rd16, %rd13, %rd15;
+st.global.u32 [%rd16+0], %r24;
+$Lt_1_6402:
+.loc	16	155	0
+exit;
+$LDWend__Z22mergeHistogram64KernelPjS_j:
+} 
+
+
+Fatbin elf code:
+================
+arch = sm_20
+code version = [1,7]
+producer = cuda
+host = linux
+compile_size = 64bit
+identifier = histogram64.cu
+
+Fatbin ptx code:
+================
+arch = sm_20
+code version = [4,0]
+producer = cuda
+host = linux
+compile_size = 64bit
+compressed
+identifier = histogram64.cu
+
+
+
+
+
+
+.version 4.0
+.target sm_20
+.address_size 64
+
+
+
+
+.visible .entry _Z17histogram64KernelPjP5uint4j(
+.param .u64 _Z17histogram64KernelPjP5uint4j_param_0,
+.param .u64 _Z17histogram64KernelPjP5uint4j_param_1,
+.param .u32 _Z17histogram64KernelPjP5uint4j_param_2
+)
+{
+.reg .pred %p<4>;
+.reg .s16 %rs<33>;
+.reg .s32 %r<234>;
+.reg .s64 %rd<97>;
+
+	.shared .align 1 .b8 _Z17histogram64KernelPjP5uint4j$__cuda_local_var_59161_35_non_const_s_Hist[4096];
+
+ld.param.u64 %rd3, [_Z17histogram64KernelPjP5uint4j_param_0];
+ld.param.u64 %rd4, [_Z17histogram64KernelPjP5uint4j_param_1];
+ld.param.u32 %r10, [_Z17histogram64KernelPjP5uint4j_param_2];
+mov.u32 %r1, %tid.x;
+shl.b32 %r2, %r1, 2;
+and.b32 %r3, %r2, 60;
+mul.wide.u32 %rd5, %r1, 4;
+mov.u64 %rd6, _Z17histogram64KernelPjP5uint4j$__cuda_local_var_59161_35_non_const_s_Hist;
+add.s64 %rd7, %rd6, %rd5;
+mov.u32 %r11, 0;
+st.shared.u32 [%rd7], %r11;
+st.shared.u32 [%rd7+256], %r11;
+st.shared.u32 [%rd7+512], %r11;
+st.shared.u32 [%rd7+768], %r11;
+st.shared.u32 [%rd7+1024], %r11;
+st.shared.u32 [%rd7+1280], %r11;
+st.shared.u32 [%rd7+1536], %r11;
+st.shared.u32 [%rd7+1792], %r11;
+st.shared.u32 [%rd7+2048], %r11;
+st.shared.u32 [%rd7+2304], %r11;
+st.shared.u32 [%rd7+2560], %r11;
+st.shared.u32 [%rd7+2816], %r11;
+st.shared.u32 [%rd7+3072], %r11;
+st.shared.u32 [%rd7+3328], %r11;
+st.shared.u32 [%rd7+3584], %r11;
+st.shared.u32 [%rd7+3840], %r11;
+bar.sync 0;
+mov.u32 %r4, %ntid.x;
+mov.u32 %r5, %ctaid.x;
+mad.lo.s32 %r233, %r4, %r5, %r1;
+setp.ge.u32	%p1, %r233, %r10;
+@%p1 bra BB0_3;
+
+cvta.to.global.u64 %rd1, %rd4;
+and.b32 %r12, %r1, -64;
+shr.u32 %r13, %r1, 4;
+and.b32 %r14, %r13, 3;
+or.b32 %r15, %r14, %r12;
+or.b32 %r16, %r15, %r3;
+cvt.u64.u32	%rd2, %r16;
+mov.u32 %r17, %nctaid.x;
+mul.lo.s32 %r7, %r17, %r4;
+
+BB0_2:
+mul.wide.u32 %rd8, %r233, 16;
+add.s64 %rd9, %rd1, %rd8;
+ld.global.v4.u32 {%r18, %r19, %r20, %r21}, [%rd9];
+shl.b32 %r23, %r18, 4;
+and.b32 %r24, %r23, 4032;
+cvt.u64.u32	%rd10, %r24;
+add.s64 %rd11, %rd10, %rd2;
+add.s64 %rd13, %rd6, %rd11;
+ld.shared.u8 %rs1, [%rd13];
+add.s16 %rs2, %rs1, 1;
+st.shared.u8 [%rd13], %rs2;
+shr.u32 %r25, %r18, 4;
+and.b32 %r26, %r25, 4032;
+cvt.u64.u32	%rd14, %r26;
+add.s64 %rd15, %rd14, %rd2;
+add.s64 %rd16, %rd6, %rd15;
+ld.shared.u8 %rs3, [%rd16];
+add.s16 %rs4, %rs3, 1;
+st.shared.u8 [%rd16], %rs4;
+shr.u32 %r27, %r18, 12;
+and.b32 %r28, %r27, 4032;
+cvt.u64.u32	%rd17, %r28;
+add.s64 %rd18, %rd17, %rd2;
+add.s64 %rd19, %rd6, %rd18;
+ld.shared.u8 %rs5, [%rd19];
+add.s16 %rs6, %rs5, 1;
+st.shared.u8 [%rd19], %rs6;
+shr.u32 %r29, %r18, 20;
+and.b32 %r30, %r29, 4032;
+cvt.u64.u32	%rd20, %r30;
+add.s64 %rd21, %rd20, %rd2;
+add.s64 %rd22, %rd6, %rd21;
+ld.shared.u8 %rs7, [%rd22];
+add.s16 %rs8, %rs7, 1;
+st.shared.u8 [%rd22], %rs8;
+shl.b32 %r32, %r19, 4;
+and.b32 %r33, %r32, 4032;
+cvt.u64.u32	%rd23, %r33;
+add.s64 %rd24, %rd23, %rd2;
+add.s64 %rd25, %rd6, %rd24;
+ld.shared.u8 %rs9, [%rd25];
+add.s16 %rs10, %rs9, 1;
+st.shared.u8 [%rd25], %rs10;
+shr.u32 %r34, %r19, 4;
+and.b32 %r35, %r34, 4032;
+cvt.u64.u32	%rd26, %r35;
+add.s64 %rd27, %rd26, %rd2;
+add.s64 %rd28, %rd6, %rd27;
+ld.shared.u8 %rs11, [%rd28];
+add.s16 %rs12, %rs11, 1;
+st.shared.u8 [%rd28], %rs12;
+shr.u32 %r36, %r19, 12;
+and.b32 %r37, %r36, 4032;
+cvt.u64.u32	%rd29, %r37;
+add.s64 %rd30, %rd29, %rd2;
+add.s64 %rd31, %rd6, %rd30;
+ld.shared.u8 %rs13, [%rd31];
+add.s16 %rs14, %rs13, 1;
+st.shared.u8 [%rd31], %rs14;
+shr.u32 %r38, %r19, 20;
+and.b32 %r39, %r38, 4032;
+cvt.u64.u32	%rd32, %r39;
+add.s64 %rd33, %rd32, %rd2;
+add.s64 %rd34, %rd6, %rd33;
+ld.shared.u8 %rs15, [%rd34];
+add.s16 %rs16, %rs15, 1;
+st.shared.u8 [%rd34], %rs16;
+shl.b32 %r41, %r20, 4;
+and.b32 %r42, %r41, 4032;
+cvt.u64.u32	%rd35, %r42;
+add.s64 %rd36, %rd35, %rd2;
+add.s64 %rd37, %rd6, %rd36;
+ld.shared.u8 %rs17, [%rd37];
+add.s16 %rs18, %rs17, 1;
+st.shared.u8 [%rd37], %rs18;
+shr.u32 %r43, %r20, 4;
+and.b32 %r44, %r43, 4032;
+cvt.u64.u32	%rd38, %r44;
+add.s64 %rd39, %rd38, %rd2;
+add.s64 %rd40, %rd6, %rd39;
+ld.shared.u8 %rs19, [%rd40];
+add.s16 %rs20, %rs19, 1;
+st.shared.u8 [%rd40], %rs20;
+shr.u32 %r45, %r20, 12;
+and.b32 %r46, %r45, 4032;
+cvt.u64.u32	%rd41, %r46;
+add.s64 %rd42, %rd41, %rd2;
+add.s64 %rd43, %rd6, %rd42;
+ld.shared.u8 %rs21, [%rd43];
+add.s16 %rs22, %rs21, 1;
+st.shared.u8 [%rd43], %rs22;
+shr.u32 %r47, %r20, 20;
+and.b32 %r48, %r47, 4032;
+cvt.u64.u32	%rd44, %r48;
+add.s64 %rd45, %rd44, %rd2;
+add.s64 %rd46, %rd6, %rd45;
+ld.shared.u8 %rs23, [%rd46];
+add.s16 %rs24, %rs23, 1;
+st.shared.u8 [%rd46], %rs24;
+shl.b32 %r50, %r21, 4;
+and.b32 %r51, %r50, 4032;
+cvt.u64.u32	%rd47, %r51;
+add.s64 %rd48, %rd47, %rd2;
+add.s64 %rd49, %rd6, %rd48;
+ld.shared.u8 %rs25, [%rd49];
+add.s16 %rs26, %rs25, 1;
+st.shared.u8 [%rd49], %rs26;
+shr.u32 %r52, %r21, 4;
+and.b32 %r53, %r52, 4032;
+cvt.u64.u32	%rd50, %r53;
+add.s64 %rd51, %rd50, %rd2;
+add.s64 %rd52, %rd6, %rd51;
+ld.shared.u8 %rs27, [%rd52];
+add.s16 %rs28, %rs27, 1;
+st.shared.u8 [%rd52], %rs28;
+shr.u32 %r54, %r21, 12;
+and.b32 %r55, %r54, 4032;
+cvt.u64.u32	%rd53, %r55;
+add.s64 %rd54, %rd53, %rd2;
+add.s64 %rd55, %rd6, %rd54;
+ld.shared.u8 %rs29, [%rd55];
+add.s16 %rs30, %rs29, 1;
+st.shared.u8 [%rd55], %rs30;
+shr.u32 %r56, %r21, 20;
+and.b32 %r57, %r56, 4032;
+cvt.u64.u32	%rd56, %r57;
+add.s64 %rd57, %rd56, %rd2;
+add.s64 %rd58, %rd6, %rd57;
+ld.shared.u8 %rs31, [%rd58];
+add.s16 %rs32, %rs31, 1;
+st.shared.u8 [%rd58], %rs32;
+add.s32 %r233, %r7, %r233;
+setp.lt.u32	%p2, %r233, %r10;
+@%p2 bra BB0_2;
+
+BB0_3:
+bar.sync 0;
+setp.gt.u32	%p3, %r1, 63;
+@%p3 bra BB0_5;
+
+cvta.to.global.u64 %rd59, %rd3;
+shl.b32 %r58, %r1, 6;
+cvt.u64.u32	%rd60, %r58;
+cvt.u64.u32	%rd61, %r3;
+add.s64 %rd62, %rd61, %rd60;
+add.s64 %rd64, %rd6, %rd62;
+ld.shared.u8 %r59, [%rd64];
+ld.shared.u8 %r60, [%rd64+1];
+ld.shared.u8 %r61, [%rd64+2];
+ld.shared.u8 %r62, [%rd64+3];
+add.s32 %r63, %r59, %r60;
+add.s32 %r64, %r63, %r61;
+add.s32 %r65, %r64, %r62;
+add.s32 %r66, %r2, 4;
+and.b32 %r67, %r66, 60;
+or.b32 %r68, %r67, %r58;
+cvt.u64.u32	%rd65, %r68;
+add.s64 %rd66, %rd6, %rd65;
+ld.shared.u8 %r69, [%rd66];
+ld.shared.u8 %r70, [%rd66+1];
+ld.shared.u8 %r71, [%rd66+2];
+ld.shared.u8 %r72, [%rd66+3];
+add.s32 %r73, %r69, %r65;
+add.s32 %r74, %r73, %r70;
+add.s32 %r75, %r74, %r71;
+add.s32 %r76, %r75, %r72;
+add.s32 %r77, %r2, 8;
+and.b32 %r78, %r77, 60;
+or.b32 %r79, %r78, %r58;
+cvt.u64.u32	%rd67, %r79;
+add.s64 %rd68, %rd6, %rd67;
+ld.shared.u8 %r80, [%rd68];
+ld.shared.u8 %r81, [%rd68+1];
+ld.shared.u8 %r82, [%rd68+2];
+ld.shared.u8 %r83, [%rd68+3];
+add.s32 %r84, %r80, %r76;
+add.s32 %r85, %r84, %r81;
+add.s32 %r86, %r85, %r82;
+add.s32 %r87, %r86, %r83;
+add.s32 %r88, %r2, 12;
+and.b32 %r89, %r88, 60;
+or.b32 %r90, %r89, %r58;
+cvt.u64.u32	%rd69, %r90;
+add.s64 %rd70, %rd6, %rd69;
+ld.shared.u8 %r91, [%rd70];
+ld.shared.u8 %r92, [%rd70+1];
+ld.shared.u8 %r93, [%rd70+2];
+ld.shared.u8 %r94, [%rd70+3];
+add.s32 %r95, %r91, %r87;
+add.s32 %r96, %r95, %r92;
+add.s32 %r97, %r96, %r93;
+add.s32 %r98, %r97, %r94;
+add.s32 %r99, %r2, 16;
+and.b32 %r100, %r99, 60;
+or.b32 %r101, %r100, %r58;
+cvt.u64.u32	%rd71, %r101;
+add.s64 %rd72, %rd6, %rd71;
+ld.shared.u8 %r102, [%rd72];
+ld.shared.u8 %r103, [%rd72+1];
+ld.shared.u8 %r104, [%rd72+2];
+ld.shared.u8 %r105, [%rd72+3];
+add.s32 %r106, %r102, %r98;
+add.s32 %r107, %r106, %r103;
+add.s32 %r108, %r107, %r104;
+add.s32 %r109, %r108, %r105;
+add.s32 %r110, %r2, 20;
+and.b32 %r111, %r110, 60;
+or.b32 %r112, %r111, %r58;
+cvt.u64.u32	%rd73, %r112;
+add.s64 %rd74, %rd6, %rd73;
+ld.shared.u8 %r113, [%rd74];
+ld.shared.u8 %r114, [%rd74+1];
+ld.shared.u8 %r115, [%rd74+2];
+ld.shared.u8 %r116, [%rd74+3];
+add.s32 %r117, %r113, %r109;
+add.s32 %r118, %r117, %r114;
+add.s32 %r119, %r118, %r115;
+add.s32 %r120, %r119, %r116;
+add.s32 %r121, %r2, 24;
+and.b32 %r122, %r121, 60;
+or.b32 %r123, %r122, %r58;
+cvt.u64.u32	%rd75, %r123;
+add.s64 %rd76, %rd6, %rd75;
+ld.shared.u8 %r124, [%rd76];
+ld.shared.u8 %r125, [%rd76+1];
+ld.shared.u8 %r126, [%rd76+2];
+ld.shared.u8 %r127, [%rd76+3];
+add.s32 %r128, %r124, %r120;
+add.s32 %r129, %r128, %r125;
+add.s32 %r130, %r129, %r126;
+add.s32 %r131, %r130, %r127;
+add.s32 %r132, %r2, 28;
+and.b32 %r133, %r132, 60;
+or.b32 %r134, %r133, %r58;
+cvt.u64.u32	%rd77, %r134;
+add.s64 %rd78, %rd6, %rd77;
+ld.shared.u8 %r135, [%rd78];
+ld.shared.u8 %r136, [%rd78+1];
+ld.shared.u8 %r137, [%rd78+2];
+ld.shared.u8 %r138, [%rd78+3];
+add.s32 %r139, %r135, %r131;
+add.s32 %r140, %r139, %r136;
+add.s32 %r141, %r140, %r137;
+add.s32 %r142, %r141, %r138;
+add.s32 %r143, %r2, 32;
+and.b32 %r144, %r143, 60;
+or.b32 %r145, %r144, %r58;
+cvt.u64.u32	%rd79, %r145;
+add.s64 %rd80, %rd6, %rd79;
+ld.shared.u8 %r146, [%rd80];
+ld.shared.u8 %r147, [%rd80+1];
+ld.shared.u8 %r148, [%rd80+2];
+ld.shared.u8 %r149, [%rd80+3];
+add.s32 %r150, %r146, %r142;
+add.s32 %r151, %r150, %r147;
+add.s32 %r152, %r151, %r148;
+add.s32 %r153, %r152, %r149;
+add.s32 %r154, %r2, 36;
+and.b32 %r155, %r154, 60;
+or.b32 %r156, %r155, %r58;
+cvt.u64.u32	%rd81, %r156;
+add.s64 %rd82, %rd6, %rd81;
+ld.shared.u8 %r157, [%rd82];
+ld.shared.u8 %r158, [%rd82+1];
+ld.shared.u8 %r159, [%rd82+2];
+ld.shared.u8 %r160, [%rd82+3];
+add.s32 %r161, %r157, %r153;
+add.s32 %r162, %r161, %r158;
+add.s32 %r163, %r162, %r159;
+add.s32 %r164, %r163, %r160;
+add.s32 %r165, %r2, 40;
+and.b32 %r166, %r165, 60;
+or.b32 %r167, %r166, %r58;
+cvt.u64.u32	%rd83, %r167;
+add.s64 %rd84, %rd6, %rd83;
+ld.shared.u8 %r168, [%rd84];
+ld.shared.u8 %r169, [%rd84+1];
+ld.shared.u8 %r170, [%rd84+2];
+ld.shared.u8 %r171, [%rd84+3];
+add.s32 %r172, %r168, %r164;
+add.s32 %r173, %r172, %r169;
+add.s32 %r174, %r173, %r170;
+add.s32 %r175, %r174, %r171;
+add.s32 %r176, %r2, 44;
+and.b32 %r177, %r176, 60;
+or.b32 %r178, %r177, %r58;
+cvt.u64.u32	%rd85, %r178;
+add.s64 %rd86, %rd6, %rd85;
+ld.shared.u8 %r179, [%rd86];
+ld.shared.u8 %r180, [%rd86+1];
+ld.shared.u8 %r181, [%rd86+2];
+ld.shared.u8 %r182, [%rd86+3];
+add.s32 %r183, %r179, %r175;
+add.s32 %r184, %r183, %r180;
+add.s32 %r185, %r184, %r181;
+add.s32 %r186, %r185, %r182;
+add.s32 %r187, %r2, 48;
+and.b32 %r188, %r187, 60;
+or.b32 %r189, %r188, %r58;
+cvt.u64.u32	%rd87, %r189;
+add.s64 %rd88, %rd6, %rd87;
+ld.shared.u8 %r190, [%rd88];
+ld.shared.u8 %r191, [%rd88+1];
+ld.shared.u8 %r192, [%rd88+2];
+ld.shared.u8 %r193, [%rd88+3];
+add.s32 %r194, %r190, %r186;
+add.s32 %r195, %r194, %r191;
+add.s32 %r196, %r195, %r192;
+add.s32 %r197, %r196, %r193;
+add.s32 %r198, %r2, 52;
+and.b32 %r199, %r198, 60;
+or.b32 %r200, %r199, %r58;
+cvt.u64.u32	%rd89, %r200;
+add.s64 %rd90, %rd6, %rd89;
+ld.shared.u8 %r201, [%rd90];
+ld.shared.u8 %r202, [%rd90+1];
+ld.shared.u8 %r203, [%rd90+2];
+ld.shared.u8 %r204, [%rd90+3];
+add.s32 %r205, %r201, %r197;
+add.s32 %r206, %r205, %r202;
+add.s32 %r207, %r206, %r203;
+add.s32 %r208, %r207, %r204;
+add.s32 %r209, %r2, 56;
+and.b32 %r210, %r209, 60;
+or.b32 %r211, %r210, %r58;
+cvt.u64.u32	%rd91, %r211;
+add.s64 %rd92, %rd6, %rd91;
+ld.shared.u8 %r212, [%rd92];
+ld.shared.u8 %r213, [%rd92+1];
+ld.shared.u8 %r214, [%rd92+2];
+ld.shared.u8 %r215, [%rd92+3];
+add.s32 %r216, %r212, %r208;
+add.s32 %r217, %r216, %r213;
+add.s32 %r218, %r217, %r214;
+add.s32 %r219, %r218, %r215;
+add.s32 %r220, %r2, 60;
+and.b32 %r221, %r220, 60;
+or.b32 %r222, %r221, %r58;
+cvt.u64.u32	%rd93, %r222;
+add.s64 %rd94, %rd6, %rd93;
+ld.shared.u8 %r223, [%rd94];
+ld.shared.u8 %r224, [%rd94+1];
+ld.shared.u8 %r225, [%rd94+2];
+ld.shared.u8 %r226, [%rd94+3];
+add.s32 %r227, %r223, %r219;
+add.s32 %r228, %r227, %r224;
+add.s32 %r229, %r228, %r225;
+add.s32 %r230, %r229, %r226;
+shl.b32 %r231, %r5, 6;
+add.s32 %r232, %r231, %r1;
+mul.wide.u32 %rd95, %r232, 4;
+add.s64 %rd96, %rd59, %rd95;
+st.global.u32 [%rd96], %r230;
+
+BB0_5:
+ret;
+}
+
+.visible .entry _Z22mergeHistogram64KernelPjS_j(
+.param .u64 _Z22mergeHistogram64KernelPjS_j_param_0,
+.param .u64 _Z22mergeHistogram64KernelPjS_j_param_1,
+.param .u32 _Z22mergeHistogram64KernelPjS_j_param_2
+)
+{
+.reg .pred %p<12>;
+.reg .s32 %r<44>;
+.reg .s64 %rd<12>;
+
+	.shared .align 4 .b8 _Z22mergeHistogram64KernelPjS_j$__cuda_local_var_59207_34_non_const_data[1024];
+
+ld.param.u64 %rd3, [_Z22mergeHistogram64KernelPjS_j_param_0];
+ld.param.u64 %rd4, [_Z22mergeHistogram64KernelPjS_j_param_1];
+ld.param.u32 %r10, [_Z22mergeHistogram64KernelPjS_j_param_2];
+mov.u32 %r1, %tid.x;
+setp.lt.u32	%p1, %r1, %r10;
+@%p1 bra BB1_2;
+
+mov.u32 %r43, 0;
+bra.uni BB1_4;
+
+BB1_2:
+cvta.to.global.u64 %rd1, %rd4;
+mov.u32 %r13, %ctaid.x;
+mad.lo.s32 %r41, %r1, 64, %r13;
+mov.u32 %r43, 0;
+mov.u32 %r42, %r1;
+
+BB1_3:
+mov.u32 %r4, %r42;
+mul.wide.u32 %rd5, %r41, 4;
+add.s64 %rd6, %rd1, %rd5;
+ld.global.u32 %r14, [%rd6];
+add.s32 %r43, %r14, %r43;
+add.s32 %r41, %r41, 16384;
+add.s32 %r8, %r4, 256;
+setp.lt.u32	%p2, %r8, %r10;
+mov.u32 %r42, %r8;
+@%p2 bra BB1_3;
+
+BB1_4:
+mul.wide.u32 %rd7, %r1, 4;
+mov.u64 %rd8, _Z22mergeHistogram64KernelPjS_j$__cuda_local_var_59207_34_non_const_data;
+add.s64 %rd2, %rd8, %rd7;
+st.shared.u32 [%rd2], %r43;
+bar.sync 0;
+setp.gt.u32	%p3, %r1, 127;
+@%p3 bra BB1_6;
+
+ld.shared.u32 %r15, [%rd2];
+ld.shared.u32 %r16, [%rd2+512];
+add.s32 %r17, %r15, %r16;
+st.shared.u32 [%rd2], %r17;
+
+BB1_6:
+bar.sync 0;
+setp.gt.u32	%p4, %r1, 63;
+@%p4 bra BB1_8;
+
+ld.shared.u32 %r18, [%rd2];
+ld.shared.u32 %r19, [%rd2+256];
+add.s32 %r20, %r18, %r19;
+st.shared.u32 [%rd2], %r20;
+
+BB1_8:
+bar.sync 0;
+setp.gt.u32	%p5, %r1, 31;
+@%p5 bra BB1_10;
+
+ld.shared.u32 %r21, [%rd2];
+ld.shared.u32 %r22, [%rd2+128];
+add.s32 %r23, %r21, %r22;
+st.shared.u32 [%rd2], %r23;
+
+BB1_10:
+bar.sync 0;
+setp.gt.u32	%p6, %r1, 15;
+@%p6 bra BB1_12;
+
+ld.shared.u32 %r24, [%rd2];
+ld.shared.u32 %r25, [%rd2+64];
+add.s32 %r26, %r24, %r25;
+st.shared.u32 [%rd2], %r26;
+
+BB1_12:
+bar.sync 0;
+setp.gt.u32	%p7, %r1, 7;
+@%p7 bra BB1_14;
+
+ld.shared.u32 %r27, [%rd2];
+ld.shared.u32 %r28, [%rd2+32];
+add.s32 %r29, %r27, %r28;
+st.shared.u32 [%rd2], %r29;
+
+BB1_14:
+bar.sync 0;
+setp.gt.u32	%p8, %r1, 3;
+@%p8 bra BB1_16;
+
+ld.shared.u32 %r30, [%rd2];
+ld.shared.u32 %r31, [%rd2+16];
+add.s32 %r32, %r30, %r31;
+st.shared.u32 [%rd2], %r32;
+
+BB1_16:
+bar.sync 0;
+setp.gt.u32	%p9, %r1, 1;
+@%p9 bra BB1_18;
+
+ld.shared.u32 %r33, [%rd2];
+ld.shared.u32 %r34, [%rd2+8];
+add.s32 %r35, %r33, %r34;
+st.shared.u32 [%rd2], %r35;
+
+BB1_18:
+bar.sync 0;
+setp.ne.s32	%p10, %r1, 0;
+@%p10 bra BB1_20;
+
+ld.shared.u32 %r36, [_Z22mergeHistogram64KernelPjS_j$__cuda_local_var_59207_34_non_const_data+4];
+ld.shared.u32 %r37, [%rd2];
+add.s32 %r38, %r37, %r36;
+st.shared.u32 [%rd2], %r38;
+
+BB1_20:
+@%p10 bra BB1_22;
+
+cvta.to.global.u64 %rd9, %rd3;
+ld.shared.u32 %r39, [_Z22mergeHistogram64KernelPjS_j$__cuda_local_var_59207_34_non_const_data];
+mov.u32 %r40, %ctaid.x;
+mul.wide.u32 %rd10, %r40, 4;
+add.s64 %rd11, %rd9, %rd10;
+st.global.u32 [%rd11], %r39;
+
+BB1_22:
+ret;
+}
+
+
+
+Fatbin elf code:
+================
+arch = sm_30
+code version = [1,7]
+producer = cuda
+host = linux
+compile_size = 64bit
+identifier = histogram64.cu
+
+Fatbin ptx code:
+================
+arch = sm_30
+code version = [4,0]
+producer = cuda
+host = linux
+compile_size = 64bit
+compressed
+identifier = histogram64.cu
+
+
+
+
+
+
+.version 4.0
+.target sm_30
+.address_size 64
+
+
+
+
+.visible .entry _Z17histogram64KernelPjP5uint4j(
+.param .u64 _Z17histogram64KernelPjP5uint4j_param_0,
+.param .u64 _Z17histogram64KernelPjP5uint4j_param_1,
+.param .u32 _Z17histogram64KernelPjP5uint4j_param_2
+)
+{
+.reg .pred %p<4>;
+.reg .s16 %rs<33>;
+.reg .s32 %r<234>;
+.reg .s64 %rd<97>;
+
+	.shared .align 1 .b8 _Z17histogram64KernelPjP5uint4j$__cuda_local_var_59234_35_non_const_s_Hist[4096];
+
+ld.param.u64 %rd3, [_Z17histogram64KernelPjP5uint4j_param_0];
+ld.param.u64 %rd4, [_Z17histogram64KernelPjP5uint4j_param_1];
+ld.param.u32 %r10, [_Z17histogram64KernelPjP5uint4j_param_2];
+mov.u32 %r1, %tid.x;
+shl.b32 %r2, %r1, 2;
+and.b32 %r3, %r2, 60;
+mul.wide.u32 %rd5, %r1, 4;
+mov.u64 %rd6, _Z17histogram64KernelPjP5uint4j$__cuda_local_var_59234_35_non_const_s_Hist;
+add.s64 %rd7, %rd6, %rd5;
+mov.u32 %r11, 0;
+st.shared.u32 [%rd7], %r11;
+st.shared.u32 [%rd7+256], %r11;
+st.shared.u32 [%rd7+512], %r11;
+st.shared.u32 [%rd7+768], %r11;
+st.shared.u32 [%rd7+1024], %r11;
+st.shared.u32 [%rd7+1280], %r11;
+st.shared.u32 [%rd7+1536], %r11;
+st.shared.u32 [%rd7+1792], %r11;
+st.shared.u32 [%rd7+2048], %r11;
+st.shared.u32 [%rd7+2304], %r11;
+st.shared.u32 [%rd7+2560], %r11;
+st.shared.u32 [%rd7+2816], %r11;
+st.shared.u32 [%rd7+3072], %r11;
+st.shared.u32 [%rd7+3328], %r11;
+st.shared.u32 [%rd7+3584], %r11;
+st.shared.u32 [%rd7+3840], %r11;
+bar.sync 0;
+mov.u32 %r4, %ntid.x;
+mov.u32 %r5, %ctaid.x;
+mad.lo.s32 %r233, %r4, %r5, %r1;
+setp.ge.u32	%p1, %r233, %r10;
+@%p1 bra BB0_3;
+
+cvta.to.global.u64 %rd1, %rd4;
+and.b32 %r12, %r1, -64;
+shr.u32 %r13, %r1, 4;
+and.b32 %r14, %r13, 3;
+or.b32 %r15, %r14, %r12;
+or.b32 %r16, %r15, %r3;
+cvt.u64.u32	%rd2, %r16;
+mov.u32 %r17, %nctaid.x;
+mul.lo.s32 %r7, %r17, %r4;
+
+BB0_2:
+mul.wide.u32 %rd8, %r233, 16;
+add.s64 %rd9, %rd1, %rd8;
+ld.global.v4.u32 {%r18, %r19, %r20, %r21}, [%rd9];
+shl.b32 %r23, %r18, 4;
+and.b32 %r24, %r23, 4032;
+cvt.u64.u32	%rd10, %r24;
+add.s64 %rd11, %rd10, %rd2;
+add.s64 %rd13, %rd6, %rd11;
+ld.shared.u8 %rs1, [%rd13];
+add.s16 %rs2, %rs1, 1;
+st.shared.u8 [%rd13], %rs2;
+shr.u32 %r25, %r18, 4;
+and.b32 %r26, %r25, 4032;
+cvt.u64.u32	%rd14, %r26;
+add.s64 %rd15, %rd14, %rd2;
+add.s64 %rd16, %rd6, %rd15;
+ld.shared.u8 %rs3, [%rd16];
+add.s16 %rs4, %rs3, 1;
+st.shared.u8 [%rd16], %rs4;
+shr.u32 %r27, %r18, 12;
+and.b32 %r28, %r27, 4032;
+cvt.u64.u32	%rd17, %r28;
+add.s64 %rd18, %rd17, %rd2;
+add.s64 %rd19, %rd6, %rd18;
+ld.shared.u8 %rs5, [%rd19];
+add.s16 %rs6, %rs5, 1;
+st.shared.u8 [%rd19], %rs6;
+shr.u32 %r29, %r18, 20;
+and.b32 %r30, %r29, 4032;
+cvt.u64.u32	%rd20, %r30;
+add.s64 %rd21, %rd20, %rd2;
+add.s64 %rd22, %rd6, %rd21;
+ld.shared.u8 %rs7, [%rd22];
+add.s16 %rs8, %rs7, 1;
+st.shared.u8 [%rd22], %rs8;
+shl.b32 %r32, %r19, 4;
+and.b32 %r33, %r32, 4032;
+cvt.u64.u32	%rd23, %r33;
+add.s64 %rd24, %rd23, %rd2;
+add.s64 %rd25, %rd6, %rd24;
+ld.shared.u8 %rs9, [%rd25];
+add.s16 %rs10, %rs9, 1;
+st.shared.u8 [%rd25], %rs10;
+shr.u32 %r34, %r19, 4;
+and.b32 %r35, %r34, 4032;
+cvt.u64.u32	%rd26, %r35;
+add.s64 %rd27, %rd26, %rd2;
+add.s64 %rd28, %rd6, %rd27;
+ld.shared.u8 %rs11, [%rd28];
+add.s16 %rs12, %rs11, 1;
+st.shared.u8 [%rd28], %rs12;
+shr.u32 %r36, %r19, 12;
+and.b32 %r37, %r36, 4032;
+cvt.u64.u32	%rd29, %r37;
+add.s64 %rd30, %rd29, %rd2;
+add.s64 %rd31, %rd6, %rd30;
+ld.shared.u8 %rs13, [%rd31];
+add.s16 %rs14, %rs13, 1;
+st.shared.u8 [%rd31], %rs14;
+shr.u32 %r38, %r19, 20;
+and.b32 %r39, %r38, 4032;
+cvt.u64.u32	%rd32, %r39;
+add.s64 %rd33, %rd32, %rd2;
+add.s64 %rd34, %rd6, %rd33;
+ld.shared.u8 %rs15, [%rd34];
+add.s16 %rs16, %rs15, 1;
+st.shared.u8 [%rd34], %rs16;
+shl.b32 %r41, %r20, 4;
+and.b32 %r42, %r41, 4032;
+cvt.u64.u32	%rd35, %r42;
+add.s64 %rd36, %rd35, %rd2;
+add.s64 %rd37, %rd6, %rd36;
+ld.shared.u8 %rs17, [%rd37];
+add.s16 %rs18, %rs17, 1;
+st.shared.u8 [%rd37], %rs18;
+shr.u32 %r43, %r20, 4;
+and.b32 %r44, %r43, 4032;
+cvt.u64.u32	%rd38, %r44;
+add.s64 %rd39, %rd38, %rd2;
+add.s64 %rd40, %rd6, %rd39;
+ld.shared.u8 %rs19, [%rd40];
+add.s16 %rs20, %rs19, 1;
+st.shared.u8 [%rd40], %rs20;
+shr.u32 %r45, %r20, 12;
+and.b32 %r46, %r45, 4032;
+cvt.u64.u32	%rd41, %r46;
+add.s64 %rd42, %rd41, %rd2;
+add.s64 %rd43, %rd6, %rd42;
+ld.shared.u8 %rs21, [%rd43];
+add.s16 %rs22, %rs21, 1;
+st.shared.u8 [%rd43], %rs22;
+shr.u32 %r47, %r20, 20;
+and.b32 %r48, %r47, 4032;
+cvt.u64.u32	%rd44, %r48;
+add.s64 %rd45, %rd44, %rd2;
+add.s64 %rd46, %rd6, %rd45;
+ld.shared.u8 %rs23, [%rd46];
+add.s16 %rs24, %rs23, 1;
+st.shared.u8 [%rd46], %rs24;
+shl.b32 %r50, %r21, 4;
+and.b32 %r51, %r50, 4032;
+cvt.u64.u32	%rd47, %r51;
+add.s64 %rd48, %rd47, %rd2;
+add.s64 %rd49, %rd6, %rd48;
+ld.shared.u8 %rs25, [%rd49];
+add.s16 %rs26, %rs25, 1;
+st.shared.u8 [%rd49], %rs26;
+shr.u32 %r52, %r21, 4;
+and.b32 %r53, %r52, 4032;
+cvt.u64.u32	%rd50, %r53;
+add.s64 %rd51, %rd50, %rd2;
+add.s64 %rd52, %rd6, %rd51;
+ld.shared.u8 %rs27, [%rd52];
+add.s16 %rs28, %rs27, 1;
+st.shared.u8 [%rd52], %rs28;
+shr.u32 %r54, %r21, 12;
+and.b32 %r55, %r54, 4032;
+cvt.u64.u32	%rd53, %r55;
+add.s64 %rd54, %rd53, %rd2;
+add.s64 %rd55, %rd6, %rd54;
+ld.shared.u8 %rs29, [%rd55];
+add.s16 %rs30, %rs29, 1;
+st.shared.u8 [%rd55], %rs30;
+shr.u32 %r56, %r21, 20;
+and.b32 %r57, %r56, 4032;
+cvt.u64.u32	%rd56, %r57;
+add.s64 %rd57, %rd56, %rd2;
+add.s64 %rd58, %rd6, %rd57;
+ld.shared.u8 %rs31, [%rd58];
+add.s16 %rs32, %rs31, 1;
+st.shared.u8 [%rd58], %rs32;
+add.s32 %r233, %r7, %r233;
+setp.lt.u32	%p2, %r233, %r10;
+@%p2 bra BB0_2;
+
+BB0_3:
+bar.sync 0;
+setp.gt.u32	%p3, %r1, 63;
+@%p3 bra BB0_5;
+
+cvta.to.global.u64 %rd59, %rd3;
+shl.b32 %r58, %r1, 6;
+cvt.u64.u32	%rd60, %r58;
+cvt.u64.u32	%rd61, %r3;
+add.s64 %rd62, %rd61, %rd60;
+add.s64 %rd64, %rd6, %rd62;
+ld.shared.u8 %r59, [%rd64];
+ld.shared.u8 %r60, [%rd64+1];
+ld.shared.u8 %r61, [%rd64+2];
+ld.shared.u8 %r62, [%rd64+3];
+add.s32 %r63, %r59, %r60;
+add.s32 %r64, %r63, %r61;
+add.s32 %r65, %r64, %r62;
+add.s32 %r66, %r2, 4;
+and.b32 %r67, %r66, 60;
+or.b32 %r68, %r67, %r58;
+cvt.u64.u32	%rd65, %r68;
+add.s64 %rd66, %rd6, %rd65;
+ld.shared.u8 %r69, [%rd66];
+ld.shared.u8 %r70, [%rd66+1];
+ld.shared.u8 %r71, [%rd66+2];
+ld.shared.u8 %r72, [%rd66+3];
+add.s32 %r73, %r69, %r65;
+add.s32 %r74, %r73, %r70;
+add.s32 %r75, %r74, %r71;
+add.s32 %r76, %r75, %r72;
+add.s32 %r77, %r2, 8;
+and.b32 %r78, %r77, 60;
+or.b32 %r79, %r78, %r58;
+cvt.u64.u32	%rd67, %r79;
+add.s64 %rd68, %rd6, %rd67;
+ld.shared.u8 %r80, [%rd68];
+ld.shared.u8 %r81, [%rd68+1];
+ld.shared.u8 %r82, [%rd68+2];
+ld.shared.u8 %r83, [%rd68+3];
+add.s32 %r84, %r80, %r76;
+add.s32 %r85, %r84, %r81;
+add.s32 %r86, %r85, %r82;
+add.s32 %r87, %r86, %r83;
+add.s32 %r88, %r2, 12;
+and.b32 %r89, %r88, 60;
+or.b32 %r90, %r89, %r58;
+cvt.u64.u32	%rd69, %r90;
+add.s64 %rd70, %rd6, %rd69;
+ld.shared.u8 %r91, [%rd70];
+ld.shared.u8 %r92, [%rd70+1];
+ld.shared.u8 %r93, [%rd70+2];
+ld.shared.u8 %r94, [%rd70+3];
+add.s32 %r95, %r91, %r87;
+add.s32 %r96, %r95, %r92;
+add.s32 %r97, %r96, %r93;
+add.s32 %r98, %r97, %r94;
+add.s32 %r99, %r2, 16;
+and.b32 %r100, %r99, 60;
+or.b32 %r101, %r100, %r58;
+cvt.u64.u32	%rd71, %r101;
+add.s64 %rd72, %rd6, %rd71;
+ld.shared.u8 %r102, [%rd72];
+ld.shared.u8 %r103, [%rd72+1];
+ld.shared.u8 %r104, [%rd72+2];
+ld.shared.u8 %r105, [%rd72+3];
+add.s32 %r106, %r102, %r98;
+add.s32 %r107, %r106, %r103;
+add.s32 %r108, %r107, %r104;
+add.s32 %r109, %r108, %r105;
+add.s32 %r110, %r2, 20;
+and.b32 %r111, %r110, 60;
+or.b32 %r112, %r111, %r58;
+cvt.u64.u32	%rd73, %r112;
+add.s64 %rd74, %rd6, %rd73;
+ld.shared.u8 %r113, [%rd74];
+ld.shared.u8 %r114, [%rd74+1];
+ld.shared.u8 %r115, [%rd74+2];
+ld.shared.u8 %r116, [%rd74+3];
+add.s32 %r117, %r113, %r109;
+add.s32 %r118, %r117, %r114;
+add.s32 %r119, %r118, %r115;
+add.s32 %r120, %r119, %r116;
+add.s32 %r121, %r2, 24;
+and.b32 %r122, %r121, 60;
+or.b32 %r123, %r122, %r58;
+cvt.u64.u32	%rd75, %r123;
+add.s64 %rd76, %rd6, %rd75;
+ld.shared.u8 %r124, [%rd76];
+ld.shared.u8 %r125, [%rd76+1];
+ld.shared.u8 %r126, [%rd76+2];
+ld.shared.u8 %r127, [%rd76+3];
+add.s32 %r128, %r124, %r120;
+add.s32 %r129, %r128, %r125;
+add.s32 %r130, %r129, %r126;
+add.s32 %r131, %r130, %r127;
+add.s32 %r132, %r2, 28;
+and.b32 %r133, %r132, 60;
+or.b32 %r134, %r133, %r58;
+cvt.u64.u32	%rd77, %r134;
+add.s64 %rd78, %rd6, %rd77;
+ld.shared.u8 %r135, [%rd78];
+ld.shared.u8 %r136, [%rd78+1];
+ld.shared.u8 %r137, [%rd78+2];
+ld.shared.u8 %r138, [%rd78+3];
+add.s32 %r139, %r135, %r131;
+add.s32 %r140, %r139, %r136;
+add.s32 %r141, %r140, %r137;
+add.s32 %r142, %r141, %r138;
+add.s32 %r143, %r2, 32;
+and.b32 %r144, %r143, 60;
+or.b32 %r145, %r144, %r58;
+cvt.u64.u32	%rd79, %r145;
+add.s64 %rd80, %rd6, %rd79;
+ld.shared.u8 %r146, [%rd80];
+ld.shared.u8 %r147, [%rd80+1];
+ld.shared.u8 %r148, [%rd80+2];
+ld.shared.u8 %r149, [%rd80+3];
+add.s32 %r150, %r146, %r142;
+add.s32 %r151, %r150, %r147;
+add.s32 %r152, %r151, %r148;
+add.s32 %r153, %r152, %r149;
+add.s32 %r154, %r2, 36;
+and.b32 %r155, %r154, 60;
+or.b32 %r156, %r155, %r58;
+cvt.u64.u32	%rd81, %r156;
+add.s64 %rd82, %rd6, %rd81;
+ld.shared.u8 %r157, [%rd82];
+ld.shared.u8 %r158, [%rd82+1];
+ld.shared.u8 %r159, [%rd82+2];
+ld.shared.u8 %r160, [%rd82+3];
+add.s32 %r161, %r157, %r153;
+add.s32 %r162, %r161, %r158;
+add.s32 %r163, %r162, %r159;
+add.s32 %r164, %r163, %r160;
+add.s32 %r165, %r2, 40;
+and.b32 %r166, %r165, 60;
+or.b32 %r167, %r166, %r58;
+cvt.u64.u32	%rd83, %r167;
+add.s64 %rd84, %rd6, %rd83;
+ld.shared.u8 %r168, [%rd84];
+ld.shared.u8 %r169, [%rd84+1];
+ld.shared.u8 %r170, [%rd84+2];
+ld.shared.u8 %r171, [%rd84+3];
+add.s32 %r172, %r168, %r164;
+add.s32 %r173, %r172, %r169;
+add.s32 %r174, %r173, %r170;
+add.s32 %r175, %r174, %r171;
+add.s32 %r176, %r2, 44;
+and.b32 %r177, %r176, 60;
+or.b32 %r178, %r177, %r58;
+cvt.u64.u32	%rd85, %r178;
+add.s64 %rd86, %rd6, %rd85;
+ld.shared.u8 %r179, [%rd86];
+ld.shared.u8 %r180, [%rd86+1];
+ld.shared.u8 %r181, [%rd86+2];
+ld.shared.u8 %r182, [%rd86+3];
+add.s32 %r183, %r179, %r175;
+add.s32 %r184, %r183, %r180;
+add.s32 %r185, %r184, %r181;
+add.s32 %r186, %r185, %r182;
+add.s32 %r187, %r2, 48;
+and.b32 %r188, %r187, 60;
+or.b32 %r189, %r188, %r58;
+cvt.u64.u32	%rd87, %r189;
+add.s64 %rd88, %rd6, %rd87;
+ld.shared.u8 %r190, [%rd88];
+ld.shared.u8 %r191, [%rd88+1];
+ld.shared.u8 %r192, [%rd88+2];
+ld.shared.u8 %r193, [%rd88+3];
+add.s32 %r194, %r190, %r186;
+add.s32 %r195, %r194, %r191;
+add.s32 %r196, %r195, %r192;
+add.s32 %r197, %r196, %r193;
+add.s32 %r198, %r2, 52;
+and.b32 %r199, %r198, 60;
+or.b32 %r200, %r199, %r58;
+cvt.u64.u32	%rd89, %r200;
+add.s64 %rd90, %rd6, %rd89;
+ld.shared.u8 %r201, [%rd90];
+ld.shared.u8 %r202, [%rd90+1];
+ld.shared.u8 %r203, [%rd90+2];
+ld.shared.u8 %r204, [%rd90+3];
+add.s32 %r205, %r201, %r197;
+add.s32 %r206, %r205, %r202;
+add.s32 %r207, %r206, %r203;
+add.s32 %r208, %r207, %r204;
+add.s32 %r209, %r2, 56;
+and.b32 %r210, %r209, 60;
+or.b32 %r211, %r210, %r58;
+cvt.u64.u32	%rd91, %r211;
+add.s64 %rd92, %rd6, %rd91;
+ld.shared.u8 %r212, [%rd92];
+ld.shared.u8 %r213, [%rd92+1];
+ld.shared.u8 %r214, [%rd92+2];
+ld.shared.u8 %r215, [%rd92+3];
+add.s32 %r216, %r212, %r208;
+add.s32 %r217, %r216, %r213;
+add.s32 %r218, %r217, %r214;
+add.s32 %r219, %r218, %r215;
+add.s32 %r220, %r2, 60;
+and.b32 %r221, %r220, 60;
+or.b32 %r222, %r221, %r58;
+cvt.u64.u32	%rd93, %r222;
+add.s64 %rd94, %rd6, %rd93;
+ld.shared.u8 %r223, [%rd94];
+ld.shared.u8 %r224, [%rd94+1];
+ld.shared.u8 %r225, [%rd94+2];
+ld.shared.u8 %r226, [%rd94+3];
+add.s32 %r227, %r223, %r219;
+add.s32 %r228, %r227, %r224;
+add.s32 %r229, %r228, %r225;
+add.s32 %r230, %r229, %r226;
+shl.b32 %r231, %r5, 6;
+add.s32 %r232, %r231, %r1;
+mul.wide.u32 %rd95, %r232, 4;
+add.s64 %rd96, %rd59, %rd95;
+st.global.u32 [%rd96], %r230;
+
+BB0_5:
+ret;
+}
+
+.visible .entry _Z22mergeHistogram64KernelPjS_j(
+.param .u64 _Z22mergeHistogram64KernelPjS_j_param_0,
+.param .u64 _Z22mergeHistogram64KernelPjS_j_param_1,
+.param .u32 _Z22mergeHistogram64KernelPjS_j_param_2
+)
+{
+.reg .pred %p<12>;
+.reg .s32 %r<44>;
+.reg .s64 %rd<12>;
+
+	.shared .align 4 .b8 _Z22mergeHistogram64KernelPjS_j$__cuda_local_var_59280_34_non_const_data[1024];
+
+ld.param.u64 %rd3, [_Z22mergeHistogram64KernelPjS_j_param_0];
+ld.param.u64 %rd4, [_Z22mergeHistogram64KernelPjS_j_param_1];
+ld.param.u32 %r10, [_Z22mergeHistogram64KernelPjS_j_param_2];
+mov.u32 %r1, %tid.x;
+setp.lt.u32	%p1, %r1, %r10;
+@%p1 bra BB1_2;
+
+mov.u32 %r43, 0;
+bra.uni BB1_4;
+
+BB1_2:
+cvta.to.global.u64 %rd1, %rd4;
+mov.u32 %r13, %ctaid.x;
+mad.lo.s32 %r41, %r1, 64, %r13;
+mov.u32 %r43, 0;
+mov.u32 %r42, %r1;
+
+BB1_3:
+mov.u32 %r4, %r42;
+mul.wide.u32 %rd5, %r41, 4;
+add.s64 %rd6, %rd1, %rd5;
+ld.global.u32 %r14, [%rd6];
+add.s32 %r43, %r14, %r43;
+add.s32 %r41, %r41, 16384;
+add.s32 %r8, %r4, 256;
+setp.lt.u32	%p2, %r8, %r10;
+mov.u32 %r42, %r8;
+@%p2 bra BB1_3;
+
+BB1_4:
+mul.wide.u32 %rd7, %r1, 4;
+mov.u64 %rd8, _Z22mergeHistogram64KernelPjS_j$__cuda_local_var_59280_34_non_const_data;
+add.s64 %rd2, %rd8, %rd7;
+st.shared.u32 [%rd2], %r43;
+bar.sync 0;
+setp.gt.u32	%p3, %r1, 127;
+@%p3 bra BB1_6;
+
+ld.shared.u32 %r15, [%rd2];
+ld.shared.u32 %r16, [%rd2+512];
+add.s32 %r17, %r15, %r16;
+st.shared.u32 [%rd2], %r17;
+
+BB1_6:
+bar.sync 0;
+setp.gt.u32	%p4, %r1, 63;
+@%p4 bra BB1_8;
+
+ld.shared.u32 %r18, [%rd2];
+ld.shared.u32 %r19, [%rd2+256];
+add.s32 %r20, %r18, %r19;
+st.shared.u32 [%rd2], %r20;
+
+BB1_8:
+bar.sync 0;
+setp.gt.u32	%p5, %r1, 31;
+@%p5 bra BB1_10;
+
+ld.shared.u32 %r21, [%rd2];
+ld.shared.u32 %r22, [%rd2+128];
+add.s32 %r23, %r21, %r22;
+st.shared.u32 [%rd2], %r23;
+
+BB1_10:
+bar.sync 0;
+setp.gt.u32	%p6, %r1, 15;
+@%p6 bra BB1_12;
+
+ld.shared.u32 %r24, [%rd2];
+ld.shared.u32 %r25, [%rd2+64];
+add.s32 %r26, %r24, %r25;
+st.shared.u32 [%rd2], %r26;
+
+BB1_12:
+bar.sync 0;
+setp.gt.u32	%p7, %r1, 7;
+@%p7 bra BB1_14;
+
+ld.shared.u32 %r27, [%rd2];
+ld.shared.u32 %r28, [%rd2+32];
+add.s32 %r29, %r27, %r28;
+st.shared.u32 [%rd2], %r29;
+
+BB1_14:
+bar.sync 0;
+setp.gt.u32	%p8, %r1, 3;
+@%p8 bra BB1_16;
+
+ld.shared.u32 %r30, [%rd2];
+ld.shared.u32 %r31, [%rd2+16];
+add.s32 %r32, %r30, %r31;
+st.shared.u32 [%rd2], %r32;
+
+BB1_16:
+bar.sync 0;
+setp.gt.u32	%p9, %r1, 1;
+@%p9 bra BB1_18;
+
+ld.shared.u32 %r33, [%rd2];
+ld.shared.u32 %r34, [%rd2+8];
+add.s32 %r35, %r33, %r34;
+st.shared.u32 [%rd2], %r35;
+
+BB1_18:
+bar.sync 0;
+setp.ne.s32	%p10, %r1, 0;
+@%p10 bra BB1_20;
+
+ld.shared.u32 %r36, [_Z22mergeHistogram64KernelPjS_j$__cuda_local_var_59280_34_non_const_data+4];
+ld.shared.u32 %r37, [%rd2];
+add.s32 %r38, %r37, %r36;
+st.shared.u32 [%rd2], %r38;
+
+BB1_20:
+@%p10 bra BB1_22;
+
+cvta.to.global.u64 %rd9, %rd3;
+ld.shared.u32 %r39, [_Z22mergeHistogram64KernelPjS_j$__cuda_local_var_59280_34_non_const_data];
+mov.u32 %r40, %ctaid.x;
+mul.wide.u32 %rd10, %r40, 4;
+add.s64 %rd11, %rd9, %rd10;
+st.global.u32 [%rd11], %r39;
+
+BB1_22:
+ret;
+}
+
+
+
+Fatbin elf code:
+================
+arch = sm_10
+code version = [1,2]
+producer = cuda
+host = linux
+compile_size = 64bit
+identifier = histogram256.cu
+
+Fatbin ptx code:
+================
+arch = sm_10
+code version = [1,4]
+producer = cuda
+host = linux
+compile_size = 64bit
+compressed
+identifier = histogram256.cu
+	.version 1.4
+.target sm_10, map_f64_to_f32
+
+	
+
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+
+.file	1	"<command-line>"
+.file	2	"/tmp/tmpxft_00006320_00000000-15_histogram256.compute_10.cudafe2.gpu"
+.file	3	"/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h"
+.file	4	"/home/paperspace/cudax/cuda/include/crt/device_runtime.h"
+.file	5	"/home/paperspace/cudax/cuda/include/host_defines.h"
+.file	6	"/home/paperspace/cudax/cuda/include/builtin_types.h"
+.file	7	"/home/paperspace/cudax/cuda/include/device_types.h"
+.file	8	"/home/paperspace/cudax/cuda/include/driver_types.h"
+.file	9	"/home/paperspace/cudax/cuda/include/surface_types.h"
+.file	10	"/home/paperspace/cudax/cuda/include/texture_types.h"
+.file	11	"/home/paperspace/cudax/cuda/include/vector_types.h"
+.file	12	"/home/paperspace/cudax/cuda/include/device_launch_parameters.h"
+.file	13	"/home/paperspace/cudax/cuda/include/crt/storage_class.h"
+.file	14	"/usr/include/x86_64-linux-gnu/sys/types.h"
+.file	15	"histogram256.cu"
+.file	16	"/home/paperspace/cudax/cuda/include/common_functions.h"
+.file	17	"/home/paperspace/cudax/cuda/include/math_functions.h"
+.file	18	"/home/paperspace/cudax/cuda/include/math_constants.h"
+.file	19	"/home/paperspace/cudax/cuda/include/device_functions.h"
+.file	20	"/home/paperspace/cudax/cuda/include/sm_11_atomic_functions.h"
+.file	21	"/home/paperspace/cudax/cuda/include/sm_12_atomic_functions.h"
+.file	22	"/home/paperspace/cudax/cuda/include/sm_13_double_functions.h"
+.file	23	"/home/paperspace/cudax/cuda/include/sm_20_atomic_functions.h"
+.file	24	"/home/paperspace/cudax/cuda/include/sm_32_atomic_functions.h"
+.file	25	"/home/paperspace/cudax/cuda/include/sm_35_atomic_functions.h"
+.file	26	"/home/paperspace/cudax/cuda/include/sm_20_intrinsics.h"
+.file	27	"/home/paperspace/cudax/cuda/include/sm_30_intrinsics.h"
+.file	28	"/home/paperspace/cudax/cuda/include/sm_32_intrinsics.h"
+.file	29	"/home/paperspace/cudax/cuda/include/sm_35_intrinsics.h"
+.file	30	"/home/paperspace/cudax/cuda/include/surface_functions.h"
+.file	31	"/home/paperspace/cudax/cuda/include/texture_fetch_functions.h"
+.file	32	"/home/paperspace/cudax/cuda/include/texture_indirect_functions.h"
+.file	33	"/home/paperspace/cudax/cuda/include/surface_indirect_functions.h"
+.file	34	"/home/paperspace/cudax/cuda/include/math_functions_dbl_ptx1.h"
+
+
+.entry _Z18histogram256KernelPjS_j (
+.param .u64 __cudaparm__Z18histogram256KernelPjS_j_d_PartialHistograms,
+.param .u64 __cudaparm__Z18histogram256KernelPjS_j_d_Data,
+.param .u32 __cudaparm__Z18histogram256KernelPjS_j_dataCount)
+{
+.reg .u16 %rh<5>;
+.reg .u32 %r<77>;
+.reg .u64 %rd<32>;
+.reg .pred %p<11>;
+.shared .align 4 .b8 __cuda___cuda_local_var_41031_34_non_const_s_Hist20[6144];
+.loc	15	53	0
+$LDWbegin__Z18histogram256KernelPjS_j:
+mov.u64 %rd1, __cuda___cuda_local_var_41031_34_non_const_s_Hist20;
+.loc	15	61	0
+cvt.u32.u16 %r1, %tid.x;
+cvt.u64.u32 %rd2, %r1;
+mul.wide.u32 %rd3, %r1, 4;
+add.u64 %rd4, %rd1, %rd3;
+mov.u32 %r2, 0;
+st.shared.u32 [%rd4+0], %r2;
+mov.u32 %r3, 0;
+st.shared.u32 [%rd4+768], %r3;
+mov.u32 %r4, 0;
+st.shared.u32 [%rd4+1536], %r4;
+mov.u32 %r5, 0;
+st.shared.u32 [%rd4+2304], %r5;
+mov.u32 %r6, 0;
+st.shared.u32 [%rd4+3072], %r6;
+mov.u32 %r7, 0;
+st.shared.u32 [%rd4+3840], %r7;
+mov.u32 %r8, 0;
+st.shared.u32 [%rd4+4608], %r8;
+mov.u32 %r9, 0;
+st.shared.u32 [%rd4+5376], %r9;
+.loc	15	66	0
+bar.sync 0;
+.loc	15	67	0
+mov.u16 %rh1, %ntid.x;
+mov.u16 %rh2, %ctaid.x;
+mul.wide.u16 %r10, %rh1, %rh2;
+add.u32 %r11, %r10, %r1;
+mov.s32 %r12, %r11;
+ld.param.u32 %r13, [__cudaparm__Z18histogram256KernelPjS_j_dataCount];
+setp.ge.u32 %p1, %r11, %r13;
+@%p1 bra $Lt_0_7426;
+shr.u32 %r14, %r1, 5;
+shl.b32 %r15, %r1, 27;
+mov.u16 %rh3, %nctaid.x;
+mul.wide.u16 %r16, %rh3, %rh1;
+cvt.s64.u32 %rd5, %r16;
+ld.param.u64 %rd6, [__cudaparm__Z18histogram256KernelPjS_j_d_Data];
+cvt.u64.u32 %rd7, %r11;
+mul.wide.u32 %rd8, %r11, 4;
+add.u64 %rd9, %rd6, %rd8;
+mul.wide.u32 %rd10, %r16, 4;
+mul.lo.u32 %r17, %r14, 256;
+cvt.u64.u32 %rd11, %r17;
+mul.wide.u32 %rd12, %r17, 4;
+add.u64 %rd13, %rd1, %rd12;
+$Lt_0_7938:
+
+	.loc	15	68	0
+ld.global.u32 %r18, [%rd9+0];
+and.b32 %r19, %r18, 255;
+cvt.u64.u32 %rd14, %r19;
+mul.wide.u32 %rd15, %r19, 4;
+add.u64 %rd16, %rd13, %rd15;
+$Lt_0_8450:
+.loc	15	30	0
+ld.volatile.shared.u32 %r20, [%rd16+0];
+and.b32 %r21, %r20, 134217727;
+.loc	15	31	0
+add.u32 %r22, %r21, 1;
+or.b32 %r23, %r15, %r22;
+.loc	15	32	0
+st.volatile.shared.u32 [%rd16+0], %r23;
+ld.volatile.shared.u32 %r24, [%rd16+0];
+setp.ne.u32 %p2, %r24, %r23;
+@%p2 bra $Lt_0_8450;
+shl.b32 %r25, %r18, 16;
+shr.u32 %r26, %r25, 24;
+cvt.u64.u32 %rd17, %r26;
+mul.wide.u32 %rd18, %r26, 4;
+add.u64 %rd19, %rd13, %rd18;
+$Lt_0_9218:
+.loc	15	30	0
+ld.volatile.shared.u32 %r27, [%rd19+0];
+and.b32 %r28, %r27, 134217727;
+.loc	15	31	0
+add.u32 %r29, %r28, 1;
+or.b32 %r30, %r15, %r29;
+.loc	15	32	0
+st.volatile.shared.u32 [%rd19+0], %r30;
+ld.volatile.shared.u32 %r31, [%rd19+0];
+setp.ne.u32 %p3, %r31, %r30;
+@%p3 bra $Lt_0_9218;
+shl.b32 %r32, %r18, 8;
+shr.u32 %r33, %r32, 24;
+cvt.u64.u32 %rd20, %r33;
+mul.wide.u32 %rd21, %r33, 4;
+add.u64 %rd22, %rd13, %rd21;
+$Lt_0_9986:
+.loc	15	30	0
+ld.volatile.shared.u32 %r34, [%rd22+0];
+and.b32 %r35, %r34, 134217727;
+.loc	15	31	0
+add.u32 %r36, %r35, 1;
+or.b32 %r37, %r15, %r36;
+.loc	15	32	0
+st.volatile.shared.u32 [%rd22+0], %r37;
+ld.volatile.shared.u32 %r38, [%rd22+0];
+setp.ne.u32 %p4, %r38, %r37;
+@%p4 bra $Lt_0_9986;
+shr.u32 %r39, %r18, 24;
+cvt.u64.u32 %rd23, %r39;
+mul.wide.u32 %rd24, %r39, 4;
+add.u64 %rd25, %rd13, %rd24;
+$Lt_0_10754:
+.loc	15	30	0
+ld.volatile.shared.u32 %r40, [%rd25+0];
+and.b32 %r41, %r40, 134217727;
+.loc	15	31	0
+add.u32 %r42, %r41, 1;
+or.b32 %r43, %r15, %r42;
+.loc	15	32	0
+st.volatile.shared.u32 [%rd25+0], %r43;
+ld.volatile.shared.u32 %r44, [%rd25+0];
+setp.ne.u32 %p5, %r44, %r43;
+@%p5 bra $Lt_0_10754;
+add.u32 %r12, %r16, %r12;
+add.u64 %rd9, %rd9, %rd10;
+.loc	15	67	0
+ld.param.u32 %r13, [__cudaparm__Z18histogram256KernelPjS_j_dataCount];
+.loc	15	32	0
+setp.lt.u32 %p6, %r12, %r13;
+@%p6 bra $Lt_0_7938;
+$Lt_0_7426:
+.loc	15	73	0
+bar.sync 0;
+.loc	15	74	0
+mov.s32 %r45, %r1;
+mov.u32 %r46, 255;
+setp.gt.u32 %p7, %r1, %r46;
+@%p7 bra $Lt_0_11522;
+mov.u32 %r47, 447;
+sub.u32 %r48, %r47, %r1;
+mov.s32 %r49, -1431655765;
+mov.s32 %r50, 0;
+setp.lt.s32 %p8, %r48, %r50;
+abs.s32 %r51, %r48;
+mul.hi.u32 %r52, %r51, %r49;
+shr.s32 %r53, %r52, 7;
+@%p8 sub.s32 %r53, %r50, %r53;
+mov.s32 %r54, %r53;
+mul.wide.u16 %r55, %rh2, 256;
+add.u32 %r56, %r55, %r1;
+mov.s64 %rd26, %rd4;
+ld.param.u64 %rd27, [__cudaparm__Z18histogram256KernelPjS_j_d_PartialHistograms];
+mov.s32 %r57, %r54;
+$Lt_0_12034:
+
+	.loc	15	80	0
+ld.shared.u32 %r58, [%rd26+0];
+and.b32 %r59, %r58, 134217727;
+ld.shared.u32 %r60, [%rd26+1024];
+and.b32 %r61, %r60, 134217727;
+add.u32 %r62, %r59, %r61;
+ld.shared.u32 %r63, [%rd26+2048];
+and.b32 %r64, %r63, 134217727;
+ld.shared.u32 %r65, [%rd26+3072];
+and.b32 %r66, %r65, 134217727;
+add.u32 %r67, %r64, %r66;
+add.u32 %r68, %r62, %r67;
+ld.shared.u32 %r69, [%rd26+4096];
+and.b32 %r70, %r69, 134217727;
+ld.shared.u32 %r71, [%rd26+5120];
+and.b32 %r72, %r71, 134217727;
+add.u32 %r73, %r70, %r72;
+add.u32 %r74, %r68, %r73;
+cvt.u64.u32 %rd28, %r56;
+mul.wide.u32 %rd29, %r56, 4;
+.loc	15	74	0
+ld.param.u64 %rd27, [__cudaparm__Z18histogram256KernelPjS_j_d_PartialHistograms];
+.loc	15	80	0
+add.u64 %rd30, %rd27, %rd29;
+st.global.u32 [%rd30+0], %r74;
+add.u32 %r45, %r45, 192;
+add.u32 %r56, %r56, 192;
+add.u64 %rd26, %rd26, 768;
+mov.u32 %r75, 255;
+setp.le.u32 %p9, %r45, %r75;
+@%p9 bra $Lt_0_12034;
+$Lt_0_11522:
+.loc	15	82	0
+exit;
+$LDWend__Z18histogram256KernelPjS_j:
+} 
+
+.entry _Z23mergeHistogram256KernelPjS_j (
+.param .u64 __cudaparm__Z23mergeHistogram256KernelPjS_j_d_Histogram,
+.param .u64 __cudaparm__Z23mergeHistogram256KernelPjS_j_d_PartialHistograms,
+.param .u32 __cudaparm__Z23mergeHistogram256KernelPjS_j_histogramCount)
+{
+.reg .u32 %r<26>;
+.reg .u64 %rd<18>;
+.reg .pred %p<7>;
+.shared .align 4 .b8 __cuda___cuda_local_var_41069_34_non_const_data6188[1024];
+.loc	15	95	0
+$LDWbegin__Z23mergeHistogram256KernelPjS_j:
+.loc	15	98	0
+cvt.u32.u16 %r1, %tid.x;
+ld.param.u32 %r2, [__cudaparm__Z23mergeHistogram256KernelPjS_j_histogramCount];
+setp.ge.u32 %p1, %r1, %r2;
+@%p1 bra $Lt_1_6914;
+ld.param.u32 %r2, [__cudaparm__Z23mergeHistogram256KernelPjS_j_histogramCount];
+sub.u32 %r3, %r2, %r1;
+add.u32 %r4, %r3, 255;
+shr.s32 %r5, %r4, 31;
+mov.s32 %r6, 255;
+and.b32 %r7, %r5, %r6;
+add.s32 %r8, %r7, %r4;
+shr.s32 %r9, %r8, 8;
+cvt.u64.u16 %rd1, %ctaid.x;
+cvt.u32.u64 %r10, %rd1;
+mul.lo.u32 %r11, %r1, 256;
+mul.lo.u32 %r12, %r2, 256;
+add.u32 %r13, %r10, %r11;
+ld.param.u64 %rd2, [__cudaparm__Z23mergeHistogram256KernelPjS_j_d_PartialHistograms];
+mov.u32 %r14, 0;
+mov.s32 %r15, %r9;
+$Lt_1_4354:
+
+	.loc	15	99	0
+cvt.u64.u32 %rd3, %r13;
+mul.wide.u32 %rd4, %r13, 4;
+.loc	15	98	0
+ld.param.u64 %rd2, [__cudaparm__Z23mergeHistogram256KernelPjS_j_d_PartialHistograms];
+.loc	15	99	0
+add.u64 %rd5, %rd2, %rd4;
+ld.global.u32 %r16, [%rd5+0];
+add.u32 %r14, %r16, %r14;
+add.u32 %r11, %r11, 65536;
+add.u32 %r13, %r13, 65536;
+setp.lt.u32 %p2, %r11, %r12;
+@%p2 bra $Lt_1_4354;
+bra.uni $Lt_1_3842;
+$Lt_1_6914:
+mov.u32 %r14, 0;
+$Lt_1_3842:
+mov.u64 %rd6, __cuda___cuda_local_var_41069_34_non_const_data6188;
+.loc	15	102	0
+cvt.u64.u32 %rd7, %r1;
+mul.wide.u32 %rd8, %r1, 4;
+add.u64 %rd9, %rd6, %rd8;
+st.shared.u32 [%rd9+0], %r14;
+mov.u32 %r17, 128;
+$Lt_1_5378:
+
+	.loc	15	105	0
+bar.sync 0;
+setp.ge.u32 %p3, %r1, %r17;
+@%p3 bra $Lt_1_5634;
+.loc	15	107	0
+ld.shared.u32 %r18, [%rd9+0];
+add.u32 %r19, %r1, %r17;
+cvt.u64.u32 %rd10, %r19;
+mul.wide.u32 %rd11, %r19, 4;
+add.u64 %rd12, %rd6, %rd11;
+ld.shared.u32 %r20, [%rd12+0];
+add.u32 %r21, %r18, %r20;
+st.shared.u32 [%rd9+0], %r21;
+$Lt_1_5634:
+.loc	15	104	0
+shr.u32 %r17, %r17, 1;
+mov.u32 %r22, 0;
+setp.ne.u32 %p4, %r17, %r22;
+@%p4 bra $Lt_1_5378;
+mov.u32 %r23, 0;
+setp.ne.u32 %p5, %r1, %r23;
+@%p5 bra $Lt_1_6402;
+.loc	15	111	0
+ld.shared.u32 %r24, [__cuda___cuda_local_var_41069_34_non_const_data6188+0];
+ld.param.u64 %rd13, [__cudaparm__Z23mergeHistogram256KernelPjS_j_d_Histogram];
+cvt.u64.u16 %rd14, %ctaid.x;
+mul.lo.u64 %rd15, %rd14, 4;
+add.u64 %rd16, %rd13, %rd15;
+st.global.u32 [%rd16+0], %r24;
+$Lt_1_6402:
+.loc	15	112	0
+exit;
+$LDWend__Z23mergeHistogram256KernelPjS_j:
+} 
+
+
+Fatbin elf code:
+================
+arch = sm_20
+code version = [1,7]
+producer = cuda
+host = linux
+compile_size = 64bit
+identifier = histogram256.cu
+
+Fatbin ptx code:
+================
+arch = sm_20
+code version = [4,0]
+producer = cuda
+host = linux
+compile_size = 64bit
+compressed
+identifier = histogram256.cu
+
+
+
+
+
+
+.version 4.0
+.target sm_20
+.address_size 64
+
+
+
+
+.visible .entry _Z18histogram256KernelPjS_j(
+.param .u64 _Z18histogram256KernelPjS_j_param_0,
+.param .u64 _Z18histogram256KernelPjS_j_param_1,
+.param .u32 _Z18histogram256KernelPjS_j_param_2
+)
+{
+.reg .pred %p<9>;
+.reg .s32 %r<68>;
+.reg .s64 %rd<51>;
+
+	.shared .align 4 .b8 _Z18histogram256KernelPjS_j$__cuda_local_var_59122_34_non_const_s_Hist[6144];
+
+ld.param.u64 %rd11, [_Z18histogram256KernelPjS_j_param_0];
+ld.param.u64 %rd12, [_Z18histogram256KernelPjS_j_param_1];
+ld.param.u32 %r13, [_Z18histogram256KernelPjS_j_param_2];
+mov.u32 %r67, %tid.x;
+shl.b32 %r14, %r67, 3;
+and.b32 %r15, %r14, -256;
+mul.wide.u32 %rd13, %r67, 4;
+mov.u64 %rd14, _Z18histogram256KernelPjS_j$__cuda_local_var_59122_34_non_const_s_Hist;
+add.s64 %rd15, %rd14, %rd13;
+mov.u32 %r16, 0;
+st.shared.u32 [%rd15], %r16;
+st.shared.u32 [%rd15+768], %r16;
+st.shared.u32 [%rd15+1536], %r16;
+st.shared.u32 [%rd15+2304], %r16;
+st.shared.u32 [%rd15+3072], %r16;
+st.shared.u32 [%rd15+3840], %r16;
+st.shared.u32 [%rd15+4608], %r16;
+st.shared.u32 [%rd15+5376], %r16;
+cvt.u64.u32	%rd1, %r15;
+shl.b32 %r2, %r67, 27;
+bar.sync 0;
+mov.u32 %r3, %ntid.x;
+mov.u32 %r4, %ctaid.x;
+mad.lo.s32 %r66, %r3, %r4, %r67;
+setp.ge.u32	%p1, %r66, %r13;
+@%p1 bra BB0_11;
+
+cvta.to.global.u64 %rd2, %rd12;
+mov.u32 %r17, %nctaid.x;
+mul.lo.s32 %r6, %r17, %r3;
+
+BB0_2:
+mul.wide.u32 %rd16, %r66, 4;
+add.s64 %rd17, %rd2, %rd16;
+ld.global.u32 %rd18, [%rd17];
+cvt.u32.u64	%r8, %rd18;
+and.b64 %rd19, %rd18, 255;
+add.s64 %rd20, %rd19, %rd1;
+shl.b64 %rd21, %rd20, 2;
+add.s64 %rd3, %rd14, %rd21;
+
+BB0_3:
+ld.volatile.shared.u32 %r18, [%rd3];
+and.b32 %r19, %r18, 134217727;
+add.s32 %r20, %r19, 1;
+or.b32 %r21, %r20, %r2;
+st.volatile.shared.u32 [%rd3], %r21;
+ld.volatile.shared.u32 %r22, [%rd3];
+setp.ne.s32	%p2, %r22, %r21;
+@%p2 bra BB0_3;
+
+shr.u32 %r23, %r8, 8;
+and.b32 %r24, %r23, 255;
+cvt.u64.u32	%rd23, %r24;
+add.s64 %rd24, %rd23, %rd1;
+shl.b64 %rd25, %rd24, 2;
+add.s64 %rd4, %rd14, %rd25;
+
+BB0_5:
+ld.volatile.shared.u32 %r25, [%rd4];
+and.b32 %r26, %r25, 134217727;
+add.s32 %r27, %r26, 1;
+or.b32 %r28, %r27, %r2;
+st.volatile.shared.u32 [%rd4], %r28;
+ld.volatile.shared.u32 %r29, [%rd4];
+setp.ne.s32	%p3, %r29, %r28;
+@%p3 bra BB0_5;
+
+shr.u32 %r30, %r8, 16;
+and.b32 %r31, %r30, 255;
+cvt.u64.u32	%rd27, %r31;
+add.s64 %rd28, %rd27, %rd1;
+shl.b64 %rd29, %rd28, 2;
+add.s64 %rd5, %rd14, %rd29;
+
+BB0_7:
+ld.volatile.shared.u32 %r32, [%rd5];
+and.b32 %r33, %r32, 134217727;
+add.s32 %r34, %r33, 1;
+or.b32 %r35, %r34, %r2;
+st.volatile.shared.u32 [%rd5], %r35;
+ld.volatile.shared.u32 %r36, [%rd5];
+setp.ne.s32	%p4, %r36, %r35;
+@%p4 bra BB0_7;
+
+shr.u32 %r37, %r8, 24;
+cvt.u64.u32	%rd31, %r37;
+add.s64 %rd32, %rd31, %rd1;
+shl.b64 %rd33, %rd32, 2;
+add.s64 %rd6, %rd14, %rd33;
+
+BB0_9:
+ld.volatile.shared.u32 %r38, [%rd6];
+and.b32 %r39, %r38, 134217727;
+add.s32 %r40, %r39, 1;
+or.b32 %r41, %r40, %r2;
+st.volatile.shared.u32 [%rd6], %r41;
+ld.volatile.shared.u32 %r42, [%rd6];
+setp.ne.s32	%p5, %r42, %r41;
+@%p5 bra BB0_9;
+
+add.s32 %r66, %r6, %r66;
+setp.lt.u32	%p6, %r66, %r13;
+@%p6 bra BB0_2;
+
+BB0_11:
+bar.sync 0;
+setp.gt.u32	%p7, %r67, 255;
+@%p7 bra BB0_14;
+
+cvta.to.global.u64 %rd7, %rd11;
+mul.wide.u32 %rd35, %r67, 4;
+add.s64 %rd50, %rd14, %rd35;
+shl.b32 %r10, %r4, 8;
+
+BB0_13:
+ld.shared.u32 %r43, [%rd50];
+and.b32 %r44, %r43, 134217727;
+add.s32 %r45, %r67, 256;
+mul.wide.u32 %rd37, %r45, 4;
+add.s64 %rd39, %rd14, %rd37;
+ld.shared.u32 %r46, [%rd39];
+and.b32 %r47, %r46, 134217727;
+add.s32 %r48, %r47, %r44;
+add.s32 %r49, %r67, 512;
+mul.wide.u32 %rd40, %r49, 4;
+add.s64 %rd41, %rd14, %rd40;
+ld.shared.u32 %r50, [%rd41];
+and.b32 %r51, %r50, 134217727;
+add.s32 %r52, %r51, %r48;
+add.s32 %r53, %r67, 768;
+mul.wide.u32 %rd42, %r53, 4;
+add.s64 %rd43, %rd14, %rd42;
+ld.shared.u32 %r54, [%rd43];
+and.b32 %r55, %r54, 134217727;
+add.s32 %r56, %r55, %r52;
+add.s32 %r57, %r67, 1024;
+mul.wide.u32 %rd44, %r57, 4;
+add.s64 %rd45, %rd14, %rd44;
+ld.shared.u32 %r58, [%rd45];
+and.b32 %r59, %r58, 134217727;
+add.s32 %r60, %r59, %r56;
+add.s32 %r61, %r67, 1280;
+mul.wide.u32 %rd46, %r61, 4;
+add.s64 %rd47, %rd14, %rd46;
+ld.shared.u32 %r62, [%rd47];
+and.b32 %r63, %r62, 134217727;
+add.s32 %r64, %r63, %r60;
+add.s32 %r65, %r10, %r67;
+mul.wide.u32 %rd48, %r65, 4;
+add.s64 %rd49, %rd7, %rd48;
+st.global.u32 [%rd49], %r64;
+add.s64 %rd50, %rd50, 768;
+add.s32 %r67, %r67, 192;
+setp.lt.u32	%p8, %r67, 256;
+@%p8 bra BB0_13;
+
+BB0_14:
+ret;
+}
+
+.visible .entry _Z23mergeHistogram256KernelPjS_j(
+.param .u64 _Z23mergeHistogram256KernelPjS_j_param_0,
+.param .u64 _Z23mergeHistogram256KernelPjS_j_param_1,
+.param .u32 _Z23mergeHistogram256KernelPjS_j_param_2
+)
+{
+.reg .pred %p<12>;
+.reg .s32 %r<44>;
+.reg .s64 %rd<12>;
+
+	.shared .align 4 .b8 _Z23mergeHistogram256KernelPjS_j$__cuda_local_var_59160_34_non_const_data[1024];
+
+ld.param.u64 %rd3, [_Z23mergeHistogram256KernelPjS_j_param_0];
+ld.param.u64 %rd4, [_Z23mergeHistogram256KernelPjS_j_param_1];
+ld.param.u32 %r10, [_Z23mergeHistogram256KernelPjS_j_param_2];
+mov.u32 %r1, %tid.x;
+setp.lt.u32	%p1, %r1, %r10;
+@%p1 bra BB1_2;
+
+mov.u32 %r43, 0;
+bra.uni BB1_4;
+
+BB1_2:
+cvta.to.global.u64 %rd1, %rd4;
+mov.u32 %r13, %ctaid.x;
+mad.lo.s32 %r41, %r1, 256, %r13;
+mov.u32 %r43, 0;
+mov.u32 %r42, %r1;
+
+BB1_3:
+mov.u32 %r4, %r42;
+mul.wide.u32 %rd5, %r41, 4;
+add.s64 %rd6, %rd1, %rd5;
+ld.global.u32 %r14, [%rd6];
+add.s32 %r43, %r14, %r43;
+add.s32 %r41, %r41, 65536;
+add.s32 %r8, %r4, 256;
+setp.lt.u32	%p2, %r8, %r10;
+mov.u32 %r42, %r8;
+@%p2 bra BB1_3;
+
+BB1_4:
+mul.wide.u32 %rd7, %r1, 4;
+mov.u64 %rd8, _Z23mergeHistogram256KernelPjS_j$__cuda_local_var_59160_34_non_const_data;
+add.s64 %rd2, %rd8, %rd7;
+st.shared.u32 [%rd2], %r43;
+bar.sync 0;
+setp.gt.u32	%p3, %r1, 127;
+@%p3 bra BB1_6;
+
+ld.shared.u32 %r15, [%rd2];
+ld.shared.u32 %r16, [%rd2+512];
+add.s32 %r17, %r15, %r16;
+st.shared.u32 [%rd2], %r17;
+
+BB1_6:
+bar.sync 0;
+setp.gt.u32	%p4, %r1, 63;
+@%p4 bra BB1_8;
+
+ld.shared.u32 %r18, [%rd2];
+ld.shared.u32 %r19, [%rd2+256];
+add.s32 %r20, %r18, %r19;
+st.shared.u32 [%rd2], %r20;
+
+BB1_8:
+bar.sync 0;
+setp.gt.u32	%p5, %r1, 31;
+@%p5 bra BB1_10;
+
+ld.shared.u32 %r21, [%rd2];
+ld.shared.u32 %r22, [%rd2+128];
+add.s32 %r23, %r21, %r22;
+st.shared.u32 [%rd2], %r23;
+
+BB1_10:
+bar.sync 0;
+setp.gt.u32	%p6, %r1, 15;
+@%p6 bra BB1_12;
+
+ld.shared.u32 %r24, [%rd2];
+ld.shared.u32 %r25, [%rd2+64];
+add.s32 %r26, %r24, %r25;
+st.shared.u32 [%rd2], %r26;
+
+BB1_12:
+bar.sync 0;
+setp.gt.u32	%p7, %r1, 7;
+@%p7 bra BB1_14;
+
+ld.shared.u32 %r27, [%rd2];
+ld.shared.u32 %r28, [%rd2+32];
+add.s32 %r29, %r27, %r28;
+st.shared.u32 [%rd2], %r29;
+
+BB1_14:
+bar.sync 0;
+setp.gt.u32	%p8, %r1, 3;
+@%p8 bra BB1_16;
+
+ld.shared.u32 %r30, [%rd2];
+ld.shared.u32 %r31, [%rd2+16];
+add.s32 %r32, %r30, %r31;
+st.shared.u32 [%rd2], %r32;
+
+BB1_16:
+bar.sync 0;
+setp.gt.u32	%p9, %r1, 1;
+@%p9 bra BB1_18;
+
+ld.shared.u32 %r33, [%rd2];
+ld.shared.u32 %r34, [%rd2+8];
+add.s32 %r35, %r33, %r34;
+st.shared.u32 [%rd2], %r35;
+
+BB1_18:
+bar.sync 0;
+setp.ne.s32	%p10, %r1, 0;
+@%p10 bra BB1_20;
+
+ld.shared.u32 %r36, [_Z23mergeHistogram256KernelPjS_j$__cuda_local_var_59160_34_non_const_data+4];
+ld.shared.u32 %r37, [%rd2];
+add.s32 %r38, %r37, %r36;
+st.shared.u32 [%rd2], %r38;
+
+BB1_20:
+@%p10 bra BB1_22;
+
+cvta.to.global.u64 %rd9, %rd3;
+ld.shared.u32 %r39, [_Z23mergeHistogram256KernelPjS_j$__cuda_local_var_59160_34_non_const_data];
+mov.u32 %r40, %ctaid.x;
+mul.wide.u32 %rd10, %r40, 4;
+add.s64 %rd11, %rd9, %rd10;
+st.global.u32 [%rd11], %r39;
+
+BB1_22:
+ret;
+}
+
+
+
+Fatbin elf code:
+================
+arch = sm_30
+code version = [1,7]
+producer = cuda
+host = linux
+compile_size = 64bit
+identifier = histogram256.cu
+
+Fatbin ptx code:
+================
+arch = sm_30
+code version = [4,0]
+producer = cuda
+host = linux
+compile_size = 64bit
+compressed
+identifier = histogram256.cu
+
+
+
+
+
+
+.version 4.0
+.target sm_30
+.address_size 64
+
+
+
+
+.visible .entry _Z18histogram256KernelPjS_j(
+.param .u64 _Z18histogram256KernelPjS_j_param_0,
+.param .u64 _Z18histogram256KernelPjS_j_param_1,
+.param .u32 _Z18histogram256KernelPjS_j_param_2
+)
+{
+.reg .pred %p<9>;
+.reg .s32 %r<68>;
+.reg .s64 %rd<51>;
+
+	.shared .align 4 .b8 _Z18histogram256KernelPjS_j$__cuda_local_var_59195_34_non_const_s_Hist[6144];
+
+ld.param.u64 %rd11, [_Z18histogram256KernelPjS_j_param_0];
+ld.param.u64 %rd12, [_Z18histogram256KernelPjS_j_param_1];
+ld.param.u32 %r13, [_Z18histogram256KernelPjS_j_param_2];
+mov.u32 %r67, %tid.x;
+shl.b32 %r14, %r67, 3;
+and.b32 %r15, %r14, -256;
+mul.wide.u32 %rd13, %r67, 4;
+mov.u64 %rd14, _Z18histogram256KernelPjS_j$__cuda_local_var_59195_34_non_const_s_Hist;
+add.s64 %rd15, %rd14, %rd13;
+mov.u32 %r16, 0;
+st.shared.u32 [%rd15], %r16;
+st.shared.u32 [%rd15+768], %r16;
+st.shared.u32 [%rd15+1536], %r16;
+st.shared.u32 [%rd15+2304], %r16;
+st.shared.u32 [%rd15+3072], %r16;
+st.shared.u32 [%rd15+3840], %r16;
+st.shared.u32 [%rd15+4608], %r16;
+st.shared.u32 [%rd15+5376], %r16;
+cvt.u64.u32	%rd1, %r15;
+shl.b32 %r2, %r67, 27;
+bar.sync 0;
+mov.u32 %r3, %ntid.x;
+mov.u32 %r4, %ctaid.x;
+mad.lo.s32 %r66, %r3, %r4, %r67;
+setp.ge.u32	%p1, %r66, %r13;
+@%p1 bra BB0_11;
+
+cvta.to.global.u64 %rd2, %rd12;
+mov.u32 %r17, %nctaid.x;
+mul.lo.s32 %r6, %r17, %r3;
+
+BB0_2:
+mul.wide.u32 %rd16, %r66, 4;
+add.s64 %rd17, %rd2, %rd16;
+ld.global.u32 %rd18, [%rd17];
+cvt.u32.u64	%r8, %rd18;
+and.b64 %rd19, %rd18, 255;
+add.s64 %rd20, %rd19, %rd1;
+shl.b64 %rd21, %rd20, 2;
+add.s64 %rd3, %rd14, %rd21;
+
+BB0_3:
+ld.volatile.shared.u32 %r18, [%rd3];
+and.b32 %r19, %r18, 134217727;
+add.s32 %r20, %r19, 1;
+or.b32 %r21, %r20, %r2;
+st.volatile.shared.u32 [%rd3], %r21;
+ld.volatile.shared.u32 %r22, [%rd3];
+setp.ne.s32	%p2, %r22, %r21;
+@%p2 bra BB0_3;
+
+shr.u32 %r23, %r8, 8;
+and.b32 %r24, %r23, 255;
+cvt.u64.u32	%rd23, %r24;
+add.s64 %rd24, %rd23, %rd1;
+shl.b64 %rd25, %rd24, 2;
+add.s64 %rd4, %rd14, %rd25;
+
+BB0_5:
+ld.volatile.shared.u32 %r25, [%rd4];
+and.b32 %r26, %r25, 134217727;
+add.s32 %r27, %r26, 1;
+or.b32 %r28, %r27, %r2;
+st.volatile.shared.u32 [%rd4], %r28;
+ld.volatile.shared.u32 %r29, [%rd4];
+setp.ne.s32	%p3, %r29, %r28;
+@%p3 bra BB0_5;
+
+shr.u32 %r30, %r8, 16;
+and.b32 %r31, %r30, 255;
+cvt.u64.u32	%rd27, %r31;
+add.s64 %rd28, %rd27, %rd1;
+shl.b64 %rd29, %rd28, 2;
+add.s64 %rd5, %rd14, %rd29;
+
+BB0_7:
+ld.volatile.shared.u32 %r32, [%rd5];
+and.b32 %r33, %r32, 134217727;
+add.s32 %r34, %r33, 1;
+or.b32 %r35, %r34, %r2;
+st.volatile.shared.u32 [%rd5], %r35;
+ld.volatile.shared.u32 %r36, [%rd5];
+setp.ne.s32	%p4, %r36, %r35;
+@%p4 bra BB0_7;
+
+shr.u32 %r37, %r8, 24;
+cvt.u64.u32	%rd31, %r37;
+add.s64 %rd32, %rd31, %rd1;
+shl.b64 %rd33, %rd32, 2;
+add.s64 %rd6, %rd14, %rd33;
+
+BB0_9:
+ld.volatile.shared.u32 %r38, [%rd6];
+and.b32 %r39, %r38, 134217727;
+add.s32 %r40, %r39, 1;
+or.b32 %r41, %r40, %r2;
+st.volatile.shared.u32 [%rd6], %r41;
+ld.volatile.shared.u32 %r42, [%rd6];
+setp.ne.s32	%p5, %r42, %r41;
+@%p5 bra BB0_9;
+
+add.s32 %r66, %r6, %r66;
+setp.lt.u32	%p6, %r66, %r13;
+@%p6 bra BB0_2;
+
+BB0_11:
+bar.sync 0;
+setp.gt.u32	%p7, %r67, 255;
+@%p7 bra BB0_14;
+
+cvta.to.global.u64 %rd7, %rd11;
+mul.wide.u32 %rd35, %r67, 4;
+add.s64 %rd50, %rd14, %rd35;
+shl.b32 %r10, %r4, 8;
+
+BB0_13:
+ld.shared.u32 %r43, [%rd50];
+and.b32 %r44, %r43, 134217727;
+add.s32 %r45, %r67, 256;
+mul.wide.u32 %rd37, %r45, 4;
+add.s64 %rd39, %rd14, %rd37;
+ld.shared.u32 %r46, [%rd39];
+and.b32 %r47, %r46, 134217727;
+add.s32 %r48, %r47, %r44;
+add.s32 %r49, %r67, 512;
+mul.wide.u32 %rd40, %r49, 4;
+add.s64 %rd41, %rd14, %rd40;
+ld.shared.u32 %r50, [%rd41];
+and.b32 %r51, %r50, 134217727;
+add.s32 %r52, %r51, %r48;
+add.s32 %r53, %r67, 768;
+mul.wide.u32 %rd42, %r53, 4;
+add.s64 %rd43, %rd14, %rd42;
+ld.shared.u32 %r54, [%rd43];
+and.b32 %r55, %r54, 134217727;
+add.s32 %r56, %r55, %r52;
+add.s32 %r57, %r67, 1024;
+mul.wide.u32 %rd44, %r57, 4;
+add.s64 %rd45, %rd14, %rd44;
+ld.shared.u32 %r58, [%rd45];
+and.b32 %r59, %r58, 134217727;
+add.s32 %r60, %r59, %r56;
+add.s32 %r61, %r67, 1280;
+mul.wide.u32 %rd46, %r61, 4;
+add.s64 %rd47, %rd14, %rd46;
+ld.shared.u32 %r62, [%rd47];
+and.b32 %r63, %r62, 134217727;
+add.s32 %r64, %r63, %r60;
+add.s32 %r65, %r10, %r67;
+mul.wide.u32 %rd48, %r65, 4;
+add.s64 %rd49, %rd7, %rd48;
+st.global.u32 [%rd49], %r64;
+add.s64 %rd50, %rd50, 768;
+add.s32 %r67, %r67, 192;
+setp.lt.u32	%p8, %r67, 256;
+@%p8 bra BB0_13;
+
+BB0_14:
+ret;
+}
+
+.visible .entry _Z23mergeHistogram256KernelPjS_j(
+.param .u64 _Z23mergeHistogram256KernelPjS_j_param_0,
+.param .u64 _Z23mergeHistogram256KernelPjS_j_param_1,
+.param .u32 _Z23mergeHistogram256KernelPjS_j_param_2
+)
+{
+.reg .pred %p<12>;
+.reg .s32 %r<44>;
+.reg .s64 %rd<12>;
+
+	.shared .align 4 .b8 _Z23mergeHistogram256KernelPjS_j$__cuda_local_var_59233_34_non_const_data[1024];
+
+ld.param.u64 %rd3, [_Z23mergeHistogram256KernelPjS_j_param_0];
+ld.param.u64 %rd4, [_Z23mergeHistogram256KernelPjS_j_param_1];
+ld.param.u32 %r10, [_Z23mergeHistogram256KernelPjS_j_param_2];
+mov.u32 %r1, %tid.x;
+setp.lt.u32	%p1, %r1, %r10;
+@%p1 bra BB1_2;
+
+mov.u32 %r43, 0;
+bra.uni BB1_4;
+
+BB1_2:
+cvta.to.global.u64 %rd1, %rd4;
+mov.u32 %r13, %ctaid.x;
+mad.lo.s32 %r41, %r1, 256, %r13;
+mov.u32 %r43, 0;
+mov.u32 %r42, %r1;
+
+BB1_3:
+mov.u32 %r4, %r42;
+mul.wide.u32 %rd5, %r41, 4;
+add.s64 %rd6, %rd1, %rd5;
+ld.global.u32 %r14, [%rd6];
+add.s32 %r43, %r14, %r43;
+add.s32 %r41, %r41, 65536;
+add.s32 %r8, %r4, 256;
+setp.lt.u32	%p2, %r8, %r10;
+mov.u32 %r42, %r8;
+@%p2 bra BB1_3;
+
+BB1_4:
+mul.wide.u32 %rd7, %r1, 4;
+mov.u64 %rd8, _Z23mergeHistogram256KernelPjS_j$__cuda_local_var_59233_34_non_const_data;
+add.s64 %rd2, %rd8, %rd7;
+st.shared.u32 [%rd2], %r43;
+bar.sync 0;
+setp.gt.u32	%p3, %r1, 127;
+@%p3 bra BB1_6;
+
+ld.shared.u32 %r15, [%rd2];
+ld.shared.u32 %r16, [%rd2+512];
+add.s32 %r17, %r15, %r16;
+st.shared.u32 [%rd2], %r17;
+
+BB1_6:
+bar.sync 0;
+setp.gt.u32	%p4, %r1, 63;
+@%p4 bra BB1_8;
+
+ld.shared.u32 %r18, [%rd2];
+ld.shared.u32 %r19, [%rd2+256];
+add.s32 %r20, %r18, %r19;
+st.shared.u32 [%rd2], %r20;
+
+BB1_8:
+bar.sync 0;
+setp.gt.u32	%p5, %r1, 31;
+@%p5 bra BB1_10;
+
+ld.shared.u32 %r21, [%rd2];
+ld.shared.u32 %r22, [%rd2+128];
+add.s32 %r23, %r21, %r22;
+st.shared.u32 [%rd2], %r23;
+
+BB1_10:
+bar.sync 0;
+setp.gt.u32	%p6, %r1, 15;
+@%p6 bra BB1_12;
+
+ld.shared.u32 %r24, [%rd2];
+ld.shared.u32 %r25, [%rd2+64];
+add.s32 %r26, %r24, %r25;
+st.shared.u32 [%rd2], %r26;
+
+BB1_12:
+bar.sync 0;
+setp.gt.u32	%p7, %r1, 7;
+@%p7 bra BB1_14;
+
+ld.shared.u32 %r27, [%rd2];
+ld.shared.u32 %r28, [%rd2+32];
+add.s32 %r29, %r27, %r28;
+st.shared.u32 [%rd2], %r29;
+
+BB1_14:
+bar.sync 0;
+setp.gt.u32	%p8, %r1, 3;
+@%p8 bra BB1_16;
+
+ld.shared.u32 %r30, [%rd2];
+ld.shared.u32 %r31, [%rd2+16];
+add.s32 %r32, %r30, %r31;
+st.shared.u32 [%rd2], %r32;
+
+BB1_16:
+bar.sync 0;
+setp.gt.u32	%p9, %r1, 1;
+@%p9 bra BB1_18;
+
+ld.shared.u32 %r33, [%rd2];
+ld.shared.u32 %r34, [%rd2+8];
+add.s32 %r35, %r33, %r34;
+st.shared.u32 [%rd2], %r35;
+
+BB1_18:
+bar.sync 0;
+setp.ne.s32	%p10, %r1, 0;
+@%p10 bra BB1_20;
+
+ld.shared.u32 %r36, [_Z23mergeHistogram256KernelPjS_j$__cuda_local_var_59233_34_non_const_data+4];
+ld.shared.u32 %r37, [%rd2];
+add.s32 %r38, %r37, %r36;
+st.shared.u32 [%rd2], %r38;
+
+BB1_20:
+@%p10 bra BB1_22;
+
+cvta.to.global.u64 %rd9, %rd3;
+ld.shared.u32 %r39, [_Z23mergeHistogram256KernelPjS_j$__cuda_local_var_59233_34_non_const_data];
+mov.u32 %r40, %ctaid.x;
+mul.wide.u32 %rd10, %r40, 4;
+add.s64 %rd11, %rd9, %rd10;
+st.global.u32 [%rd11], %r39;
+
+BB1_22:
+ret;
+}
+
+

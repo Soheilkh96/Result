@@ -1,0 +1,9 @@
+../transpose Starting...
+
+> Device 0: "GPGPU-Sim_vGPGPU-Sim Simulator Version 3.2.2 "
+> SM Capability 2.0 detected:
+> [GPGPU-Sim_vGPGPU-Sim Simulator Version 3.2.2 ] has 15 MP(s) x 32 (Cores/MP) = 480 (Cores)
+> Compute performance scaling factor = 1.00
+
+Matrix size: 1024x1024 (64x64 tiles), tile size: 16x16, block size: 16x16
+
