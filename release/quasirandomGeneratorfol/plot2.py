@@ -19,7 +19,7 @@ print max(x)
 print min(x)
 num_bins = 65536
 n, bins, patches = plt.hist(x, num_bins, facecolor='blue', alpha=0.5)
-plt.savefig("/home/paperspace/gpgpu-sim_simulations/benchmarks/src/4.2/C/bin/linux/release/alignedTypesfol/a.png")
+plt.savefig("/home/paperspace/gpgpu-sim_simulations/benchmarks/src/4.2/C/bin/linux/release/quasirandomGeneratorfol/a.png")
 #print(binascii.hexlify(content))
 
 

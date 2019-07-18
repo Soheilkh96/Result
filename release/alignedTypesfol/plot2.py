@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 x = []
 import binascii
-filename = 'alignedTypes.data'
+filename = 'data.data'
 with open(filename, 'rb') as f:
 	 for line in f: 
 #		 print int(line, 16)/16
