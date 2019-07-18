@@ -11,7 +11,7 @@ filename = 'alignedTypes.data'
 with open(filename, 'rb') as f:
 	 for line in f: 
 #		 print int(line, 16)/16
-		 x.append(int(line,16)/4096)  
+		 x.append((int(line,16)/4096)%65536)  
 
 
 print x[1]
